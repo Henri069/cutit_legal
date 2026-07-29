@@ -1,0 +1,247 @@
+<!doctype html>
+<!--
+  BikeEdit — Privacy Policy (English).
+  English courtesy translation of ../privacy.html. The German version is the
+  binding one. Work through the yellow .todo boxes before publishing, then
+  remove them from both language versions.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — BikeEdit</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <p class="nav">
+    <a href="./privacy.html" aria-current="page">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="./delete-account.html">Delete data</a>
+    <a href="./imprint.html">Imprint</a>
+    <a class="lang" href="../privacy.html">Deutsch</a>
+  </p>
+
+  <h1>Privacy Policy</h1>
+  <p class="meta">BikeEdit · Last updated: 29 July 2026</p>
+
+  <div class="note">
+    <strong>In short</strong>
+    <ul>
+      <li>No account, no email address, no password. On first launch BikeEdit only creates a random, anonymous ID for
+        your device.</li>
+      <li>Your clips and your GPX route are processed for one purpose only: building your video.</li>
+      <li>Your finished video sits in private storage. Only your device can fetch it.</li>
+      <li>No ad tracking, no analytics SDKs, no selling of data.</li>
+      <li>You can delete everything yourself, from inside the app, at any time.</li>
+    </ul>
+  </div>
+
+  <h2>1. Who is responsible</h2>
+  <address>
+    Henri Irmscher — Appentwicklung<br />
+    Seckbacher Landstr. 66<br />
+    60389 Frankfurt am Main<br />
+    Germany
+  </address>
+  <p>Email: <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a></p>
+  <p>A data protection officer is not legally required and has not been appointed.</p>
+
+  <h2>2. An anonymous ID instead of a user account</h2>
+  <p>
+    BikeEdit has no sign-up. On first launch the app signs in anonymously to our backend (Supabase anonymous sign-in).
+    This creates a random ID that is stored on your device. It serves exactly one purpose: linking your uploaded clips
+    and finished videos to your device so that nobody else can reach them.
+  </p>
+  <p>
+    We therefore learn neither your name nor your email address nor your phone number. The ID is not linked to any other
+    service. Delete the app and the ID is gone from your device.
+  </p>
+
+  <h2>3. What data we process</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Purpose</th>
+        <th>Legal basis</th>
+        <th>Retention</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Anonymous device ID</td>
+        <td>Links uploads and finished videos to your device and blocks access by others</td>
+        <td>Art. 6(1)(b) GDPR (performance of a contract)</td>
+        <td>Until you delete all data in the app or uninstall it</td>
+      </tr>
+      <tr>
+        <td>Photos and video clips you select</td>
+        <td>Source material for your edit</td>
+        <td>Art. 6(1)(b) GDPR</td>
+        <td>On the render server while processing; unfinished jobs expire after 24 hours</td>
+      </tr>
+      <tr>
+        <td>Capture timestamps of your clips</td>
+        <td>Sorts your clips into the right order automatically</td>
+        <td>Art. 6(1)(b) GDPR</td>
+        <td>Used at processing time only, not stored separately</td>
+      </tr>
+      <tr>
+        <td>GPX file of your ride (optional, contains precise location data)</td>
+        <td>Route, elevation, distance and speed overlays in the video</td>
+        <td>Art. 6(1)(a) GDPR (consent, given by uploading it)</td>
+        <td>During processing; afterwards only as part of the rendered image</td>
+      </tr>
+      <tr>
+        <td>Finished video (MP4)</td>
+        <td>So you can watch, save and share it</td>
+        <td>Art. 6(1)(b) GDPR</td>
+        <td>Until you delete it</td>
+      </tr>
+      <tr>
+        <td>Technical server logs (IP address, timestamp, error code)</td>
+        <td>Operation, debugging, abuse prevention</td>
+        <td>Art. 6(1)(f) GDPR (legitimate interest)</td>
+        <td>Short term, then overwritten automatically</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <strong>Check before publishing</strong>
+    Raw clips on the render server are currently not deleted automatically after rendering. Either add a cleanup job and
+    then state the retention concretely, or adjust the wording here to match what actually happens.
+  </div>
+
+  <h2>4. Location data in the GPX file</h2>
+  <p>
+    A GPX file contains the exact track of your ride, with coordinates and timestamps. That is sensitive data, so:
+  </p>
+  <ul>
+    <li>Uploading a GPX file is optional. BikeEdit works without one, just without map and speed overlays.</li>
+    <li>BikeEdit does <strong>not</strong> access your phone's location services and does not track you in the
+      background. We only receive the file you pick yourself.</li>
+    <li>The route is used solely to draw the graphics in your video. It is not shared, not analysed and not compared
+      against other users.</li>
+    <li>If you do not want your starting point (your home address, for example) visible in the video, trim the GPX file
+      before uploading or pick a template without a map.</li>
+  </ul>
+
+  <h2>5. Access to photos and videos</h2>
+  <p>To pick clips, BikeEdit opens your operating system's media picker.</p>
+  <ul>
+    <li><strong>Android:</strong> we use the system photo picker. The app gets no access to your whole gallery, only to
+      the files you tap in the picker.</li>
+    <li><strong>iOS:</strong> you are asked for photo library access. You can choose "Selected Photos" and decide
+      yourself what BikeEdit may see.</li>
+  </ul>
+  <p>We do not scan your gallery and we upload nothing you did not select.</p>
+
+  <h2>6. Music</h2>
+  <p>
+    BikeEdit either embeds royalty-free or AI-generated music, or renders your video silent so you can add a song from
+    TikTok's or Instagram's own catalogue. We never ship a protected commercial master. If you search for a song title
+    in the app, that search term is sent to our music catalogue. It is not tied to any profile.
+  </p>
+
+  <h2>7. No tracking, no advertising</h2>
+  <p>
+    BikeEdit contains no analytics, advertising or attribution SDKs. There is no profiling, no automated decision-making
+    within the meaning of Art. 22 GDPR and no sharing with ad networks. We do not sell data.
+  </p>
+
+  <h2>8. Recipients and processors</h2>
+  <p>We use the following service providers, who process data on our behalf:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Supabase</td>
+        <td>Anonymous sign-in, database and private storage for your finished videos</td>
+      </tr>
+      <tr>
+        <td>Render server</td>
+        <td>Receives your clips, edits the video and uploads the result to private storage</td>
+      </tr>
+      <tr>
+        <td>Apple App Store / Google Play</td>
+        <td>App distribution. These platforms collect their own data under their own privacy policies.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <strong>Add before publishing</strong>
+    Name the hosting region of the Supabase instance and the render server. If it is outside the EU, this section also
+    needs the transfer mechanism (usually Standard Contractual Clauses under Art. 46 GDPR). A data processing agreement
+    with Supabase should be in place.
+  </div>
+
+  <h2>9. Security</h2>
+  <ul>
+    <li>All traffic between app and server is TLS encrypted.</li>
+    <li>Video storage is private. Access happens only through short-lived signed links.</li>
+    <li>On every request the server checks that the data really belongs to your ID. Ownership always comes from the
+      verified auth token, never from a value the device sends.</li>
+    <li>Links to individual media files expire after one hour.</li>
+  </ul>
+
+  <h2>10. Your rights</h2>
+  <p>Under the GDPR you have the right to:</p>
+  <ul>
+    <li>Access your data (Art. 15)</li>
+    <li>Rectification (Art. 16)</li>
+    <li>Erasure (Art. 17)</li>
+    <li>Restriction of processing (Art. 18)</li>
+    <li>Data portability (Art. 20)</li>
+    <li>Object to processing based on legitimate interests (Art. 21)</li>
+    <li>Withdraw consent with future effect (Art. 7(3))</li>
+  </ul>
+  <p>
+    The fastest way to erase your data is to do it yourself in the app. See <a href="./delete-account.html">Delete
+      data</a>. For anything else, write to <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+  </p>
+  <p>
+    Important: because BikeEdit deliberately does not know who you are, we can only act on an email request if you
+    include your anonymous ID. Where to find it is explained on the <a href="./delete-account.html">Delete data</a>
+    page. Without that ID we cannot locate your data and, for security reasons, cannot hand anything over.
+  </p>
+  <p>
+    You may also complain to a supervisory authority. Ours is the Hessian Commissioner for Data Protection and Freedom
+    of Information, Postfach 3163, 65021 Wiesbaden, Germany.
+  </p>
+
+  <h2>11. Children</h2>
+  <p>BikeEdit is not aimed at children under 16. We do not knowingly collect data from children under 16.</p>
+
+  <h2>12. Changes</h2>
+  <p>
+    When the app changes, we update this policy. The date at the top shows the current version. We will point out
+    significant changes in the app.
+  </p>
+
+  <p class="meta">
+    This English text is a courtesy translation. In case of doubt the German version at
+    <a href="../privacy.html">privacy.html</a> prevails.
+  </p>
+
+  <footer>
+    <p>
+      <a href="./privacy.html">Privacy</a> ·
+      <a href="./terms.html">Terms</a> ·
+      <a href="./delete-account.html">Delete data</a> ·
+      <a href="./imprint.html">Imprint</a> ·
+      <a href="../privacy.html">Deutsch</a>
+    </p>
+  </footer>
+</body>
+
+</html>

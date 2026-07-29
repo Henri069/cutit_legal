@@ -1,0 +1,253 @@
+<!doctype html>
+<!--
+  BikeEdit — Datenschutzerklärung.
+  Statische Seite für GitHub Pages. Produktspezifischer Entwurf auf Basis des
+  tatsächlichen Codes, keine Rechtsberatung. Die gelb markierten .todo-Kästen
+  müssen vor der Veröffentlichung geprüft und dann entfernt werden.
+-->
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datenschutzerklärung — BikeEdit</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <p class="nav">
+    <a href="./privacy.html" aria-current="page">Datenschutz</a>
+    <a href="./terms.html">Nutzungsbedingungen</a>
+    <a href="./delete-account.html">Daten löschen</a>
+    <a href="./impressum.html">Impressum</a>
+    <a class="lang" href="./en/privacy.html">English</a>
+  </p>
+
+  <h1>Datenschutzerklärung</h1>
+  <p class="meta">BikeEdit · Stand: 29. Juli 2026</p>
+
+  <div class="note">
+    <strong>Kurz gesagt</strong>
+    <ul>
+      <li>Kein Konto, keine E-Mail-Adresse, kein Passwort. BikeEdit erstellt beim ersten Start nur eine zufällige,
+        anonyme Kennung für dein Gerät.</li>
+      <li>Deine Clips und deine GPX-Route werden nur verarbeitet, um daraus dein Video zu bauen.</li>
+      <li>Dein fertiges Video liegt in einem privaten Speicher. Nur dein Gerät kann es abrufen.</li>
+      <li>Kein Werbe-Tracking, keine Analyse-SDKs, kein Verkauf von Daten.</li>
+      <li>Du kannst alle deine Daten jederzeit direkt in der App löschen.</li>
+    </ul>
+  </div>
+
+  <h2>1. Verantwortlicher</h2>
+  <address>
+    Henri Irmscher — Appentwicklung<br />
+    Seckbacher Landstr. 66<br />
+    60389 Frankfurt am Main<br />
+    Deutschland
+  </address>
+  <p>E-Mail: <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a></p>
+  <p>Ein Datenschutzbeauftragter ist gesetzlich nicht erforderlich und nicht bestellt.</p>
+
+  <h2>2. Anonyme Kennung statt Benutzerkonto</h2>
+  <p>
+    BikeEdit hat keine Registrierung. Beim ersten Start meldet sich die App anonym bei unserem Backend an
+    (Supabase, <em>anonymous sign-in</em>). Dabei entsteht eine zufällige Kennung, die auf deinem Gerät gespeichert
+    wird. Diese Kennung dient nur einem Zweck: deine hochgeladenen Clips und deine fertigen Videos deinem Gerät
+    zuzuordnen, damit niemand sonst darauf zugreifen kann.
+  </p>
+  <p>
+    Wir erfahren dadurch weder deinen Namen noch deine E-Mail-Adresse noch deine Telefonnummer. Die Kennung ist nicht
+    mit anderen Diensten verknüpft. Löschst du die App, ist die Kennung auf deinem Gerät weg.
+  </p>
+
+  <h2>3. Welche Daten wir verarbeiten</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Daten</th>
+        <th>Wozu</th>
+        <th>Rechtsgrundlage</th>
+        <th>Speicherdauer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Anonyme Geräte-Kennung</td>
+        <td>Ordnet Uploads und fertige Videos deinem Gerät zu und verhindert fremden Zugriff</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</td>
+        <td>Bis du in der App alle Daten löschst oder die App deinstallierst</td>
+      </tr>
+      <tr>
+        <td>Fotos und Videoclips, die du auswählst</td>
+        <td>Rohmaterial für dein Edit</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Auf dem Render-Server während der Verarbeitung; unfertige Aufträge verfallen nach 24 Stunden</td>
+      </tr>
+      <tr>
+        <td>Aufnahmezeitpunkt deiner Clips</td>
+        <td>Sortiert die Clips automatisch in die richtige Reihenfolge</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Wird nur im Moment der Verarbeitung genutzt, nicht separat gespeichert</td>
+      </tr>
+      <tr>
+        <td>GPX-Datei deiner Tour (optional, enthält genaue Standortdaten)</td>
+        <td>Strecke, Höhenprofil, Distanz und Tempo als Overlay im Video</td>
+        <td>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch das Hochladen)</td>
+        <td>Während der Verarbeitung; danach nur noch als Teil des gerenderten Bildes</td>
+      </tr>
+      <tr>
+        <td>Fertiges Video (MP4)</td>
+        <td>Damit du es ansehen, speichern und teilen kannst</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Bis du es löschst</td>
+      </tr>
+      <tr>
+        <td>Technische Server-Protokolle (IP-Adresse, Zeitpunkt, Fehlercode)</td>
+        <td>Betrieb, Fehlersuche, Abwehr von Missbrauch</td>
+        <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</td>
+        <td>Kurzfristig, danach automatisch überschrieben</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <strong>Vor Veröffentlichung prüfen</strong>
+    Die Rohclips auf dem Render-Server werden aktuell nicht automatisch nach dem Rendern gelöscht. Entweder einen
+    Aufräum-Job ergänzen und diese Zeile dann konkret formulieren, oder die Speicherdauer hier ehrlich anpassen.
+  </div>
+
+  <h2>4. Standortdaten aus der GPX-Datei</h2>
+  <p>
+    Eine GPX-Datei enthält den genauen Verlauf deiner Fahrt mit Koordinaten und Zeitstempeln. Das sind sensible Daten.
+    Deshalb gilt:
+  </p>
+  <ul>
+    <li>Das Hochladen einer GPX-Datei ist freiwillig. Ohne GPX funktioniert BikeEdit weiterhin, nur ohne Karten- und
+      Tempo-Overlay.</li>
+    <li>BikeEdit greift <strong>nicht</strong> auf die Standortdienste deines Handys zu und verfolgt dich nicht im
+      Hintergrund. Wir bekommen nur die Datei, die du selbst auswählst.</li>
+    <li>Die Route wird ausschließlich benutzt, um die Grafik in deinem Video zu zeichnen. Sie wird nicht an Dritte
+      weitergegeben, nicht ausgewertet und nicht mit anderen Nutzern verglichen.</li>
+    <li>Wenn du deinen Startpunkt (zum Beispiel deine Wohnadresse) nicht im Video sehen willst, kürze die GPX-Datei vor
+      dem Hochladen oder wähle eine Vorlage ohne Karte.</li>
+  </ul>
+
+  <h2>5. Zugriff auf Fotos und Videos</h2>
+  <p>
+    Um Clips auszuwählen, öffnet BikeEdit die Medienauswahl deines Betriebssystems.
+  </p>
+  <ul>
+    <li><strong>Android:</strong> Wir nutzen die System-Fotoauswahl. Die App bekommt dadurch keinen Zugriff auf deine
+      gesamte Galerie, sondern nur auf die Dateien, die du in der Auswahl antippst.</li>
+    <li><strong>iOS:</strong> Du wirst nach Zugriff auf die Mediathek gefragt. Du kannst „Ausgewählte Fotos" wählen und
+      damit selbst festlegen, was BikeEdit sehen darf.</li>
+  </ul>
+  <p>Wir durchsuchen deine Galerie nicht und laden nichts hoch, was du nicht ausgewählt hast.</p>
+
+  <h2>6. Musik</h2>
+  <p>
+    BikeEdit legt entweder lizenzfreie beziehungsweise KI-erzeugte Musik in dein Video, oder es rendert das Video
+    stumm, damit du in TikTok oder Instagram einen Song aus deren eigenem Katalog hinzufügen kannst. Wir liefern nie
+    ein geschütztes Original-Master aus. Wenn du in der App nach einem Songtitel suchst, wird dieser Suchbegriff zur
+    Abfrage an unseren Musikkatalog geschickt. Er wird nicht deinem Profil zugeordnet.
+  </p>
+
+  <h2>7. Kein Tracking, keine Werbung</h2>
+  <p>
+    BikeEdit enthält keine Analyse-, Werbe- oder Attributions-SDKs. Es gibt kein Profiling, keine automatisierte
+    Entscheidungsfindung im Sinne von Art. 22 DSGVO und keine Weitergabe an Werbenetzwerke. Wir verkaufen keine Daten.
+  </p>
+
+  <h2>8. Empfänger und Auftragsverarbeiter</h2>
+  <p>Wir setzen folgende Dienstleister ein, die Daten in unserem Auftrag verarbeiten:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Dienst</th>
+        <th>Aufgabe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Supabase</td>
+        <td>Anonyme Anmeldung, Datenbank und privater Speicher für deine fertigen Videos</td>
+      </tr>
+      <tr>
+        <td>Render-Server</td>
+        <td>Nimmt deine Clips entgegen, schneidet das Video und lädt das Ergebnis in den privaten Speicher</td>
+      </tr>
+      <tr>
+        <td>Apple App Store / Google Play</td>
+        <td>Auslieferung der App. Diese Plattformen erheben eigene Daten nach ihren eigenen Datenschutzerklärungen.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <strong>Vor Veröffentlichung ergänzen</strong>
+    Serverstandort der Supabase-Instanz und des Render-Servers eintragen. Liegt er außerhalb der EU, muss hier zusätzlich
+    die Grundlage für den Drittlandtransfer stehen (in der Regel Standardvertragsklauseln nach Art. 46 DSGVO). Außerdem
+    sollte der Auftragsverarbeitungsvertrag mit Supabase abgeschlossen sein.
+  </div>
+
+  <h2>9. Sicherheit</h2>
+  <ul>
+    <li>Alle Verbindungen zwischen App und Server sind mit TLS verschlüsselt.</li>
+    <li>Der Video-Speicher ist privat. Zugriff gibt es nur über kurzlebige, signierte Links.</li>
+    <li>Der Server prüft bei jedem Zugriff, ob die Daten wirklich zu deiner Kennung gehören. Die Zuordnung stammt immer
+      aus dem geprüften Anmelde-Token, nie aus einer vom Gerät geschickten Angabe.</li>
+    <li>Links auf einzelne Mediendateien laufen nach einer Stunde ab.</li>
+  </ul>
+
+  <h2>10. Deine Rechte</h2>
+  <p>Nach der DSGVO hast du das Recht auf:</p>
+  <ul>
+    <li>Auskunft über deine Daten (Art. 15)</li>
+    <li>Berichtigung (Art. 16)</li>
+    <li>Löschung (Art. 17)</li>
+    <li>Einschränkung der Verarbeitung (Art. 18)</li>
+    <li>Datenübertragbarkeit (Art. 20)</li>
+    <li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21)</li>
+    <li>Widerruf einer Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3)</li>
+  </ul>
+  <p>
+    Am schnellsten löschst du deine Daten selbst in der App. Wie das geht, steht auf der Seite
+    <a href="./delete-account.html">Daten löschen</a>. Für alle anderen Anliegen schreib an
+    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+  </p>
+  <p>
+    Wichtig: Weil BikeEdit dich nicht kennt, können wir eine Anfrage per E-Mail nur bearbeiten, wenn du deine anonyme
+    Kennung mitschickst. Wo du sie findest, steht ebenfalls auf der Seite <a href="./delete-account.html">Daten
+      löschen</a>. Ohne diese Kennung können wir deine Daten nicht auffinden und aus Sicherheitsgründen auch nichts
+    herausgeben.
+  </p>
+  <p>
+    Du kannst dich außerdem bei einer Aufsichtsbehörde beschweren. Für uns zuständig ist der Hessische Beauftragte für
+    Datenschutz und Informationsfreiheit, Postfach 3163, 65021 Wiesbaden.
+  </p>
+
+  <h2>11. Kinder</h2>
+  <p>
+    BikeEdit richtet sich nicht an Kinder unter 16 Jahren. Wir erheben wissentlich keine Daten von Kindern unter 16
+    Jahren.
+  </p>
+
+  <h2>12. Änderungen</h2>
+  <p>
+    Wenn sich die App ändert, passen wir diese Erklärung an. Das Datum oben zeigt den aktuellen Stand. Bei wesentlichen
+    Änderungen weisen wir in der App darauf hin.
+  </p>
+
+  <footer>
+    <p>
+      <a href="./privacy.html">Datenschutz</a> ·
+      <a href="./terms.html">Nutzungsbedingungen</a> ·
+      <a href="./delete-account.html">Daten löschen</a> ·
+      <a href="./impressum.html">Impressum</a> ·
+      <a href="./en/privacy.html">English</a>
+    </p>
+  </footer>
+</body>
+
+</html>
