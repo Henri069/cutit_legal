@@ -1,16 +1,10 @@
 <!doctype html>
-<!--
-  BikeEdit — Konto und Daten löschen.
-  Diese Seite ist die von Google Play und Apple geforderte öffentliche URL für
-  Löschanfragen. Die gelb markierten .todo-Kästen vor der Veröffentlichung
-  abarbeiten und dann entfernen.
--->
 <html lang="de">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daten löschen — BikeEdit</title>
+  <title>Daten löschen — Kadenz</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -24,25 +18,43 @@
   </p>
 
   <h1>Konto und Daten löschen</h1>
-  <p class="meta">BikeEdit · Stand: 29. Juli 2026</p>
+  <p class="meta">Kadenz · Stand: 2. August 2026</p>
 
   <div class="note">
     <strong>Das Wichtigste zuerst</strong>
-    BikeEdit hat kein Benutzerkonto im klassischen Sinn. Es gibt keine Registrierung, keine E-Mail-Adresse und kein
+    Kadenz hat kein Benutzerkonto im klassischen Sinn. Es gibt keine Registrierung, keine E-Mail-Adresse und kein
     Passwort. Beim ersten Start bekommt dein Gerät nur eine zufällige, anonyme Kennung. Du löschst diese Kennung und
     alle dazugehörigen Daten direkt in der App, in unter einer Minute und ohne Anfrage bei uns.
   </div>
 
+  <h2>Vorher: willst du deine Videos behalten?</h2>
+  <p>
+    Das Löschen ist endgültig. Wenn du deine Videos oder deine Daten noch brauchst, exportiere sie vorher. Das geht
+    kostenlos, auch ohne Abo:
+  </p>
+  <ol>
+    <li>Oben rechts auf den <strong>Regler-Knopf</strong> tippen.</li>
+    <li>Zu <strong>Daten</strong> scrollen.</li>
+    <li>Auf <strong>Meine Daten exportieren</strong> tippen.</li>
+    <li>Die ZIP-Datei ablegen, wo du willst.</li>
+  </ol>
+  <p>
+    Im ZIP liegen deine Videos, deine noch nicht verarbeiteten Clips und eine JSON-Datei mit allen Angaben, die wir zu
+    dir gespeichert haben.
+  </p>
+
   <h2>Weg 1: In der App löschen (empfohlen)</h2>
   <ol>
-    <li>Öffne BikeEdit.</li>
-    <li>Gehe zu deiner Videosammlung („Tresor").</li>
-    <li>Scrolle ganz nach unten.</li>
+    <li>Öffne Kadenz.</li>
+    <li>Tippe oben rechts auf den <strong>Regler-Knopf</strong> (die drei Striche mit Punkten).</li>
+    <li>Scrolle zu <strong>Daten</strong>.</li>
     <li>Tippe auf <strong>Alle Daten löschen</strong>.</li>
     <li>Bestätige mit <strong>Alles löschen</strong>.</li>
   </ol>
+  <p>Der Regler-Knopf ist auf jedem Bildschirm oben rechts — du musst dafür nirgends hinnavigieren.</p>
   <p>
-    Willst du nur ein einzelnes Video loswerden, tippe es in der Sammlung an und wähle dort <strong>Löschen</strong>.
+    Willst du nur ein einzelnes Video loswerden, tippe es in der Übersicht an und wähle dort
+    <strong>Löschen</strong>.
   </p>
 
   <h2>Was dabei gelöscht wird</h2>
@@ -59,17 +71,25 @@
         <td>Werden sofort und endgültig aus dem Speicher entfernt</td>
       </tr>
       <tr>
+        <td>Noch nicht verarbeitete Clips</td>
+        <td>Werden ebenfalls sofort entfernt</td>
+      </tr>
+      <tr>
         <td>Alle Datenbankeinträge zu deinen Videos</td>
-        <td>Werden gelöscht, inklusive Titel, Vorlage und Zeitstempel</td>
+        <td>Werden gelöscht, inklusive Titel, Vorlage, Länge und Zeitstempel</td>
       </tr>
       <tr>
-        <td>Verbindung zu deiner anonymen Kennung</td>
-        <td>Es bleibt nichts mehr übrig, was ihr zugeordnet werden könnte. Die App gilt danach wieder als frisch
-          installiert.</td>
+        <td>Alle Render-Aufträge</td>
+        <td>Werden gelöscht, auch angefangene und abgebrochene</td>
       </tr>
       <tr>
-        <td>Noch laufende Render-Aufträge</td>
-        <td>Unfertige Aufträge verfallen spätestens nach 24 Stunden</td>
+        <td>Dein Abo-Datensatz bei uns</td>
+        <td>Wird gelöscht, ebenso die Meldungen der Abo-Verwaltung zu deiner Kennung</td>
+      </tr>
+      <tr>
+        <td>Deine anonyme Kennung</td>
+        <td>Wird selbst gelöscht. Danach gibt es niemanden mehr, dem etwas zugeordnet werden könnte, und die App
+          startet wie frisch installiert.</td>
       </tr>
     </tbody>
   </table>
@@ -78,12 +98,19 @@
     Galerie oder zu TikTok exportiert hast, bleiben dort natürlich liegen. Die musst du dort selbst löschen.
   </p>
 
+  <div class="note">
+    <strong>Dein Abo läuft weiter</strong>
+    Ein laufendes Abo hängt an deinem Apple- oder Google-Konto, nicht an unserer Kennung. Es wird durch das Löschen
+    <strong>nicht</strong> gekündigt und auch nicht erstattet. Kündigen musst du im Store: iPhone unter Einstellungen,
+    dein Name, Abonnements. Android in Google Play unter Zahlungen und Abos.
+    Installierst du Kadenz später neu, holst du dein Abo mit <strong>Käufe wiederherstellen</strong> zurück.
+  </div>
+
   <h2>Was nicht gelöscht wird</h2>
   <ul>
-    <li>Technische Server-Protokolle mit IP-Adresse und Fehlercodes. Sie enthalten keine Inhalte und werden ohnehin
-      kurzfristig überschrieben. Wir behalten sie so lange, wie es für Sicherheit und Fehlersuche nötig ist.</li>
-    <li>Daten, die wir aus steuer- oder handelsrechtlichen Gründen aufbewahren müssen. Das betrifft nur Käufe, falls du
-      welche getätigt hast.</li>
+    <li>Technische Server-Protokolle mit IP-Adresse und Fehlercodes. Sie enthalten keine Inhalte und werden nach
+      30 Tagen automatisch gelöscht. Wir behalten sie so lange, wie es für Sicherheit und Fehlersuche nötig ist.</li>
+    <li>Kaufbelege bei Apple oder Google. Die liegen dort, nicht bei uns, und unterliegen deren Aufbewahrung.</li>
   </ul>
 
   <h2>Weg 2: Löschung per E-Mail anfordern</h2>
@@ -91,31 +118,34 @@
     Wenn du die App schon deinstalliert hast oder aus einem anderen Grund nicht selbst löschen kannst, schreib uns:
   </p>
   <p>
-    <a href="mailto:henri.irmscher@gmail.com?subject=BikeEdit%20L%C3%B6schanfrage">henri.irmscher@gmail.com</a>
+    <a href="mailto:henri.irmscher@gmail.com?subject=Kadenz%20L%C3%B6schanfrage">henri.irmscher@gmail.com</a>
   </p>
   <p>Bitte gib in der Mail an:</p>
   <ul>
-    <li>Betreff: <code>BikeEdit Löschanfrage</code></li>
-    <li>Deine anonyme Kennung aus der App, falls du sie noch hast</li>
+    <li>Betreff: <code>Kadenz Löschanfrage</code></li>
+    <li>Deine anonyme Kennung aus der App (siehe unten, wo du sie findest)</li>
     <li>Ungefährer Zeitraum, in dem du die App benutzt hast</li>
   </ul>
   <p>
-    Wir bearbeiten Anfragen innerhalb von 30 Tagen. Ehrlicher Hinweis: Weil wir dich bewusst nicht kennen, gibt es
+    Wir bearbeiten Anfragen innerhalb eines Monats. Ehrlicher Hinweis: Weil wir dich bewusst nicht kennen, gibt es
     keinen Namen und keine E-Mail-Adresse, über die wir deine Daten finden könnten. Ohne die anonyme Kennung können
     wir dir nur bestätigen, dass mit dem Löschen der App auf deinem Gerät die Zuordnung verloren geht.
   </p>
 
-  <div class="todo">
-    <strong>Vor Veröffentlichung erledigen</strong>
-    Die App zeigt die anonyme Kennung aktuell nirgends an. Damit dieser Weg wirklich funktioniert, sollte sie in der
-    App sichtbar und kopierbar sein, zum Beispiel klein unter „Alle Daten löschen". Außerdem fehlt bislang ein
-    serverseitiger Aufräum-Job für verwaiste Videos von Nutzern, die die App ohne vorheriges Löschen deinstalliert
-    haben.
-  </div>
-
-  <h2>App löschen reicht nicht ganz</h2>
+  <h2>Wo du deine anonyme Kennung findest</h2>
   <p>
-    Deinstallierst du BikeEdit einfach nur, verschwindet die anonyme Kennung von deinem Gerät. Deine bereits fertig
+    Oben rechts auf den <strong>Regler-Knopf</strong> tippen, dann steht sie ganz oben unter
+    <strong>Dein Konto</strong>. Tippe daneben auf <strong>Kopieren</strong> und schick sie dir selbst zu, oder halte
+    den Text gedrückt und kopiere ihn von Hand.
+  </p>
+
+  <h2>Wenn du gar nichts tust</h2>
+  <p>
+    Auch dann bleibt nichts ewig liegen. Angefangene Aufträge, die du nicht abschließt, räumen wir spätestens nach
+    7 Tagen ab. Anonyme Kennungen ohne Videos löschen wir, wenn sie 12 Monate lang nicht benutzt wurden.
+  </p>
+  <p>
+    Deinstallierst du Kadenz einfach nur, verschwindet die anonyme Kennung von deinem Gerät. Deine bereits fertig
     gerenderten Videos liegen dann aber noch im privaten Speicher, ohne dass du oder wir sie noch zuordnen könnten.
     Deshalb: erst in der App <strong>Alle Daten löschen</strong>, dann deinstallieren.
   </p>

@@ -1,15 +1,10 @@
 <!doctype html>
-<!--
-  BikeEdit — Delete account and data (English).
-  This is the public URL required by Google Play and Apple for deletion
-  requests. English courtesy translation of ../delete-account.html.
--->
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Delete your data — BikeEdit</title>
+  <title>Delete your data — Kadenz</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -23,24 +18,43 @@
   </p>
 
   <h1>Delete your account and data</h1>
-  <p class="meta">BikeEdit · Last updated: 29 July 2026</p>
+  <p class="meta">Kadenz · Last updated: 2 August 2026</p>
 
   <div class="note">
     <strong>First things first</strong>
-    BikeEdit has no user account in the usual sense. There is no sign-up, no email address and no password. On first
-    launch your device simply receives a random, anonymous ID. You can delete that ID and everything attached to it
+    Kadenz has no user account in the usual sense. There is no sign-up, no email address and no password. On first
+    launch your device simply receives a random, anonymous ID. You delete that ID and everything attached to it
     directly in the app, in under a minute, without asking us.
   </div>
 
+  <h2>First: do you want to keep your videos?</h2>
+  <p>
+    Deletion is permanent. If you still need your videos or your data, export them first. That is free, with or
+    without a subscription:
+  </p>
+  <ol>
+    <li>Tap the <strong>slider button</strong> in the top right.</li>
+    <li>Scroll to <strong>Data</strong>.</li>
+    <li>Tap <strong>Export my data</strong>.</li>
+    <li>Save the ZIP file wherever you like.</li>
+  </ol>
+  <p>
+    The ZIP contains your videos, any clips not yet processed and a JSON file with everything we have stored about
+    you.
+  </p>
+
   <h2>Option 1: delete in the app (recommended)</h2>
   <ol>
-    <li>Open BikeEdit.</li>
-    <li>Go to your video collection ("Tresor").</li>
-    <li>Scroll to the bottom.</li>
-    <li>Tap <strong>Alle Daten löschen</strong> (Delete all data).</li>
-    <li>Confirm with <strong>Alles löschen</strong> (Delete everything).</li>
+    <li>Open Kadenz.</li>
+    <li>Tap the <strong>slider button</strong> in the top right (the three lines with dots).</li>
+    <li>Scroll to <strong>Data</strong>.</li>
+    <li>Tap <strong>Delete all data</strong>.</li>
+    <li>Confirm with <strong>Delete everything</strong>.</li>
   </ol>
-  <p>To remove a single video, tap it in the collection and choose <strong>Löschen</strong> (Delete) there.</p>
+  <p>The slider button sits in the top right on every screen — you do not have to navigate anywhere for it.</p>
+  <p>
+    To remove just one video, tap it in the library and choose <strong>Delete</strong> there.
+  </p>
 
   <h2>What gets deleted</h2>
   <table>
@@ -56,58 +70,83 @@
         <td>Removed from storage immediately and permanently</td>
       </tr>
       <tr>
+        <td>Clips not yet processed</td>
+        <td>Removed immediately as well</td>
+      </tr>
+      <tr>
         <td>All database records about your videos</td>
-        <td>Deleted, including title, template and timestamps</td>
+        <td>Deleted, including title, template, length and timestamps</td>
       </tr>
       <tr>
-        <td>The link to your anonymous ID</td>
-        <td>Nothing is left that could be attached to it. The app behaves like a fresh install afterwards.</td>
+        <td>All render jobs</td>
+        <td>Deleted, including started and abandoned ones</td>
       </tr>
       <tr>
-        <td>Render jobs still in progress</td>
-        <td>Unfinished jobs expire after 24 hours at the latest</td>
+        <td>Your subscription record with us</td>
+        <td>Deleted, along with the subscription service's messages about your ID</td>
+      </tr>
+      <tr>
+        <td>Your anonymous ID</td>
+        <td>Deleted itself. Afterwards there is nobody left for anything to be attached to, and the app starts as if
+          freshly installed.</td>
       </tr>
     </tbody>
   </table>
   <p>
-    Deletion is final. There is no bin and no recovery. Videos you exported earlier to your gallery or to TikTok stay
-    there, of course. You have to delete those in the respective app.
+    Deletion is permanent. There is no bin and no recovery. Videos you previously exported to your gallery or to TikTok
+    of course stay there. You have to delete those yourself.
   </p>
 
-  <h2>What is not deleted</h2>
+  <div class="note">
+    <strong>Your subscription keeps running</strong>
+    A running subscription is attached to your Apple or Google account, not to our ID. Deleting your data does
+    <strong>not</strong> cancel it and does not refund it. You cancel in the store: on iPhone under Settings, your
+    name, Subscriptions. On Android in Google Play under Payments and subscriptions.
+    If you reinstall Kadenz later, <strong>Restore purchases</strong> brings your subscription back.
+  </div>
+
+  <h2>What does not get deleted</h2>
   <ul>
-    <li>Technical server logs with IP addresses and error codes. They contain no content and are overwritten shortly
-      anyway. We keep them as long as needed for security and debugging.</li>
-    <li>Data we must retain for tax or commercial law reasons. This only applies to purchases, if you made any.</li>
+    <li>Technical server logs with IP address and error codes. They contain no content and are deleted automatically
+      after 30 days. We keep them only as long as needed for security and troubleshooting.</li>
+    <li>Purchase receipts at Apple or Google. Those sit with them, not with us, and follow their retention rules.</li>
   </ul>
 
   <h2>Option 2: request deletion by email</h2>
-  <p>If you already uninstalled the app, or cannot delete the data yourself for another reason, write to us:</p>
-  <p><a href="mailto:henri.irmscher@gmail.com?subject=BikeEdit%20deletion%20request">henri.irmscher@gmail.com</a></p>
+  <p>
+    If you have already uninstalled the app, or cannot delete it yourself for another reason, write to us:
+  </p>
+  <p>
+    <a href="mailto:henri.irmscher@gmail.com?subject=Kadenz%20deletion%20request">henri.irmscher@gmail.com</a>
+  </p>
   <p>Please include:</p>
   <ul>
-    <li>Subject: <code>BikeEdit deletion request</code></li>
-    <li>Your anonymous ID from the app, if you still have it</li>
+    <li>Subject: <code>Kadenz deletion request</code></li>
+    <li>Your anonymous ID from the app (see below for where to find it)</li>
     <li>Roughly when you used the app</li>
   </ul>
   <p>
-    We handle requests within 30 days. To be honest about the limits: because we deliberately do not know who you are,
-    there is no name and no email address we could search by. Without the anonymous ID all we can confirm is that
-    deleting the app removes the link on your device.
+    We handle requests within one month. An honest note: because we deliberately do not know who you are, there is no
+    name and no email address we could use to find your data. Without the anonymous ID all we can confirm is that
+    deleting the app from your device breaks the link.
   </p>
 
-  <div class="todo">
-    <strong>Do before publishing</strong>
-    The app does not display the anonymous ID anywhere yet. For this route to actually work, it should be visible and
-    copyable in the app, for example in small type under "Alle Daten löschen". There is also no server-side cleanup job
-    yet for orphaned videos belonging to users who uninstalled without deleting first.
-  </div>
-
-  <h2>Uninstalling alone is not quite enough</h2>
+  <h2>Where to find your anonymous ID</h2>
   <p>
-    If you simply uninstall BikeEdit, the anonymous ID disappears from your device. Your already rendered videos remain
-    in private storage, with neither you nor us able to link them to anyone. So: first tap <strong>Alle Daten
-      löschen</strong> in the app, then uninstall.
+    Tap the <strong>slider button</strong> in the top right; the ID sits at the very top under
+    <strong>Your account</strong>. Tap <strong>Copy</strong> next to it and send it to yourself, or press and hold the
+    text and copy it by hand.
+  </p>
+
+  <h2>If you do nothing at all</h2>
+  <p>
+    Nothing sits around forever either way. Jobs you start but never finish are cleared within 7 days at the latest.
+    Anonymous IDs with no videos are deleted after 12 months without use.
+  </p>
+  <p>
+    If you simply uninstall Kadenz, the anonymous ID disappears from your device. Videos you already rendered still sit
+    in private storage, though neither you nor we could link them to anyone any more. So: first tap
+    <strong>Delete all data</strong> in the app, then uninstall.
   </p>
 
   <footer>

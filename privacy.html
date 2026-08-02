@@ -1,16 +1,10 @@
 <!doctype html>
-<!--
-  BikeEdit — Datenschutzerklärung.
-  Statische Seite für GitHub Pages. Produktspezifischer Entwurf auf Basis des
-  tatsächlichen Codes, keine Rechtsberatung. Die gelb markierten .todo-Kästen
-  müssen vor der Veröffentlichung geprüft und dann entfernt werden.
--->
 <html lang="de">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Datenschutzerklärung — BikeEdit</title>
+  <title>Datenschutzerklärung — Kadenz</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -24,17 +18,18 @@
   </p>
 
   <h1>Datenschutzerklärung</h1>
-  <p class="meta">BikeEdit · Stand: 29. Juli 2026</p>
+  <p class="meta">Kadenz · Stand: 2. August 2026</p>
 
   <div class="note">
     <strong>Kurz gesagt</strong>
     <ul>
-      <li>Kein Konto, keine E-Mail-Adresse, kein Passwort. BikeEdit erstellt beim ersten Start nur eine zufällige,
-        anonyme Kennung für dein Gerät.</li>
+      <li>Kein Konto, keine E-Mail-Adresse, kein Passwort. Nur eine zufällige, anonyme Kennung für dein Gerät — und
+        die entsteht erst, wenn du den Nutzungsbedingungen zustimmst.</li>
       <li>Deine Clips und deine GPX-Route werden nur verarbeitet, um daraus dein Video zu bauen.</li>
       <li>Dein fertiges Video liegt in einem privaten Speicher. Nur dein Gerät kann es abrufen.</li>
       <li>Kein Werbe-Tracking, keine Analyse-SDKs, kein Verkauf von Daten.</li>
-      <li>Du kannst alle deine Daten jederzeit direkt in der App löschen.</li>
+      <li>Du kannst alle deine Daten jederzeit direkt in der App löschen — und sie dir vorher kostenlos
+        exportieren.</li>
     </ul>
   </div>
 
@@ -50,10 +45,16 @@
 
   <h2>2. Anonyme Kennung statt Benutzerkonto</h2>
   <p>
-    BikeEdit hat keine Registrierung. Beim ersten Start meldet sich die App anonym bei unserem Backend an
-    (Supabase, <em>anonymous sign-in</em>). Dabei entsteht eine zufällige Kennung, die auf deinem Gerät gespeichert
-    wird. Diese Kennung dient nur einem Zweck: deine hochgeladenen Clips und deine fertigen Videos deinem Gerät
-    zuzuordnen, damit niemand sonst darauf zugreifen kann.
+    Kadenz hat keine Registrierung. Auf dem Startbildschirm stimmst du einmal den Nutzungsbedingungen zu.
+    <strong>Erst danach</strong> meldet sich die App anonym bei unserem Backend an (Supabase,
+    <em>anonymous sign-in</em>). Dabei entsteht eine zufällige Kennung, die auf deinem Gerät gespeichert wird. Diese
+    Kennung dient nur einem Zweck: deine hochgeladenen Clips und deine fertigen Videos deinem Gerät zuzuordnen, damit
+    niemand sonst darauf zugreifen kann.
+  </p>
+  <p>
+    Vor dieser Zustimmung verlässt kein Datum dein Gerät. Wer die App öffnet, sich den Startbildschirm ansieht und sie
+    wieder löscht, hinterlässt bei uns nichts. Deine Zustimmung halten wir mit der Fassung der Nutzungsbedingungen und
+    dem Zeitpunkt fest — beides nur auf deinem Gerät. Ändern wir die Nutzungsbedingungen, fragen wir erneut.
   </p>
   <p>
     Wir erfahren dadurch weder deinen Namen noch deine E-Mail-Adresse noch deine Telefonnummer. Die Kennung ist nicht
@@ -76,13 +77,14 @@
         <td>Anonyme Geräte-Kennung</td>
         <td>Ordnet Uploads und fertige Videos deinem Gerät zu und verhindert fremden Zugriff</td>
         <td>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</td>
-        <td>Bis du in der App alle Daten löschst oder die App deinstallierst</td>
+        <td>Bis du in der App alle Daten löschst</td>
       </tr>
       <tr>
         <td>Fotos und Videoclips, die du auswählst</td>
         <td>Rohmaterial für dein Edit</td>
         <td>Art. 6 Abs. 1 lit. b DSGVO</td>
-        <td>Auf dem Render-Server während der Verarbeitung; unfertige Aufträge verfallen nach 24 Stunden</td>
+        <td>Die Originaldatei deines Handys wird direkt nach dem Umwandeln gelöscht. Die umgewandelte Fassung
+          verschwindet, sobald dein Video fertig ist — spätestens 7 Tage nach dem Start des Auftrags.</td>
       </tr>
       <tr>
         <td>Aufnahmezeitpunkt deiner Clips</td>
@@ -93,8 +95,15 @@
       <tr>
         <td>GPX-Datei deiner Tour (optional, enthält genaue Standortdaten)</td>
         <td>Strecke, Höhenprofil, Distanz und Tempo als Overlay im Video</td>
-        <td>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch das Hochladen)</td>
-        <td>Während der Verarbeitung; danach nur noch als Teil des gerenderten Bildes</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Wird nie gespeichert. Sie wird nur im Moment des Renderns gelesen und existiert danach ausschließlich
+          als Teil des gerenderten Bildes.</td>
+      </tr>
+      <tr>
+        <td>Angaben zu deinem Edit (Titel, Vorlage, Länge, Zeitstempel)</td>
+        <td>Zeigt dir deine Videos in der Übersicht und ordnet laufende Aufträge zu</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Bis du das Video oder alle Daten löschst</td>
       </tr>
       <tr>
         <td>Fertiges Video (MP4)</td>
@@ -103,63 +112,86 @@
         <td>Bis du es löschst</td>
       </tr>
       <tr>
+        <td>Abo-Status und Kaufdaten (Produkt, Store, Laufzeit, Kennung bei RevenueCat)</td>
+        <td>Schaltet die kostenpflichtigen Funktionen frei und zählt dein Gratis-Kontingent</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Bis du alle Daten löschst. Meldungen der Abo-Verwaltung löschen wir nach 90 Tagen.</td>
+      </tr>
+      <tr>
         <td>Technische Server-Protokolle (IP-Adresse, Zeitpunkt, Fehlercode)</td>
         <td>Betrieb, Fehlersuche, Abwehr von Missbrauch</td>
         <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</td>
-        <td>Kurzfristig, danach automatisch überschrieben</td>
+        <td>30 Tage, danach automatisch gelöscht</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="todo">
-    <strong>Vor Veröffentlichung prüfen</strong>
-    Die Rohclips auf dem Render-Server werden aktuell nicht automatisch nach dem Rendern gelöscht. Entweder einen
-    Aufräum-Job ergänzen und diese Zeile dann konkret formulieren, oder die Speicherdauer hier ehrlich anpassen.
-  </div>
+  <p>
+    Wir zahlen keine dieser Daten in ein Profil ein. Es gibt keinen Abgleich zwischen Nutzern und keine Auswertung
+    über deine einzelne Nutzung hinaus.
+  </p>
 
-  <h2>4. Standortdaten aus der GPX-Datei</h2>
+  <h2>4. Der Weg deiner Clips</h2>
+  <p>Damit du nachvollziehen kannst, wo dein Material wirklich liegt:</p>
+  <ol>
+    <li>Du wählst Clips in der Fotoauswahl deines Betriebssystems aus.</li>
+    <li>Die App lädt jede Datei <strong>direkt in unseren privaten Speicher</strong> bei Supabase in Frankfurt am
+      Main. Sie geht dabei nicht über unseren Render-Server.</li>
+    <li>Unser Render-Server holt sich die Datei aus diesem Speicher, wandelt sie in ein einheitliches Format um und
+      legt die umgewandelte Fassung zurück. <strong>Die Originaldatei deines Handys wird sofort gelöscht.</strong></li>
+    <li>Beim Rendern baut der Server daraus dein Video und legt es in einem zweiten privaten Speicher ab.</li>
+    <li>Sobald dein Video fertig ist, werden alle Clips gelöscht. Ab da existiert nur noch das Video.</li>
+  </ol>
+  <p>
+    Brichst du zwischendurch ab, räumt ein automatischer Job den unfertigen Auftrag samt Clips
+    <strong>spätestens 7 Tage</strong> nach dem Start ab.
+  </p>
+
+  <h2>5. Standortdaten aus der GPX-Datei</h2>
   <p>
     Eine GPX-Datei enthält den genauen Verlauf deiner Fahrt mit Koordinaten und Zeitstempeln. Das sind sensible Daten.
     Deshalb gilt:
   </p>
   <ul>
-    <li>Das Hochladen einer GPX-Datei ist freiwillig. Ohne GPX funktioniert BikeEdit weiterhin, nur ohne Karten- und
+    <li>Das Hochladen einer GPX-Datei ist freiwillig. Ohne GPX funktioniert Kadenz weiterhin, nur ohne Karten- und
       Tempo-Overlay.</li>
-    <li>BikeEdit greift <strong>nicht</strong> auf die Standortdienste deines Handys zu und verfolgt dich nicht im
+    <li>Kadenz greift <strong>nicht</strong> auf die Standortdienste deines Handys zu und verfolgt dich nicht im
       Hintergrund. Wir bekommen nur die Datei, die du selbst auswählst.</li>
-    <li>Die Route wird ausschließlich benutzt, um die Grafik in deinem Video zu zeichnen. Sie wird nicht an Dritte
-      weitergegeben, nicht ausgewertet und nicht mit anderen Nutzern verglichen.</li>
+    <li>Die Datei wird <strong>nicht gespeichert</strong>. Sie wird im Moment des Renderns gelesen, um die Grafik zu
+      zeichnen, und danach verworfen. Was bleibt, ist die gezeichnete Linie in deinem Video.</li>
+    <li>Die Route wird nicht an Dritte weitergegeben, nicht ausgewertet und nicht mit anderen Nutzern verglichen.</li>
     <li>Wenn du deinen Startpunkt (zum Beispiel deine Wohnadresse) nicht im Video sehen willst, kürze die GPX-Datei vor
       dem Hochladen oder wähle eine Vorlage ohne Karte.</li>
   </ul>
 
-  <h2>5. Zugriff auf Fotos und Videos</h2>
+  <h2>6. Zugriff auf Fotos und Videos</h2>
   <p>
-    Um Clips auszuwählen, öffnet BikeEdit die Medienauswahl deines Betriebssystems.
+    Um Clips auszuwählen, öffnet Kadenz die Medienauswahl deines Betriebssystems.
   </p>
   <ul>
     <li><strong>Android:</strong> Wir nutzen die System-Fotoauswahl. Die App bekommt dadurch keinen Zugriff auf deine
       gesamte Galerie, sondern nur auf die Dateien, die du in der Auswahl antippst.</li>
     <li><strong>iOS:</strong> Du wirst nach Zugriff auf die Mediathek gefragt. Du kannst „Ausgewählte Fotos" wählen und
-      damit selbst festlegen, was BikeEdit sehen darf.</li>
+      damit selbst festlegen, was Kadenz sehen darf.</li>
   </ul>
   <p>Wir durchsuchen deine Galerie nicht und laden nichts hoch, was du nicht ausgewählt hast.</p>
 
-  <h2>6. Musik</h2>
+  <h2>7. Musik</h2>
   <p>
-    BikeEdit legt entweder lizenzfreie beziehungsweise KI-erzeugte Musik in dein Video, oder es rendert das Video
+    Kadenz legt entweder lizenzfreie beziehungsweise KI-erzeugte Musik in dein Video, oder es rendert das Video
     stumm, damit du in TikTok oder Instagram einen Song aus deren eigenem Katalog hinzufügen kannst. Wir liefern nie
     ein geschütztes Original-Master aus. Wenn du in der App nach einem Songtitel suchst, wird dieser Suchbegriff zur
-    Abfrage an unseren Musikkatalog geschickt. Er wird nicht deinem Profil zugeordnet.
+    Abfrage an unseren Musikkatalog geschickt. Er wird nicht deinem Profil zugeordnet und nicht gespeichert.
   </p>
 
-  <h2>7. Kein Tracking, keine Werbung</h2>
+  <h2>8. Kein Tracking, keine Werbung</h2>
   <p>
-    BikeEdit enthält keine Analyse-, Werbe- oder Attributions-SDKs. Es gibt kein Profiling, keine automatisierte
+    Kadenz enthält keine Analyse-, Werbe- oder Attributions-SDKs. Es gibt kein Profiling, keine automatisierte
     Entscheidungsfindung im Sinne von Art. 22 DSGVO und keine Weitergabe an Werbenetzwerke. Wir verkaufen keine Daten.
+    Das einzige eingebundene fremde SDK ist die Abo-Verwaltung, die weiter unten steht.
   </p>
 
-  <h2>8. Empfänger und Auftragsverarbeiter</h2>
+  <h2>9. Empfänger und Auftragsverarbeiter</h2>
   <p>Wir setzen folgende Dienstleister ein, die Daten in unserem Auftrag verarbeiten:</p>
   <table>
     <thead>
@@ -171,36 +203,59 @@
     <tbody>
       <tr>
         <td>Supabase</td>
-        <td>Anonyme Anmeldung, Datenbank und privater Speicher für deine fertigen Videos</td>
+        <td>Anonyme Anmeldung, Datenbank und privater Speicher für deine Clips und deine fertigen Videos.
+          Region Frankfurt am Main.</td>
       </tr>
       <tr>
-        <td>Render-Server</td>
-        <td>Nimmt deine Clips entgegen, schneidet das Video und lädt das Ergebnis in den privaten Speicher</td>
+        <td>Google Cloud (Cloud Run)</td>
+        <td>Betreibt den Render-Server: holt deine Clips aus dem Speicher, schneidet das Video und legt das Ergebnis
+          wieder dort ab. Region europe-west3 (Frankfurt am Main).</td>
+      </tr>
+      <tr>
+        <td>RevenueCat</td>
+        <td>Verwaltet dein Abo. Verarbeitet dabei deine anonyme Kennung, die Kaufbestätigung deines App Stores,
+          Produkt und Laufzeit sowie technische Angaben zu deinem Gerät. RevenueCat sieht deine Clips und Videos
+          nicht.</td>
+      </tr>
+      <tr>
+        <td>GitHub (GitHub Pages)</td>
+        <td>Liefert diese Rechtstexte aus. Dabei fällt deine IP-Adresse in den Zugriffsprotokollen an.</td>
       </tr>
       <tr>
         <td>Apple App Store / Google Play</td>
-        <td>Auslieferung der App. Diese Plattformen erheben eigene Daten nach ihren eigenen Datenschutzerklärungen.</td>
+        <td>Auslieferung der App und Abwicklung der Zahlung. Diese Plattformen erheben eigene Daten nach ihren
+          eigenen Datenschutzerklärungen. Wir bekommen von ihnen keine Zahlungsdaten, nur die Bestätigung, dass ein
+          Abo besteht.</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="todo">
-    <strong>Vor Veröffentlichung ergänzen</strong>
-    Serverstandort der Supabase-Instanz und des Render-Servers eintragen. Liegt er außerhalb der EU, muss hier zusätzlich
-    die Grundlage für den Drittlandtransfer stehen (in der Regel Standardvertragsklauseln nach Art. 46 DSGVO). Außerdem
-    sollte der Auftragsverarbeitungsvertrag mit Supabase abgeschlossen sein.
-  </div>
+  <p>
+    Deine Videos werden in <strong>Frankfurt am Main</strong> verarbeitet: die Supabase-Instanz und der Render-Server
+    (Google Cloud, Region europe-west3) stehen beide dort.
+  </p>
 
-  <h2>9. Sicherheit</h2>
+  <h3>Übermittlung in die USA</h3>
+  <p>
+    Supabase, Google und RevenueCat sind US-Unternehmen. Auch wenn die Verarbeitung technisch in Frankfurt
+    stattfindet, kann deshalb ein Zugriff aus den USA nicht ausgeschlossen werden. Rechtsgrundlage dafür sind die
+    Standardvertragsklauseln der EU-Kommission nach Art. 46 Abs. 2 lit. c DSGVO, soweit sich der jeweilige Anbieter
+    nicht auf einen Angemessenheitsbeschluss nach Art. 45 DSGVO stützt (EU-US Data Privacy Framework). Eine Kopie der
+    Klauseln bekommst du auf Anfrage unter
+    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+  </p>
+
+  <h2>10. Sicherheit</h2>
   <ul>
     <li>Alle Verbindungen zwischen App und Server sind mit TLS verschlüsselt.</li>
-    <li>Der Video-Speicher ist privat. Zugriff gibt es nur über kurzlebige, signierte Links.</li>
+    <li>Beide Speicher sind privat. Zugriff gibt es nur über kurzlebige, signierte Links.</li>
+    <li>Ein Link auf dein Video ist <strong>fünf Minuten</strong> gültig, danach nicht mehr.</li>
     <li>Der Server prüft bei jedem Zugriff, ob die Daten wirklich zu deiner Kennung gehören. Die Zuordnung stammt immer
       aus dem geprüften Anmelde-Token, nie aus einer vom Gerät geschickten Angabe.</li>
-    <li>Links auf einzelne Mediendateien laufen nach einer Stunde ab.</li>
+    <li>Die Datenbank setzt die Trennung selbst durch: Jede Abfrage sieht nur Zeilen der eigenen Kennung.</li>
   </ul>
 
-  <h2>10. Deine Rechte</h2>
+  <h2>11. Deine Rechte</h2>
   <p>Nach der DSGVO hast du das Recht auf:</p>
   <ul>
     <li>Auskunft über deine Daten (Art. 15)</li>
@@ -209,31 +264,55 @@
     <li>Einschränkung der Verarbeitung (Art. 18)</li>
     <li>Datenübertragbarkeit (Art. 20)</li>
     <li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21)</li>
-    <li>Widerruf einer Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3)</li>
+  </ul>
+
+  <h3>Auskunft und Export: sofort, in der App</h3>
+  <p>
+    Du musst uns dafür nicht schreiben. Tippe oben rechts auf den <strong>Regler-Knopf</strong>, dann unter
+    <strong>Daten</strong> auf <strong>Meine Daten exportieren</strong>. Du bekommst sofort eine ZIP-Datei mit:
+  </p>
+  <ul>
+    <li>allen Angaben, die wir zu dir gespeichert haben, als lesbare JSON-Datei,</li>
+    <li>deinen Videos als Datei,</li>
+    <li>deinen noch nicht verarbeiteten Clips, falls es welche gibt,</li>
+    <li>einer Erklärung, was in der JSON-Datei steht.</li>
   </ul>
   <p>
-    Am schnellsten löschst du deine Daten selbst in der App. Wie das geht, steht auf der Seite
-    <a href="./delete-account.html">Daten löschen</a>. Für alle anderen Anliegen schreib an
-    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+    Der Export ist <strong>kostenlos</strong> und unabhängig davon, ob du ein Abo hast. Die Videos im Export sind ohne
+    Musik: Der Song gehört nicht zu deinen Daten, dein Material und deine Route schon. Aus technischen Gründen ist ein
+    Export pro 30 Tage möglich (Art. 12 Abs. 5 DSGVO).
+  </p>
+
+  <h3>Löschung: ebenfalls in der App</h3>
+  <p>
+    Unter <strong>Daten</strong> steht <strong>Alle Daten löschen</strong>. Das löscht deine Videos, alle Angaben dazu
+    und die anonyme Kennung selbst. Einzelheiten stehen auf der Seite
+    <a href="./delete-account.html">Daten löschen</a>.
+  </p>
+
+  <h3>Alles andere</h3>
+  <p>
+    Für Berichtigung, Einschränkung und Widerspruch schreib an
+    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>. Wir antworten innerhalb eines Monats.
   </p>
   <p>
-    Wichtig: Weil BikeEdit dich nicht kennt, können wir eine Anfrage per E-Mail nur bearbeiten, wenn du deine anonyme
-    Kennung mitschickst. Wo du sie findest, steht ebenfalls auf der Seite <a href="./delete-account.html">Daten
-      löschen</a>. Ohne diese Kennung können wir deine Daten nicht auffinden und aus Sicherheitsgründen auch nichts
-    herausgeben.
+    Wichtig: Weil Kadenz dich nicht kennt, können wir eine Anfrage per E-Mail nur bearbeiten, wenn du deine anonyme
+    Kennung mitschickst. Wo du sie findest, steht auf der Seite <a href="./delete-account.html">Daten löschen</a>. Ohne
+    diese Kennung können wir deine Daten nicht auffinden und aus Sicherheitsgründen auch nichts herausgeben
+    (Art. 11 Abs. 2 DSGVO).
   </p>
   <p>
     Du kannst dich außerdem bei einer Aufsichtsbehörde beschweren. Für uns zuständig ist der Hessische Beauftragte für
     Datenschutz und Informationsfreiheit, Postfach 3163, 65021 Wiesbaden.
   </p>
 
-  <h2>11. Kinder</h2>
+  <h2>12. Kinder</h2>
   <p>
-    BikeEdit richtet sich nicht an Kinder unter 16 Jahren. Wir erheben wissentlich keine Daten von Kindern unter 16
+    Kadenz richtet sich nicht an Kinder unter 16 Jahren. Wir erheben wissentlich keine Daten von Kindern unter 16
     Jahren.
   </p>
 
-  <h2>12. Änderungen</h2>
+  <h2>13. Änderungen</h2>
   <p>
     Wenn sich die App ändert, passen wir diese Erklärung an. Das Datum oben zeigt den aktuellen Stand. Bei wesentlichen
     Änderungen weisen wir in der App darauf hin.
