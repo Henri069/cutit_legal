@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cancellare account e dati — Kadenz</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <p class="nav">
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Termini</a>
+    <a href="./delete-account.html" aria-current="page">Cancellare i dati</a>
+    <a href="./impressum.html">Note legali</a>
+    <span class="lang">
+      <a href="../delete-account.html" hreflang="de">DE</a>
+      <a href="../en/delete-account.html" hreflang="en">EN</a>
+      <a href="../fr/delete-account.html" hreflang="fr">FR</a>
+      <a href="../es/delete-account.html" hreflang="es">ES</a>
+      <a href="../it/delete-account.html" aria-current="page" hreflang="it">IT</a>
+    </span>
+  </p>
+
+  <h1>Cancellare account e dati</h1>
+  <p class="meta">Kadenz · Aggiornato: 2 agosto 2026</p>
+
+  <div class="note">
+    <strong>La cosa più importante per prima</strong>
+    Kadenz non ha un account utente nel senso classico. Niente registrazione, niente indirizzo e-mail, niente
+    password. Al primo avvio il tuo dispositivo riceve soltanto un identificativo casuale e anonimo. Quell'identificativo
+    e tutti i dati collegati li cancelli direttamente nell'app, in meno di un minuto e senza scriverci.
+  </div>
+
+  <h2>Prima: vuoi tenere i tuoi video?</h2>
+  <p>
+    La cancellazione è definitiva. Se ti servono ancora i tuoi video o i tuoi dati, esportali prima. È gratis, anche
+    senza abbonamento:
+  </p>
+  <ol>
+    <li>Tocca in alto a destra il <strong>pulsante impostazioni</strong>.</li>
+    <li>Scorri fino a <strong>DATI</strong>.</li>
+    <li>Tocca <strong data-app="settingsScreen.rows.export.label">Esporta i miei dati</strong>.</li>
+    <li>Metti il file ZIP dove vuoi.</li>
+    <li><strong>Apri il file ZIP, clicca su <code>downloads.html</code> e scarica i tuoi video.</strong></li>
+  </ol>
+  <p>
+    Nello ZIP c'è un file JSON con tutte le informazioni che abbiamo salvato su di te e un link per scaricare ognuno
+    dei tuoi video e ogni clip non ancora elaborato.
+  </p>
+  <p>
+    <strong>Scarica i file prima di cancellare.</strong> I link puntano al nostro archivio. Appena hai cancellato, i
+    file non ci sono più e i link non portano da nessuna parte. Uno ZIP da solo non salva i tuoi video.
+  </p>
+
+  <h2>Via 1: cancellare nell'app (consigliato)</h2>
+  <ol>
+    <li>Apri Kadenz.</li>
+    <li>Tocca in alto a destra il <strong>pulsante impostazioni</strong> (le tre righe con i punti).</li>
+    <li>Scorri fino a <strong>DATI</strong>.</li>
+    <li>Tocca <strong data-app="settingsScreen.rows.deleteAll.label">Cancella tutti i dati</strong>.</li>
+    <li>Conferma con <strong data-app="settingsScreen.alert.deleteAll.confirm">Cancella tutto</strong>.</li>
+  </ol>
+  <p>Il pulsante impostazioni sta in alto a destra su ogni schermata: non devi navigare da nessuna parte.</p>
+  <p>
+    Se vuoi togliere di mezzo solo un video, toccalo nella panoramica e scegli lì
+    <strong data-app="vaultScreen.card.delete">Elimina</strong>.
+  </p>
+
+  <h2>Cosa viene cancellato</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dati</th>
+        <th>Cosa succede</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tutti i video finiti (MP4)</td>
+        <td>Vengono tolti dall'archivio subito e per sempre</td>
+      </tr>
+      <tr>
+        <td>Clip non ancora elaborati</td>
+        <td>Vengono tolti anch'essi subito</td>
+      </tr>
+      <tr>
+        <td>Tutte le voci del database sui tuoi video</td>
+        <td>Vengono cancellate, compresi titolo, modello, durata e marche temporali</td>
+      </tr>
+      <tr>
+        <td>Tutti i lavori di rendering</td>
+        <td>Vengono cancellati, anche quelli iniziati e annullati</td>
+      </tr>
+      <tr>
+        <td>Il tuo record di abbonamento da noi</td>
+        <td>Viene cancellato, così come le notifiche della gestione abbonamenti legate al tuo identificativo</td>
+      </tr>
+      <tr>
+        <td>Il tuo identificativo anonimo</td>
+        <td>Viene cancellato esso stesso. Dopo non c'è più nessuno a cui collegare qualcosa, e l'app riparte come
+          appena installata.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    La cancellazione è definitiva. Non c'è cestino né ripristino. I video che hai esportato prima nella tua galleria o
+    su TikTok restano ovviamente lì. Quelli devi cancellarli tu, sul posto.
+  </p>
+
+  <div class="note">
+    <strong>Il tuo abbonamento continua</strong>
+    Un abbonamento attivo è legato al tuo account Apple o Google, non al nostro identificativo. La cancellazione
+    <strong>non</strong> lo disdice e non lo rimborsa. Devi disdirlo nello store: su iPhone in Impostazioni, il tuo
+    nome, Abbonamenti. Su Android in Google Play, sotto Pagamenti e abbonamenti.
+    Se reinstalli Kadenz più avanti, riprendi il tuo abbonamento con
+    <strong data-app="paywallScreen.restore">Ripristina acquisti</strong>.
+  </div>
+
+  <h2>Cosa non viene cancellato</h2>
+  <ul>
+    <li>I log tecnici del server con indirizzo IP e codici di errore. Non contengono contenuti e vengono cancellati
+      automaticamente dopo <strong data-frist="logs-days">30 giorni</strong>. Li teniamo per il tempo necessario alla
+      sicurezza e alla ricerca degli errori.</li>
+    <li>Le ricevute di acquisto da Apple o Google. Stanno lì, non da noi, e seguono la loro conservazione.</li>
+  </ul>
+
+  <h2>Via 2: chiedere la cancellazione via e-mail</h2>
+  <p>
+    Se hai già disinstallato l'app o per un altro motivo non puoi cancellare da solo, scrivici:
+  </p>
+  <p>
+    <a href="mailto:henri.irmscher@gmail.com?subject=Kadenz%20L%C3%B6schanfrage">henri.irmscher@gmail.com</a>
+  </p>
+  <p>Nel messaggio indica per favore:</p>
+  <ul>
+    <li>Oggetto: <code>Kadenz Löschanfrage</code></li>
+    <li>Il tuo identificativo anonimo dall'app (più sotto trovi dove si vede)</li>
+    <li>Il periodo indicativo in cui hai usato l'app</li>
+  </ul>
+  <p>
+    Trattiamo le richieste entro un mese. Nota onesta: siccome di proposito non ti conosciamo, non esiste alcun nome né
+    indirizzo e-mail con cui trovare i tuoi dati. Senza l'identificativo anonimo possiamo solo confermarti che, con la
+    cancellazione dell'app dal tuo dispositivo, il collegamento si perde.
+  </p>
+
+  <h2>Dove trovi il tuo identificativo anonimo</h2>
+  <p>
+    Tocca in alto a destra il <strong>pulsante impostazioni</strong>: sta del tutto in alto, sotto
+    <strong>IL TUO ACCOUNT</strong>. Tocca accanto <strong data-app="deviceId.copy">Copia</strong> e mandatelo, oppure
+    tieni premuto il testo e copialo a mano.
+  </p>
+
+  <h2>Se non fai niente</h2>
+  <p>
+    Neanche allora resta qualcosa per sempre. I lavori iniziati che non concludi li ripuliamo al più tardi dopo
+    <strong data-frist="pending-ttl">7 giorni</strong>. Gli identificativi anonimi senza video li cancelliamo quando
+    non vengono usati per <strong data-frist="inactive-months">12 mesi</strong>.
+  </p>
+  <p>
+    Se disinstalli soltanto Kadenz, l'identificativo anonimo sparisce dal tuo dispositivo. Ma i tuoi video già
+    renderizzati restano nell'archivio privato, senza che né tu né noi possiamo più collegarli. Perciò: prima
+    <strong data-app="settingsScreen.rows.deleteAll.label">Cancella tutti i dati</strong> nell'app, poi disinstallare.
+  </p>
+
+  <p class="meta binding">
+    Questo testo italiano è una traduzione di cortesia. La versione vincolante è quella tedesca, la <a href="../delete-account.html">Seite „Konto und Daten löschen"</a>.
+  </p>
+
+  <footer>
+    <p>
+      <a href="./privacy.html">Privacy</a> ·
+      <a href="./terms.html">Termini</a> ·
+      <a href="./delete-account.html">Cancellare i dati</a> ·
+      <a href="./impressum.html">Note legali</a>
+    </p>
+  </footer>
+</body>
+
+</html>

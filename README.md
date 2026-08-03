@@ -1,7 +1,8 @@
 # BikeEdit — Rechtsseiten
 
 Statische Seiten für GitHub Pages: Datenschutz, Nutzungsbedingungen, Löschanfragen und Impressum.
-Zweisprachig, Deutsch als verbindliche Fassung, Englisch als Übersetzung.
+**Fünf Sprachen** — Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und
+Italienisch als Übersetzungen.
 
 Dieser Ordner ist ein **eigenes, öffentliches Repo**. Der App-Code liegt im privaten Repo
 `Henri069/bike_edit` (Ordner `../app`) und ist hier nicht enthalten.
@@ -15,14 +16,40 @@ terms.html            Nutzungsbedingungen
 delete-account.html   Konto und Daten löschen
 impressum.html        Impressum nach §5 DDG
 style.css             gemeinsames Styling, Light und Dark
-en/                   englische Fassungen (imprint.html statt impressum.html)
+en/ fr/ es/ it/       die vier Übersetzungen, gleiche Dateinamen
+fristen.json          die Fristen als Zahlen — eine Quelle für alle Seiten
+check.mjs             prüft die 25 Seiten: `node check.mjs`
 ```
+
+**Deutsch liegt in der WURZEL, nicht unter `/de/`.** Das ist die verbindliche Fassung und genau
+die URL, die in App Store Connect und bei Google Play eingetragen ist. GitHub Pages kennt keine
+Weiterleitungsregeln, nur Dateien — ein Umzug wäre eine 404 in der Review.
+
+**Die Dateinamen sind in jedem Ordner gleich**, auch `impressum.html`. Das ist die eine
+Eigenschaft, die den Sprachumschalter und `check.mjs` mechanisch macht. `en/imprint.html` ist nur
+noch eine Weiterleitung für alte Links. Titel und Überschrift sind natürlich übersetzt.
+
+## Vor dem Pushen
+
+```bash
+node check.mjs
+```
+
+Prüft: jeder Sprachordner hat dieselben fünf Seiten · `<html lang>` passt zum Ordner · die
+Sprachleiste führt in jede Sprache auf eine Seite, die es gibt · jede nicht-deutsche Rechtsseite
+trägt den Vorrang-Hinweis (`class="… binding"`) · jede mit `data-frist` markierte Zahl stimmt mit
+`fristen.json` überein · dieselbe Seite hat in allen Sprachen dasselbe Stand-Datum.
+
+**Die Zahlen stehen auch im Code.** `supabase/functions/_shared/fristen.test.ts` im App-Repo
+vergleicht `fristen.json` gegen `EXPORT_URL_TTL_SEC`, `PENDING_TTL_DAYS` und `EXPORT_REFILL_SEC`.
+Der Test überspringt sich, wenn dieser Ordner nicht daneben liegt.
+
+**Fett gesetzte App-Knöpfe tragen `data-app="…"`.** Der Wert ist der Schlüssel im Sprachbündel der
+App (`app/src/i18n/locales/*.ts`). Wer einen Knopf in der App umbenennt, benennt ihn hier mit.
 
 ## Vor der Veröffentlichung erledigen
 
-Die Seiten enthalten gelb umrandete `.todo`-Kästen. Jeder markiert eine Stelle, die noch geklärt
-werden muss. Nach dem Klären den ganzen `<div class="todo">…</div>`-Block löschen, **in beiden
-Sprachfassungen**.
+Die früher hier beschriebenen gelben `.todo`-Kästen sind **alle weg**. Offen bleiben diese Punkte:
 
 Offene Punkte:
 

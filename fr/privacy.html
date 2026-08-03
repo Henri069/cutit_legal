@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Politique de confidentialité — Kadenz</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <p class="nav">
+    <a href="./privacy.html" aria-current="page">Confidentialité</a>
+    <a href="./terms.html">Conditions</a>
+    <a href="./delete-account.html">Supprimer mes données</a>
+    <a href="./impressum.html">Mentions légales</a>
+    <span class="lang">
+      <a href="../privacy.html" hreflang="de">DE</a>
+      <a href="../en/privacy.html" hreflang="en">EN</a>
+      <a href="../fr/privacy.html" aria-current="page" hreflang="fr">FR</a>
+      <a href="../es/privacy.html" hreflang="es">ES</a>
+      <a href="../it/privacy.html" hreflang="it">IT</a>
+    </span>
+  </p>
+
+  <h1>Politique de confidentialité</h1>
+  <p class="meta">Kadenz · Mise à jour : 2 août 2026</p>
+
+  <div class="note">
+    <strong>En bref</strong>
+    <ul>
+      <li>Pas de compte, pas d'adresse e-mail, pas de mot de passe. Seulement un identifiant aléatoire et anonyme pour
+        ton appareil — et il n'apparaît qu'une fois que tu as accepté les conditions d'utilisation.</li>
+      <li>Tes clips et ton parcours GPX ne sont traités que pour construire ta vidéo.</li>
+      <li>Ta vidéo finie est dans un stockage privé. Seul ton appareil peut la récupérer.</li>
+      <li>Pas de traçage publicitaire, pas de SDK d'analyse, pas de vente de données.</li>
+      <li>Tu peux supprimer toutes tes données à tout moment directement dans l'application — et les exporter
+        gratuitement avant.</li>
+    </ul>
+  </div>
+
+  <h2>1. Responsable du traitement</h2>
+  <address>
+    Henri Irmscher — Appentwicklung<br />
+    Seckbacher Landstr. 66<br />
+    60389 Frankfurt am Main<br />
+    Allemagne
+  </address>
+  <p>E-mail : <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a></p>
+  <p>Un délégué à la protection des données n'est pas légalement requis et n'a pas été désigné.</p>
+
+  <h2>2. Un identifiant anonyme au lieu d'un compte</h2>
+  <p>
+    Kadenz n'a pas d'inscription. Sur l'écran d'accueil, tu acceptes une fois les conditions d'utilisation.
+    <strong>Seulement ensuite</strong>, l'application se connecte anonymement à notre backend (Supabase,
+    <em>anonymous sign-in</em>). Un identifiant aléatoire est alors créé et enregistré sur ton appareil. Cet
+    identifiant sert à une seule chose : rattacher tes clips envoyés et tes vidéos finies à ton appareil, pour que
+    personne d'autre ne puisse y accéder.
+  </p>
+  <p>
+    Avant cette acceptation, aucune donnée ne quitte ton appareil. Qui ouvre l'application, regarde l'écran d'accueil
+    et la supprime ne laisse rien chez nous. Nous conservons ton acceptation avec la version des conditions et le
+    moment — les deux uniquement sur ton appareil. Si nous modifions les conditions, nous redemandons.
+  </p>
+  <p>
+    Nous n'apprenons ainsi ni ton nom, ni ton adresse e-mail, ni ton numéro de téléphone. L'identifiant n'est relié à
+    aucun autre service. Si tu supprimes l'application, l'identifiant disparaît de ton appareil.
+  </p>
+
+  <h2>3. Quelles données nous traitons</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Données</th>
+        <th>Pour quoi</th>
+        <th>Base légale</th>
+        <th>Durée de conservation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identifiant anonyme de l'appareil</td>
+        <td>Rattache les envois et les vidéos finies à ton appareil et empêche l'accès par des tiers</td>
+        <td>Art. 6 §1 b) RGPD (exécution du contrat)</td>
+        <td>Jusqu'à ce que tu supprimes toutes les données dans l'application</td>
+      </tr>
+      <tr>
+        <td>Photos et clips vidéo que tu choisis</td>
+        <td>Matière première de ton montage</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Le fichier original de ton téléphone est supprimé juste après la conversion. La version convertie disparaît
+          dès que ta vidéo est prête — au plus tard <strong data-frist="pending-ttl">7 jours</strong> après le début de
+          la tâche.</td>
+      </tr>
+      <tr>
+        <td>Date de prise de vue de tes clips</td>
+        <td>Trie automatiquement les clips dans le bon ordre</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Utilisée seulement au moment du traitement, pas enregistrée séparément</td>
+      </tr>
+      <tr>
+        <td>Fichier GPX de ta sortie (facultatif, contient des données de localisation précises)</td>
+        <td>Tracé, profil altimétrique, distance et vitesse en incrustation dans la vidéo</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Jamais enregistré. Lu uniquement au moment du rendu, il n'existe ensuite que comme partie de l'image
+          rendue.</td>
+      </tr>
+      <tr>
+        <td>Informations sur ton montage (titre, modèle, durée, horodatage)</td>
+        <td>Affiche tes vidéos dans l'aperçu et rattache les tâches en cours</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Jusqu'à ce que tu supprimes la vidéo ou toutes les données</td>
+      </tr>
+      <tr>
+        <td>Vidéo finie (MP4)</td>
+        <td>Pour que tu puisses la regarder, l'enregistrer et la partager</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Jusqu'à ce que tu la supprimes</td>
+      </tr>
+      <tr>
+        <td>État de l'abonnement et données d'achat (produit, store, durée, identifiant chez RevenueCat)</td>
+        <td>Débloque les fonctions payantes et compte ton quota gratuit</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Jusqu'à ce que tu supprimes toutes les données. Les notifications de la gestion d'abonnement sont
+          supprimées après 90 jours.</td>
+      </tr>
+      <tr>
+        <td>Journaux techniques du serveur (adresse IP, horodatage, code d'erreur)</td>
+        <td>Exploitation, dépannage, défense contre les abus</td>
+        <td>Art. 6 §1 f) RGPD (intérêt légitime)</td>
+        <td><strong data-frist="logs-days">30 jours</strong>, puis suppression automatique</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Nous n'alimentons aucun profil avec ces données. Il n'y a ni recoupement entre utilisateurs, ni analyse au-delà de
+    ton utilisation individuelle.
+  </p>
+
+  <h2>4. Le chemin de tes clips</h2>
+  <p>Pour que tu puisses suivre où ton matériel se trouve vraiment :</p>
+  <ol>
+    <li>Tu choisis des clips dans le sélecteur de photos de ton système d'exploitation.</li>
+    <li>L'application envoie chaque fichier <strong>directement dans notre stockage privé</strong> chez Supabase à
+      Francfort-sur-le-Main. Il ne passe pas par notre serveur de rendu.</li>
+    <li>Notre serveur de rendu récupère le fichier depuis ce stockage, le convertit dans un format uniforme et y
+      repose la version convertie. <strong>Le fichier original de ton téléphone est supprimé immédiatement.</strong></li>
+    <li>Au rendu, le serveur en construit ta vidéo et la dépose dans un deuxième stockage privé.</li>
+    <li>Dès que ta vidéo est prête, tous les clips sont supprimés. À partir de là, seule la vidéo existe encore.</li>
+  </ol>
+  <p>
+    Si tu abandonnes en cours de route, une tâche automatique nettoie la commande inachevée et ses clips
+    <strong data-frist="pending-ttl">au plus tard 7 jours</strong> après le début.
+  </p>
+
+  <h2>5. Données de localisation du fichier GPX</h2>
+  <p>
+    Un fichier GPX contient le déroulé précis de ta sortie avec coordonnées et horodatages. Ce sont des données
+    sensibles. C'est pourquoi :
+  </p>
+  <ul>
+    <li>Envoyer un fichier GPX est facultatif. Sans GPX, Kadenz fonctionne toujours, seulement sans incrustation de
+      carte et de vitesse.</li>
+    <li>Kadenz n'accède <strong>pas</strong> aux services de localisation de ton téléphone et ne te suit pas en
+      arrière-plan. Nous recevons uniquement le fichier que tu choisis toi-même.</li>
+    <li>Le fichier n'est <strong>pas enregistré</strong>. Il est lu au moment du rendu pour dessiner le graphique,
+      puis abandonné. Ce qui reste, c'est le tracé dessiné dans ta vidéo.</li>
+    <li>Le parcours n'est pas transmis à des tiers, pas analysé et pas comparé à celui d'autres utilisateurs.</li>
+    <li>Si tu ne veux pas voir ton point de départ (par exemple ton domicile) dans la vidéo, raccourcis le fichier GPX
+      avant l'envoi ou choisis un modèle sans carte.</li>
+  </ul>
+
+  <h2>6. Accès aux photos et vidéos</h2>
+  <p>Pour choisir des clips, Kadenz ouvre le sélecteur de médias de ton système d'exploitation.</p>
+  <ul>
+    <li><strong>Android :</strong> nous utilisons le sélecteur de photos du système. L'application n'obtient donc pas
+      accès à toute ta galerie, mais uniquement aux fichiers que tu touches dans le sélecteur.</li>
+    <li><strong>iOS :</strong> l'accès à la photothèque t'est demandé. Tu peux choisir « Photos sélectionnées » et
+      décider toi-même ce que Kadenz a le droit de voir.</li>
+  </ul>
+  <p>Nous ne fouillons pas ta galerie et n'envoyons rien que tu n'aies pas choisi.</p>
+
+  <h2>7. Musique</h2>
+  <p>
+    Kadenz met dans ta vidéo soit une musique libre de droits ou générée par IA, soit rend la vidéo muette pour que tu
+    puisses ajouter un morceau depuis le catalogue de TikTok ou d'Instagram. Nous ne livrons jamais un master original
+    protégé. Quand tu cherches un titre dans l'application, ce terme de recherche est envoyé comme requête à notre
+    catalogue musical. Il n'est rattaché à aucun profil et n'est pas enregistré.
+  </p>
+
+  <h2>8. Pas de traçage, pas de publicité</h2>
+  <p>
+    Kadenz ne contient aucun SDK d'analyse, de publicité ou d'attribution. Il n'y a ni profilage, ni décision
+    automatisée au sens de l'art. 22 RGPD, ni transmission à des régies publicitaires. Nous ne vendons aucune donnée.
+    Le seul SDK tiers intégré est la gestion d'abonnement, décrite plus bas.
+  </p>
+
+  <h2>9. Destinataires et sous-traitants</h2>
+  <p>Nous faisons appel aux prestataires suivants, qui traitent des données pour notre compte :</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Rôle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Supabase</td>
+        <td>Connexion anonyme, base de données et stockage privé pour tes clips et tes vidéos finies.
+          Région Francfort-sur-le-Main.</td>
+      </tr>
+      <tr>
+        <td>Google Cloud (Cloud Run)</td>
+        <td>Fait tourner le serveur de rendu : récupère tes clips du stockage, monte la vidéo et y repose le résultat.
+          Région europe-west3 (Francfort-sur-le-Main).</td>
+      </tr>
+      <tr>
+        <td>RevenueCat</td>
+        <td>Gère ton abonnement. Traite pour cela ton identifiant anonyme, la confirmation d'achat de ton store, le
+          produit et la durée ainsi que des informations techniques sur ton appareil. RevenueCat ne voit ni tes clips
+          ni tes vidéos.</td>
+      </tr>
+      <tr>
+        <td>GitHub (GitHub Pages)</td>
+        <td>Sert ces textes juridiques. Ton adresse IP apparaît alors dans les journaux d'accès.</td>
+      </tr>
+      <tr>
+        <td>Apple App Store / Google Play</td>
+        <td>Distribution de l'application et traitement du paiement. Ces plateformes collectent leurs propres données
+          selon leurs propres politiques de confidentialité. Nous ne recevons d'elles aucune donnée de paiement,
+          seulement la confirmation qu'un abonnement existe.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Tes vidéos sont traitées à <strong>Francfort-sur-le-Main</strong> : l'instance Supabase et le serveur de rendu
+    (Google Cloud, région europe-west3) s'y trouvent tous les deux.
+  </p>
+
+  <h3>Transfert vers les États-Unis</h3>
+  <p>
+    Supabase, Google et RevenueCat sont des entreprises américaines. Même si le traitement a techniquement lieu à
+    Francfort, un accès depuis les États-Unis ne peut donc pas être exclu. La base légale en est les clauses
+    contractuelles types de la Commission européenne selon l'art. 46 §2 c) RGPD, dans la mesure où le prestataire
+    concerné ne s'appuie pas sur une décision d'adéquation selon l'art. 45 RGPD (EU-US Data Privacy Framework). Tu
+    obtiens une copie des clauses sur demande à
+    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+  </p>
+
+  <h2>10. Sécurité</h2>
+  <ul>
+    <li>Toutes les connexions entre l'application et le serveur sont chiffrées en TLS.</li>
+    <li>Les deux stockages sont privés. L'accès ne se fait que par des liens signés à courte durée de vie.</li>
+    <li>Un lien vers ta vidéo est valable <strong>cinq minutes</strong>, pas plus.</li>
+    <li>Le serveur vérifie à chaque accès que les données appartiennent bien à ton identifiant. Le rattachement vient
+      toujours du jeton de connexion vérifié, jamais d'une indication envoyée par l'appareil.</li>
+    <li>La base de données applique elle-même la séparation : chaque requête ne voit que les lignes de son propre
+      identifiant.</li>
+  </ul>
+
+  <h2>11. Tes droits</h2>
+  <p>Selon le RGPD, tu as droit :</p>
+  <ul>
+    <li>à l'accès à tes données (art. 15)</li>
+    <li>à la rectification (art. 16)</li>
+    <li>à l'effacement (art. 17)</li>
+    <li>à la limitation du traitement (art. 18)</li>
+    <li>à la portabilité des données (art. 20)</li>
+    <li>à l'opposition aux traitements fondés sur des intérêts légitimes (art. 21)</li>
+  </ul>
+
+  <h3>Accès et export : tout de suite, dans l'application</h3>
+  <p>
+    Tu n'as pas besoin de nous écrire pour ça. Appuie en haut à droite sur le <strong>bouton réglages</strong>, puis
+    sous <strong>DONNÉES</strong> sur <strong data-app="settingsScreen.rows.export.label">Exporter mes données</strong>.
+    Tu reçois aussitôt un fichier ZIP avec :
+  </p>
+  <ul>
+    <li>toutes les informations que nous avons enregistrées sur toi, dans un fichier JSON lisible,</li>
+    <li>un lien de téléchargement pour chacune de tes vidéos,</li>
+    <li>un lien de téléchargement pour chaque clip pas encore traité, s'il y en a,</li>
+    <li>une page sur laquelle tu peux cliquer tous les liens,</li>
+    <li>une explication de ce que contient le fichier JSON.</li>
+  </ul>
+  <p>
+    Les vidéos ne sont pas dans le fichier ZIP lui-même, mais derrière des liens. Elles sont trop lourdes pour cela, et
+    nous ne voulons pas les stocker une seconde fois sur nos serveurs. Le RGPD le prévoit expressément : le considérant
+    63 recommande l'<em>accès à distance à un système sécurisé</em>. Les liens sont valables
+    <strong data-frist="url-ttl">7 jours</strong>. Tu peux demander un nouvel export à tout moment, même plusieurs fois
+    par jour, tu ne restes donc jamais coincé avec des liens morts.
+  </p>
+  <p>
+    Deux choses sont importantes : un lien est une clé, celui qui l'a accède au fichier — ne transmets donc pas le
+    fichier ZIP. Et les clips des tâches encore ouvertes, nous les supprimons après
+    <strong data-frist="pending-ttl">7 jours</strong>, donc parfois avant l'expiration du lien ; télécharge-les en
+    premier.
+  </p>
+  <p>
+    L'export est <strong>gratuit</strong> et indépendant du fait que tu aies un abonnement ou non. Tu reçois tes vidéos
+    telles qu'elles ont été produites, donc avec la musique. Pour que personne n'en fasse une boucle sans fin, il y a
+    au maximum <strong data-frist="exports-per-day">5</strong> exports par jour (art. 12 §5 RGPD). Un humain n'atteint
+    pas ce nombre.
+  </p>
+
+  <h3>Effacement : également dans l'application</h3>
+  <p>
+    Sous <strong>DONNÉES</strong> se trouve
+    <strong data-app="settingsScreen.rows.deleteAll.label">Tout supprimer</strong>. Cela supprime tes vidéos, toutes
+    les informations qui s'y rapportent et l'identifiant anonyme lui-même. Les détails sont sur la page
+    <a href="./delete-account.html">Supprimer mes données</a>.
+  </p>
+
+  <h3>Tout le reste</h3>
+  <p>
+    Pour la rectification, la limitation et l'opposition, écris à
+    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>. Nous répondons sous un mois.
+  </p>
+  <p>
+    Important : comme Kadenz ne te connaît pas, nous ne pouvons traiter une demande par e-mail que si tu joins ton
+    identifiant anonyme. Où le trouver est expliqué sur la page
+    <a href="./delete-account.html">Supprimer mes données</a>. Sans cet identifiant, nous ne pouvons pas retrouver tes
+    données et, pour des raisons de sécurité, ne pouvons rien communiquer non plus (art. 11 §2 RGPD).
+  </p>
+  <p>
+    Tu peux en outre déposer une réclamation auprès d'une autorité de contrôle. La nôtre est le Commissaire hessois à
+    la protection des données et à la liberté d'information, Postfach 3163, 65021 Wiesbaden.
+  </p>
+
+  <h2>12. Enfants</h2>
+  <p>
+    Kadenz ne s'adresse pas aux enfants de moins de 16 ans. Nous ne collectons pas sciemment de données d'enfants de
+    moins de 16 ans.
+  </p>
+
+  <h2>13. Modifications</h2>
+  <p>
+    Quand l'application change, nous adaptons cette déclaration. La date en haut indique la version en cours. En cas de
+    modifications substantielles, nous le signalons dans l'application.
+  </p>
+
+  <p class="meta binding">
+    Ce texte français est une traduction de courtoisie. Seule la version allemande, la <a href="../privacy.html">Datenschutzerklärung</a>, fait foi.
+  </p>
+
+  <footer>
+    <p>
+      <a href="./privacy.html">Confidentialité</a> ·
+      <a href="./terms.html">Conditions</a> ·
+      <a href="./delete-account.html">Supprimer mes données</a> ·
+      <a href="./impressum.html">Mentions légales</a>
+    </p>
+  </footer>
+</body>
+
+</html>

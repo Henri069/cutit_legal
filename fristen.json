@@ -1,0 +1,7 @@
+{
+  "url-ttl": 7,
+  "pending-ttl": 7,
+  "inactive-months": 12,
+  "logs-days": 30,
+  "exports-per-day": 5
+}
