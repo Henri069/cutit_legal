@@ -24,7 +24,7 @@
   </p>
 
   <h1>Política de privacidad</h1>
-  <p class="meta">Kadenz · Actualizado: 2 de agosto de 2026</p>
+  <p class="meta">Kadenz · Actualizado: 5 de agosto de 2026</p>
 
   <div class="note">
     <strong>En pocas palabras</strong>
@@ -33,7 +33,8 @@
         dispositivo, y ese solo se crea cuando aceptas los términos de uso.</li>
       <li>Tus clips y tu ruta GPX se tratan únicamente para construir tu vídeo.</li>
       <li>Tu vídeo terminado está en un almacenamiento privado. Solo tu dispositivo puede recuperarlo.</li>
-      <li>Sin rastreo publicitario, sin SDK de analítica, sin venta de datos.</li>
+      <li>Sin rastreo publicitario, sin venta de datos. Analítica de producto (PostHog, UE) solo después de aceptar los
+        términos — identificador anónimo y pasos del flujo de vídeo únicamente, nunca tus clips ni tu GPX.</li>
       <li>Puedes borrar todos tus datos cuando quieras directamente en la aplicación, y exportarlos gratis antes.</li>
     </ul>
   </div>
@@ -123,6 +124,16 @@
         <td>Hasta que borres todos los datos. Los avisos de la gestión de suscripciones los borramos a los 90 días.</td>
       </tr>
       <tr>
+        <td>Eventos de analítica de producto (qué pasos del flujo de vídeo alcanzas, si un render terminó, si apareció
+          el paywall y si se completó una suscripción) y, en caídas de la app, el mensaje de error y el stack trace, más
+          identificador anónimo y datos técnicos del dispositivo</td>
+        <td>Nos muestra dónde abandonan la creación los usuarios y cuántos se suscriben tras el vídeo gratuito — para
+          poder mejorar la aplicación</td>
+        <td>Art. 6.1.f RGPD (interés legítimo en mejorar la aplicación)</td>
+        <td>En PostHog hasta que borres todos los datos o te opongas. «Borrar todos los datos» también restablece el
+          enlace de analítica en el dispositivo</td>
+      </tr>
+      <tr>
         <td>Registros técnicos del servidor (dirección IP, momento, código de error)</td>
         <td>Funcionamiento, búsqueda de fallos, defensa frente a abusos</td>
         <td>Art. 6.1.f RGPD (interés legítimo)</td>
@@ -131,8 +142,9 @@
     </tbody>
   </table>
   <p>
-    No volcamos ninguno de estos datos en un perfil. No hay cruce entre usuarios ni análisis más allá de tu uso
-    individual.
+    Ninguno de estos datos alimenta un perfil publicitario y no vendemos datos. Los eventos de analítica solo sirven
+    para entender el flujo de vídeo y la conversión de gratuito a pago de forma agregada — no para dirigirte
+    publicidad. No hay cruce con datos de otros servicios.
   </p>
 
   <h2>4. El camino de tus clips</h2>
@@ -187,11 +199,22 @@
     asigna a ningún perfil y no se guarda.
   </p>
 
-  <h2>8. Sin rastreo, sin publicidad</h2>
+  <h2>8. Sin rastreo publicitario</h2>
   <p>
-    Kadenz no contiene ningún SDK de analítica, publicidad o atribución. No hay elaboración de perfiles, ni decisiones
-    automatizadas en el sentido del art. 22 RGPD, ni cesión a redes publicitarias. No vendemos datos. El único SDK
-    ajeno integrado es la gestión de suscripciones, que se describe más abajo.
+    Kadenz no contiene SDK de publicidad ni de atribución y no comparte nada con redes publicitarias. No vendemos datos.
+    No hay elaboración de perfiles con fines publicitarios ni decisiones automatizadas en el sentido del art. 22 RGPD.
+  </p>
+  <p>
+    Para mejorar la aplicación usamos <strong>PostHog</strong> (analítica de producto e informes de errores, nube UE).
+    El SDK arranca solo después de que aceptes los términos — la misma puerta que el inicio de sesión anónimo. Registra
+    nombres de eventos (por ejemplo qué paso del flujo de vídeo era visible, si un render terminó, si apareció el
+    paywall) más tu identificador anónimo y los datos técnicos habituales del dispositivo. Si la app se cae, también
+    el mensaje de error y el stack trace (dónde en el código ocurrió) — sin captura de pantalla y sin tus medios. Nunca
+    ve tus clips, tu archivo GPX ni tu vídeo terminado. Session Replay está desactivado.
+  </p>
+  <p>
+    Los SDK de terceros integrados son, por tanto: la gestión de suscripciones (RevenueCat) y la analítica de producto
+    (PostHog), ambos descritos más abajo.
   </p>
 
   <h2>9. Destinatarios y encargados del tratamiento</h2>
@@ -221,6 +244,12 @@
           vídeos.</td>
       </tr>
       <tr>
+        <td>PostHog</td>
+        <td>Analítica de producto e informes de errores (nube UE). Trata el identificador anónimo, los nombres de
+          eventos del flujo de vídeo y del paywall, en caídas el mensaje de error y el stack trace, además de datos
+          técnicos del dispositivo. PostHog no ve tus clips ni tus vídeos.</td>
+      </tr>
+      <tr>
         <td>GitHub (GitHub Pages)</td>
         <td>Sirve estos textos legales. En ese momento tu dirección IP queda en los registros de acceso.</td>
       </tr>
@@ -239,8 +268,8 @@
 
   <h3>Transferencia a Estados Unidos</h3>
   <p>
-    Supabase, Google y RevenueCat son empresas estadounidenses. Aunque el tratamiento tenga lugar técnicamente en
-    Fráncfort, no puede descartarse por ello un acceso desde Estados Unidos. La base jurídica son las cláusulas
+    Supabase, Google, RevenueCat y PostHog son empresas estadounidenses. Aunque el tratamiento tenga lugar técnicamente
+    en la UE (Fráncfort o nube UE de PostHog), no puede descartarse por ello un acceso desde Estados Unidos. La base jurídica son las cláusulas
     contractuales tipo de la Comisión Europea según el art. 46.2.c RGPD, en la medida en que el prestador
     correspondiente no se apoye en una decisión de adecuación según el art. 45 RGPD (EU-US Data Privacy Framework).
     Puedes pedir una copia de las cláusulas en

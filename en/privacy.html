@@ -24,7 +24,7 @@
   </p>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Kadenz · Last updated: 2 August 2026</p>
+  <p class="meta">Kadenz · Last updated: 5 August 2026</p>
 
   <div class="note">
     <strong>In short</strong>
@@ -33,7 +33,8 @@
         created once you accept the terms of service.</li>
       <li>Your clips and your GPX route are processed for one purpose only: building your video.</li>
       <li>Your finished video sits in private storage. Only your device can fetch it.</li>
-      <li>No ad tracking, no analytics SDKs, no selling of data.</li>
+      <li>No ad tracking, no selling of data. Product analytics (PostHog, EU) only after you accept the terms —
+        anonymous ID and video-flow steps only, never your clips or GPX.</li>
       <li>You can delete everything yourself at any time — and export it for free beforehand.</li>
     </ul>
   </div>
@@ -122,6 +123,16 @@
         <td>Until you delete all data. Messages from the subscription service are deleted after 90 days.</td>
       </tr>
       <tr>
+        <td>Product-analytics events (which steps in the video flow you reach, whether a render finished, whether the
+          paywall appeared and whether a subscription was completed) and, on app crashes, the error message and stack
+          trace, plus anonymous ID and technical device details</td>
+        <td>Shows us where users drop out of creation and how many subscribe after the free video — so we can improve
+          the app</td>
+        <td>Art. 6(1)(f) GDPR (legitimate interest in improving the app)</td>
+        <td>At PostHog until you delete all data or object. “Delete all my data” also resets the analytics link on the
+          device</td>
+      </tr>
+      <tr>
         <td>Technical server logs (IP address, timestamp, error code)</td>
         <td>Operation, troubleshooting, abuse prevention</td>
         <td>Art. 6(1)(f) GDPR (legitimate interest)</td>
@@ -131,7 +142,9 @@
   </table>
 
   <p>
-    None of this feeds a profile. There is no comparison between users and no analysis beyond your individual use.
+    None of this feeds an advertising profile, and we do not sell data. Analytics events only help us understand the
+    video flow and free-to-paid conversion in aggregate — not to target you with ads. There is no matching against data
+    from other services.
   </p>
 
   <h2>4. Where your clips actually go</h2>
@@ -183,11 +196,22 @@
     and not stored.
   </p>
 
-  <h2>8. No tracking, no advertising</h2>
+  <h2>8. No ad tracking</h2>
   <p>
-    Kadenz contains no analytics, advertising or attribution SDKs. There is no profiling, no automated decision-making
-    within the meaning of Art. 22 GDPR and no sharing with ad networks. We do not sell data. The only third-party SDK
-    included is the subscription service listed below.
+    Kadenz contains no advertising or attribution SDKs and shares nothing with ad networks. We do not sell data. There
+    is no profiling for advertising and no automated decision-making within the meaning of Art. 22 GDPR.
+  </p>
+  <p>
+    To improve the app we use <strong>PostHog</strong> (product analytics and crash reports, EU cloud). The SDK starts
+    only after you accept the terms — the same gate as anonymous sign-in. It records event names (for example which
+    video-flow step was visible, whether a render finished, whether the paywall appeared) plus your anonymous ID and
+    usual technical device details. If the app crashes it also records the error message and stack trace (where in the
+    code it happened) — no screenshot and none of your media. It never sees your clips, GPX file or finished video.
+    Session replay is off.
+  </p>
+  <p>
+    Third-party SDKs included are therefore: the subscription service (RevenueCat) and product analytics (PostHog),
+    both listed below.
   </p>
 
   <h2>9. Recipients and processors</h2>
@@ -216,6 +240,12 @@
           and term, plus technical details about your device. RevenueCat never sees your clips or videos.</td>
       </tr>
       <tr>
+        <td>PostHog</td>
+        <td>Product analytics and crash reports (EU cloud). Processes anonymous ID, event names for the video flow and
+          paywall, on crashes the error message and stack trace, plus technical device details. PostHog never sees your
+          clips or videos.</td>
+      </tr>
+      <tr>
         <td>GitHub (GitHub Pages)</td>
         <td>Serves these legal texts. Your IP address appears in the access logs as a result.</td>
       </tr>
@@ -234,11 +264,11 @@
 
   <h3>Transfers to the United States</h3>
   <p>
-    Supabase, Google and RevenueCat are US companies. Even though processing technically takes place in Frankfurt,
-    access from the United States cannot be ruled out. The legal basis for this is the European Commission's Standard
-    Contractual Clauses under Art. 46(2)(c) GDPR, unless the provider in question relies on an adequacy decision under
-    Art. 45 GDPR (EU-US Data Privacy Framework). You can request a copy of the clauses at
-    <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
+    Supabase, Google, RevenueCat and PostHog are US companies. Even though processing technically takes place in the
+    EU (Frankfurt or PostHog’s EU cloud), access from the United States cannot be ruled out. The legal basis for this
+    is the European Commission's Standard Contractual Clauses under Art. 46(2)(c) GDPR, unless the provider in question
+    relies on an adequacy decision under Art. 45 GDPR (EU-US Data Privacy Framework). You can request a copy of the
+    clauses at <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
   </p>
 
   <h2>10. Security</h2>
