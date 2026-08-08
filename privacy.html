@@ -24,7 +24,7 @@
   </p>
 
   <h1>Datenschutzerklärung</h1>
-  <p class="meta">Kadenz · Stand: 5. August 2026</p>
+  <p class="meta">Kadenz · Stand: 7. August 2026</p>
 
   <div class="note">
     <strong>Kurz gesagt</strong>
@@ -157,7 +157,12 @@
       Main. Sie geht dabei nicht über unseren Render-Server.</li>
     <li>Unser Render-Server holt sich die Datei aus diesem Speicher, wandelt sie in ein einheitliches Format um und
       legt die umgewandelte Fassung zurück. <strong>Die Originaldatei deines Handys wird sofort gelöscht.</strong></li>
-    <li>Beim Rendern baut der Server daraus dein Video und legt es in einem zweiten privaten Speicher ab.</li>
+    <li>Beim Rendern verteilt der Server das Malen der Einzelbilder auf kurzlebige Rechen-Funktionen bei
+      <strong>Amazon Web Services</strong> (AWS Lambda, Region Frankfurt am Main). Diese holen deine umgewandelten
+      Clips über <strong>signierte Links, die nach einer Stunde ablaufen</strong>, und legen das fertige Video
+      kurzzeitig in einem privaten Speicher bei AWS ab.</li>
+    <li>Unser Render-Server holt das Video von dort, legt es in einem zweiten privaten Speicher bei Supabase ab und
+      <strong>löscht die Kopie bei AWS sofort danach</strong>.</li>
     <li>Sobald dein Video fertig ist, werden alle Clips gelöscht. Ab da existiert nur noch das Video.</li>
   </ol>
   <p>
@@ -177,6 +182,9 @@
       Hintergrund. Wir bekommen nur die Datei, die du selbst auswählst.</li>
     <li>Die Datei wird <strong>nicht gespeichert</strong>. Sie wird im Moment des Renderns gelesen, um die Grafik zu
       zeichnen, und danach verworfen. Was bleibt, ist die gezeichnete Linie in deinem Video.</li>
+    <li>Zum Zeichnen reisen die ausgelesenen Koordinaten mit dem Render-Auftrag zu den Rechen-Funktionen bei Amazon
+      Web Services (Frankfurt am Main, siehe Abschnitt 9). Sie werden dort nicht dauerhaft gespeichert und
+      verschwinden mit dem Auftrag.</li>
     <li>Die Route wird nicht an Dritte weitergegeben, nicht ausgewertet und nicht mit anderen Nutzern verglichen.</li>
     <li>Wenn du deinen Startpunkt (zum Beispiel deine Wohnadresse) nicht im Video sehen willst, kürze die GPX-Datei vor
       dem Hochladen oder wähle eine Vorlage ohne Karte.</li>
@@ -241,6 +249,13 @@
           wieder dort ab. Region europe-west3 (Frankfurt am Main).</td>
       </tr>
       <tr>
+        <td>Amazon Web Services (AWS Lambda, S3)</td>
+        <td>Malt die Einzelbilder deines Videos. Holt dazu deine umgewandelten Clips über signierte Links, die nach
+          einer Stunde ablaufen, und bekommt die Koordinaten deiner GPX-Route für die Grafik. Das fertige Video liegt
+          dort nur so lange, bis unser Render-Server es abgeholt hat, und wird danach sofort gelöscht.
+          Region eu-central-1 (Frankfurt am Main).</td>
+      </tr>
+      <tr>
         <td>RevenueCat</td>
         <td>Verwaltet dein Abo. Verarbeitet dabei deine anonyme Kennung, die Kaufbestätigung deines App Stores,
           Produkt und Laufzeit sowie technische Angaben zu deinem Gerät. RevenueCat sieht deine Clips und Videos
@@ -266,14 +281,22 @@
   </table>
 
   <p>
-    Deine Videos werden in <strong>Frankfurt am Main</strong> verarbeitet: die Supabase-Instanz und der Render-Server
-    (Google Cloud, Region europe-west3) stehen beide dort.
+    Deine Videos werden in <strong>Frankfurt am Main</strong> verarbeitet: die Supabase-Instanz, der Render-Server
+    (Google Cloud, Region europe-west3) und die Rechen-Funktionen fürs Malen der Bilder (Amazon Web Services, Region
+    eu-central-1) stehen alle dort.
+  </p>
+  <p>
+    Mit diesen Dienstleistern besteht jeweils ein <strong>Auftragsverarbeitungsvertrag nach Art. 28 DSGVO</strong>.
+    Bei Amazon Web Services ist das das AWS-DSGVO-Zusatzabkommen (AWS GDPR Data Processing Addendum), das Bestandteil
+    der AWS-Servicebedingungen ist. Apple und Google sind für die Daten, die sie beim App-Kauf selbst erheben,
+    eigenständig verantwortlich und handeln insoweit nicht in unserem Auftrag.
   </p>
 
   <h3>Übermittlung in die USA</h3>
   <p>
-    Supabase, Google, RevenueCat und PostHog sind US-Unternehmen. Auch wenn die Verarbeitung technisch in der EU
-    stattfindet (Frankfurt bzw. PostHog EU-Cloud), kann deshalb ein Zugriff aus den USA nicht ausgeschlossen werden.
+    Supabase, Google, Amazon Web Services, RevenueCat und PostHog sind US-Unternehmen. Auch wenn die Verarbeitung
+    technisch in der EU stattfindet (Frankfurt bzw. PostHog EU-Cloud), kann deshalb ein Zugriff aus den USA nicht
+    ausgeschlossen werden.
     Rechtsgrundlage dafür sind die Standardvertragsklauseln der EU-Kommission nach Art. 46 Abs. 2 lit. c DSGVO, soweit
     sich der jeweilige Anbieter nicht auf einen Angemessenheitsbeschluss nach Art. 45 DSGVO stützt (EU-US Data Privacy
     Framework). Eine Kopie der Klauseln bekommst du auf Anfrage unter

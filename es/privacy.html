@@ -24,7 +24,7 @@
   </p>
 
   <h1>Política de privacidad</h1>
-  <p class="meta">Kadenz · Actualizado: 5 de agosto de 2026</p>
+  <p class="meta">Kadenz · Actualizado: 7 de agosto de 2026</p>
 
   <div class="note">
     <strong>En pocas palabras</strong>
@@ -155,8 +155,12 @@
       Fráncfort del Meno. No pasa por nuestro servidor de creación.</li>
     <li>Nuestro servidor recoge el archivo de ese almacenamiento, lo convierte a un formato uniforme y deja allí la
       versión convertida. <strong>El archivo original de tu móvil se borra de inmediato.</strong></li>
-    <li>Al crear el vídeo, el servidor lo construye a partir de ahí y lo deposita en un segundo almacenamiento
-      privado.</li>
+    <li>Al crear el vídeo, el servidor reparte el dibujo de las imágenes entre funciones de cálculo de corta vida en
+      <strong>Amazon Web Services</strong> (AWS Lambda, región de Fráncfort del Meno). Estas recogen tus clips
+      convertidos mediante <strong>enlaces firmados que caducan al cabo de una hora</strong> y dejan brevemente el
+      vídeo terminado en un almacenamiento privado de AWS.</li>
+    <li>Nuestro servidor recoge el vídeo de allí, lo deposita en un segundo almacenamiento privado en Supabase y
+      <strong>borra de inmediato la copia en AWS</strong>.</li>
     <li>En cuanto tu vídeo está listo, se borran todos los clips. A partir de ahí solo existe el vídeo.</li>
   </ol>
   <p>
@@ -176,6 +180,9 @@
       Solo recibimos el archivo que tú mismo eliges.</li>
     <li>El archivo <strong>no se guarda</strong>. Se lee en el momento de crear el vídeo para dibujar el gráfico y
       después se descarta. Lo que queda es la línea dibujada en tu vídeo.</li>
+    <li>Para dibujar el gráfico, las coordenadas leídas viajan con el encargo de creación hasta las funciones de
+      cálculo en Amazon Web Services (Fráncfort del Meno, ver el apartado 9). Allí no se guardan de forma duradera y
+      desaparecen con el encargo.</li>
     <li>La ruta no se cede a terceros, no se analiza y no se compara con la de otros usuarios.</li>
     <li>Si no quieres ver tu punto de partida (por ejemplo, tu domicilio) en el vídeo, recorta el archivo GPX antes de
       subirlo o elige una plantilla sin mapa.</li>
@@ -238,6 +245,13 @@
           resultado de nuevo allí. Región europe-west3 (Fráncfort del Meno).</td>
       </tr>
       <tr>
+        <td>Amazon Web Services (AWS Lambda, S3)</td>
+        <td>Dibuja las imágenes de tu vídeo. Para ello recoge tus clips convertidos mediante enlaces firmados que
+          caducan al cabo de una hora y recibe las coordenadas de tu ruta GPX para el gráfico. El vídeo terminado solo
+          está allí hasta que nuestro servidor lo ha recogido, y después se borra de inmediato.
+          Región eu-central-1 (Fráncfort del Meno).</td>
+      </tr>
+      <tr>
         <td>RevenueCat</td>
         <td>Gestiona tu suscripción. Para ello trata tu identificador anónimo, la confirmación de compra de tu tienda,
           el producto y la duración, además de datos técnicos de tu dispositivo. RevenueCat no ve tus clips ni tus
@@ -262,13 +276,20 @@
     </tbody>
   </table>
   <p>
-    Tus vídeos se tratan en <strong>Fráncfort del Meno</strong>: la instancia de Supabase y el servidor de creación
-    (Google Cloud, región europe-west3) están ambos allí.
+    Tus vídeos se tratan en <strong>Fráncfort del Meno</strong>: la instancia de Supabase, el servidor de creación
+    (Google Cloud, región europe-west3) y las funciones de cálculo que dibujan las imágenes (Amazon Web Services,
+    región eu-central-1) están todos allí.
+  </p>
+  <p>
+    Con cada uno de estos prestadores existe un <strong>contrato de encargo de tratamiento conforme al art. 28
+    RGPD</strong>. En el caso de Amazon Web Services es el anexo de tratamiento de datos del RGPD de AWS (AWS GDPR Data
+    Processing Addendum), que forma parte de las condiciones de servicio de AWS. Apple y Google son responsables por su
+    cuenta de los datos que recogen ellos mismos al comprar la aplicación y en eso no actúan por encargo nuestro.
   </p>
 
   <h3>Transferencia a Estados Unidos</h3>
   <p>
-    Supabase, Google, RevenueCat y PostHog son empresas estadounidenses. Aunque el tratamiento tenga lugar técnicamente
+    Supabase, Google, Amazon Web Services, RevenueCat y PostHog son empresas estadounidenses. Aunque el tratamiento tenga lugar técnicamente
     en la UE (Fráncfort o nube UE de PostHog), no puede descartarse por ello un acceso desde Estados Unidos. La base jurídica son las cláusulas
     contractuales tipo de la Comisión Europea según el art. 46.2.c RGPD, en la medida en que el prestador
     correspondiente no se apoye en una decisión de adecuación según el art. 45 RGPD (EU-US Data Privacy Framework).

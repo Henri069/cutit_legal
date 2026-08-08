@@ -24,7 +24,7 @@
   </p>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Kadenz · Last updated: 5 August 2026</p>
+  <p class="meta">Kadenz · Last updated: 7 August 2026</p>
 
   <div class="note">
     <strong>In short</strong>
@@ -155,7 +155,12 @@
       It does not pass through our render server.</li>
     <li>Our render server fetches the file from that storage, converts it into a uniform format and puts the converted
       version back. <strong>The original file from your phone is deleted immediately.</strong></li>
-    <li>During rendering the server builds your video from these files and places it in a second private storage.</li>
+    <li>During rendering the server spreads the drawing of the individual frames across short-lived compute functions
+      at <strong>Amazon Web Services</strong> (AWS Lambda, Frankfurt am Main region). Those fetch your converted clips
+      through <strong>signed links that expire after one hour</strong> and put the finished video into private storage
+      at AWS for a short while.</li>
+    <li>Our render server picks the video up from there, places it in a second private storage at Supabase and
+      <strong>deletes the copy at AWS immediately afterwards</strong>.</li>
     <li>As soon as your video is finished, all clips are deleted. From then on only the video exists.</li>
   </ol>
   <p>
@@ -173,6 +178,9 @@
       background. We only receive the file you pick yourself.</li>
     <li>The file is <strong>not stored</strong>. It is read at the moment of rendering to draw the graphic and then
       discarded. What remains is the drawn line in your video.</li>
+    <li>To draw the graphic, the coordinates we read out travel with the render job to the compute functions at Amazon
+      Web Services (Frankfurt am Main, see section 9). They are not stored there permanently and disappear with the
+      job.</li>
     <li>The route is not shared with third parties, not analysed and not compared with other users.</li>
     <li>If you would rather not show your starting point (your home address, for example), trim the GPX file before
       uploading or pick a template without a map.</li>
@@ -235,6 +243,13 @@
           Region europe-west3 (Frankfurt am Main).</td>
       </tr>
       <tr>
+        <td>Amazon Web Services (AWS Lambda, S3)</td>
+        <td>Draws the individual frames of your video. To do that it fetches your converted clips through signed links
+          that expire after one hour, and receives the coordinates of your GPX route for the graphic. The finished
+          video sits there only until our render server has picked it up, and is deleted straight afterwards.
+          Region eu-central-1 (Frankfurt am Main).</td>
+      </tr>
+      <tr>
         <td>RevenueCat</td>
         <td>Manages your subscription. Processes your anonymous ID, the purchase receipt from your app store, product
           and term, plus technical details about your device. RevenueCat never sees your clips or videos.</td>
@@ -258,15 +273,23 @@
   </table>
 
   <p>
-    Your videos are processed in <strong>Frankfurt am Main</strong>: both the Supabase instance and the render server
-    (Google Cloud, region europe-west3) are located there.
+    Your videos are processed in <strong>Frankfurt am Main</strong>: the Supabase instance, the render server
+    (Google Cloud, region europe-west3) and the compute functions that draw the frames (Amazon Web Services, region
+    eu-central-1) are all located there.
+  </p>
+  <p>
+    We have a <strong>data processing agreement under Art. 28 GDPR</strong> in place with each of these providers. For
+    Amazon Web Services that is the AWS GDPR Data Processing Addendum, which forms part of the AWS Service Terms.
+    Apple and Google are independent controllers for the data they collect themselves when you buy the app, and do not
+    act on our behalf in that respect.
   </p>
 
   <h3>Transfers to the United States</h3>
   <p>
-    Supabase, Google, RevenueCat and PostHog are US companies. Even though processing technically takes place in the
-    EU (Frankfurt or PostHog’s EU cloud), access from the United States cannot be ruled out. The legal basis for this
-    is the European Commission's Standard Contractual Clauses under Art. 46(2)(c) GDPR, unless the provider in question
+    Supabase, Google, Amazon Web Services, RevenueCat and PostHog are US companies. Even though processing technically
+    takes place in the EU (Frankfurt or PostHog’s EU cloud), access from the United States cannot be ruled out. The
+    legal basis for this is the European Commission's Standard Contractual Clauses under Art. 46(2)(c) GDPR, unless the
+    provider in question
     relies on an adequacy decision under Art. 45 GDPR (EU-US Data Privacy Framework). You can request a copy of the
     clauses at <a href="mailto:henri.irmscher@gmail.com">henri.irmscher@gmail.com</a>.
   </p>

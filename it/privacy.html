@@ -24,7 +24,7 @@
   </p>
 
   <h1>Informativa sulla privacy</h1>
-  <p class="meta">Kadenz · Aggiornato: 5 agosto 2026</p>
+  <p class="meta">Kadenz · Aggiornato: 7 agosto 2026</p>
 
   <div class="note">
     <strong>In breve</strong>
@@ -157,7 +157,12 @@
       Meno. Non passa dal nostro server di rendering.</li>
     <li>Il nostro server di rendering prende il file da quell'archivio, lo converte in un formato uniforme e vi
       rideposita la versione convertita. <strong>Il file originale del tuo telefono viene cancellato subito.</strong></li>
-    <li>Al rendering il server ne costruisce il tuo video e lo deposita in un secondo archivio privato.</li>
+    <li>Al rendering il server distribuisce il disegno dei singoli fotogrammi su funzioni di calcolo di breve durata
+      presso <strong>Amazon Web Services</strong> (AWS Lambda, regione di Francoforte sul Meno). Queste prendono i tuoi
+      clip convertiti tramite <strong>link firmati che scadono dopo un'ora</strong> e depositano per poco il video
+      finito in un archivio privato presso AWS.</li>
+    <li>Il nostro server di rendering prende di lì il video, lo deposita in un secondo archivio privato su Supabase e
+      <strong>cancella subito dopo la copia presso AWS</strong>.</li>
     <li>Appena il tuo video è pronto, tutti i clip vengono cancellati. Da lì in poi esiste solo il video.</li>
   </ol>
   <p>
@@ -177,6 +182,9 @@
       piano. Riceviamo solo il file che scegli tu.</li>
     <li>Il file <strong>non viene salvato</strong>. Viene letto nel momento del rendering per disegnare la grafica e
       poi scartato. Quello che resta è la linea disegnata nel tuo video.</li>
+    <li>Per disegnare la grafica, le coordinate lette viaggiano con l'incarico di rendering verso le funzioni di
+      calcolo presso Amazon Web Services (Francoforte sul Meno, vedi il paragrafo 9). Lì non vengono conservate a
+      lungo e spariscono con l'incarico.</li>
     <li>Il percorso non viene ceduto a terzi, non viene analizzato e non viene confrontato con quello di altri
       utenti.</li>
     <li>Se non vuoi vedere il tuo punto di partenza (per esempio casa tua) nel video, accorcia il file GPX prima di
@@ -240,6 +248,13 @@
           risultato. Regione europe-west3 (Francoforte sul Meno).</td>
       </tr>
       <tr>
+        <td>Amazon Web Services (AWS Lambda, S3)</td>
+        <td>Disegna i fotogrammi del tuo video. Per farlo prende i tuoi clip convertiti tramite link firmati che
+          scadono dopo un'ora e riceve le coordinate del tuo percorso GPX per la grafica. Il video finito resta lì solo
+          finché il nostro server di rendering non l'ha preso, poi viene cancellato subito.
+          Regione eu-central-1 (Francoforte sul Meno).</td>
+      </tr>
+      <tr>
         <td>RevenueCat</td>
         <td>Gestisce il tuo abbonamento. Per farlo tratta il tuo identificativo anonimo, la conferma d'acquisto del tuo
           store, il prodotto e la durata oltre a dati tecnici del tuo dispositivo. RevenueCat non vede i tuoi clip né i
@@ -263,13 +278,20 @@
     </tbody>
   </table>
   <p>
-    I tuoi video vengono trattati a <strong>Francoforte sul Meno</strong>: l'istanza Supabase e il server di rendering
-    (Google Cloud, regione europe-west3) stanno entrambi lì.
+    I tuoi video vengono trattati a <strong>Francoforte sul Meno</strong>: l'istanza Supabase, il server di rendering
+    (Google Cloud, regione europe-west3) e le funzioni di calcolo che disegnano i fotogrammi (Amazon Web Services,
+    regione eu-central-1) stanno tutti lì.
+  </p>
+  <p>
+    Con ognuno di questi fornitori esiste un <strong>contratto di responsabile del trattamento ai sensi dell'art. 28
+    GDPR</strong>. Per Amazon Web Services è l'addendum GDPR di AWS (AWS GDPR Data Processing Addendum), che fa parte
+    dei termini di servizio AWS. Apple e Google sono titolari autonomi per i dati che raccolgono loro stessi
+    all'acquisto dell'app e in questo non agiscono per nostro conto.
   </p>
 
   <h3>Trasferimento negli Stati Uniti</h3>
   <p>
-    Supabase, Google, RevenueCat e PostHog sono aziende statunitensi. Anche se il trattamento avviene tecnicamente
+    Supabase, Google, Amazon Web Services, RevenueCat e PostHog sono aziende statunitensi. Anche se il trattamento avviene tecnicamente
     nell'UE (Francoforte o cloud UE di PostHog), non si può quindi escludere un accesso dagli Stati Uniti. La base giuridica sono le clausole
     contrattuali tipo della Commissione europea secondo l'art. 46 par. 2 lett. c GDPR, nella misura in cui il singolo
     fornitore non si basi su una decisione di adeguatezza secondo l'art. 45 GDPR (EU-US Data Privacy Framework). Una
