@@ -24,7 +24,7 @@
   </p>
 
   <h1>Datenschutzerklärung</h1>
-  <p class="meta">Kadenz · Stand: 7. August 2026</p>
+  <p class="meta">Kadenz · Stand: 8. August 2026</p>
 
   <div class="note">
     <strong>Kurz gesagt</strong>
@@ -84,14 +84,17 @@
         <td>Anonyme Geräte-Kennung</td>
         <td>Ordnet Uploads und fertige Videos deinem Gerät zu und verhindert fremden Zugriff</td>
         <td>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</td>
-        <td>Bis du in der App alle Daten löschst</td>
+        <td>Bis du in der App alle Daten löschst. Zusätzlich löschen wir von selbst jede Kennung, die
+          <strong data-frist="inactive-months">12 Monate</strong> lang nicht benutzt wurde und an der kein einziges
+          Video hängt.</td>
       </tr>
       <tr>
         <td>Fotos und Videoclips, die du auswählst</td>
         <td>Rohmaterial für dein Edit</td>
         <td>Art. 6 Abs. 1 lit. b DSGVO</td>
-        <td>Die Originaldatei deines Handys wird direkt nach dem Umwandeln gelöscht. Die umgewandelte Fassung
-          verschwindet, sobald dein Video fertig ist — spätestens 7 Tage nach dem Start des Auftrags.</td>
+        <td>Die hochgeladene Originaldatei wird direkt nach dem Umwandeln gelöscht. Die umgewandelte Fassung
+          verschwindet, sobald du dein fertiges Video abschließt — spätestens
+          <strong data-frist="pending-ttl">7 Tage</strong> nach dem Start des Auftrags. Siehe Abschnitt 4.</td>
       </tr>
       <tr>
         <td>Aufnahmezeitpunkt deiner Clips</td>
@@ -119,10 +122,19 @@
         <td>Bis du es löschst</td>
       </tr>
       <tr>
+        <td>Suchbegriff bei der Songsuche (nur im Modus „Song in TikTok“)</td>
+        <td>Findet den Titel, den du danach in TikTok oder Instagram über dein stummes Video legst</td>
+        <td>Art. 6 Abs. 1 lit. b DSGVO</td>
+        <td>Wir speichern ihn nicht und bekommen ihn nie zu sehen: die Anfrage geht direkt von deinem Gerät an
+          Apple. Siehe Abschnitt 7.</td>
+      </tr>
+      <tr>
         <td>Abo-Status und Kaufdaten (Produkt, Store, Laufzeit, Kennung bei RevenueCat)</td>
         <td>Schaltet die kostenpflichtigen Funktionen frei und zählt dein Gratis-Kontingent</td>
         <td>Art. 6 Abs. 1 lit. b DSGVO</td>
-        <td>Bis du alle Daten löschst. Meldungen der Abo-Verwaltung löschen wir nach 90 Tagen.</td>
+        <td>Bis du alle Daten löschst — dann löschen wir auch deinen Kundendatensatz bei RevenueCat. Meldungen der
+          Abo-Verwaltung löschen wir nach 90 Tagen. Den Kauf selbst bewahren Apple und Google unabhängig davon nach
+          ihren eigenen Regeln auf; ein laufendes Abo endet dadurch nicht.</td>
       </tr>
       <tr>
         <td>Produkt-Analytics-Ereignisse (welche Schritte im Video-Flow du erreichst, ob ein Render fertig wurde,
@@ -131,14 +143,14 @@
         <td>Zeigt uns, wo im Erstellungsprozess Nutzer abbrechen und wie viele nach dem Gratis-Video ein Abo
           abschließen — damit wir die App verbessern können</td>
         <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Verbesserung der App)</td>
-        <td>Bei PostHog, bis du alle Daten löschst oder widersprichst. „Alle Daten löschen“ setzt auch die
-          Analytics-Zuordnung auf dem Gerät zurück</td>
+        <td>Bei PostHog, bis du alle Daten löschst oder widersprichst. „Alle Daten löschen“ löscht dich bei PostHog
+          mit — die Person und alle dazugehörigen Ereignisse, nicht nur die Zuordnung auf dem Gerät</td>
       </tr>
       <tr>
         <td>Technische Server-Protokolle (IP-Adresse, Zeitpunkt, Fehlercode)</td>
         <td>Betrieb, Fehlersuche, Abwehr von Missbrauch</td>
         <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</td>
-        <td>30 Tage, danach automatisch gelöscht</td>
+        <td><strong data-frist="logs-days">30 Tage</strong>, danach automatisch gelöscht</td>
       </tr>
     </tbody>
   </table>
@@ -156,18 +168,21 @@
     <li>Die App lädt jede Datei <strong>direkt in unseren privaten Speicher</strong> bei Supabase in Frankfurt am
       Main. Sie geht dabei nicht über unseren Render-Server.</li>
     <li>Unser Render-Server holt sich die Datei aus diesem Speicher, wandelt sie in ein einheitliches Format um und
-      legt die umgewandelte Fassung zurück. <strong>Die Originaldatei deines Handys wird sofort gelöscht.</strong></li>
+      legt die umgewandelte Fassung zurück. <strong>Die hochgeladene Originaldatei wird sofort gelöscht.</strong>
+      Die Aufnahme auf deinem Handy bleibt selbstverständlich, wo sie ist — wir fassen deine Galerie nie an.</li>
     <li>Beim Rendern verteilt der Server das Malen der Einzelbilder auf kurzlebige Rechen-Funktionen bei
       <strong>Amazon Web Services</strong> (AWS Lambda, Region Frankfurt am Main). Diese holen deine umgewandelten
       Clips über <strong>signierte Links, die nach einer Stunde ablaufen</strong>, und legen das fertige Video
       kurzzeitig in einem privaten Speicher bei AWS ab.</li>
     <li>Unser Render-Server holt das Video von dort, legt es in einem zweiten privaten Speicher bei Supabase ab und
-      <strong>löscht die Kopie bei AWS sofort danach</strong>.</li>
-    <li>Sobald dein Video fertig ist, werden alle Clips gelöscht. Ab da existiert nur noch das Video.</li>
+      <strong>löscht die Kopie bei AWS sofort danach</strong>. Bricht der Vorgang vorher ab, etwa weil unser Server
+      neu startet, verfällt die Kopie bei AWS automatisch nach spätestens einem Tag.</li>
+    <li>Sobald du dein fertiges Video abschließt — also „Zur Übersicht“ oder „Musik übernehmen“ antippst — werden
+      alle Clips gelöscht. Ab da existiert nur noch das Video.</li>
   </ol>
   <p>
-    Brichst du zwischendurch ab, räumt ein automatischer Job den unfertigen Auftrag samt Clips
-    <strong>spätestens 7 Tage</strong> nach dem Start ab.
+    Schließt du den Auftrag nie ab, weil du die App vorher zumachst oder zwischendurch abbrichst, räumt ein
+    automatischer Job den Auftrag samt Clips <strong data-frist="pending-ttl">7 Tage</strong> nach dem Start ab.
   </p>
 
   <h2>5. Standortdaten aus der GPX-Datei</h2>
@@ -206,8 +221,21 @@
   <p>
     Kadenz legt entweder lizenzfreie beziehungsweise KI-erzeugte Musik in dein Video, oder es rendert das Video
     stumm, damit du in TikTok oder Instagram einen Song aus deren eigenem Katalog hinzufügen kannst. Wir liefern nie
-    ein geschütztes Original-Master aus. Wenn du in der App nach einem Songtitel suchst, wird dieser Suchbegriff zur
-    Abfrage an unseren Musikkatalog geschickt. Er wird nicht deinem Profil zugeordnet und nicht gespeichert.
+    ein geschütztes Original-Master aus. Unsere eigenen Tracks liegen in unserem Speicher in Frankfurt am Main.
+  </p>
+  <p>
+    <strong>Die Songsuche läuft nicht über uns, sondern über Apple.</strong> Suchst du im stummen Modus nach einem
+    Titel, fragt deine App direkt Apples öffentlichen Musikkatalog ab (iTunes Search API). Dasselbe gilt für die
+    Titelvorschläge und für die kurze Hörprobe: die kommt als Datenstrom von Apples Servern, nicht von uns. Apple
+    bekommt dabei deinen Suchbegriff und deine IP-Adresse und verarbeitet beides nach
+    <a href="https://www.apple.com/de/legal/privacy/">Apples eigener Datenschutzerklärung</a> — nicht in unserem
+    Auftrag und nicht unter unserer Kontrolle. Wir sehen den Suchbegriff nicht, speichern ihn nicht und ordnen ihn
+    deiner Kennung nicht zu. Was uns erreicht, ist nur der Titel, den du am Ende auswählst: er wird als Hinweis in
+    dein Video geschrieben.
+  </p>
+  <p>
+    Willst du das vermeiden, benutze die Songsuche einfach nicht. Ohne sie funktioniert Kadenz weiterhin, dein Video
+    kommt dann mit unserer eigenen Musik oder ganz ohne Ton.
   </p>
 
   <h2>8. Kein Werbe-Tracking</h2>
@@ -277,6 +305,12 @@
           eigenen Datenschutzerklärungen. Wir bekommen von ihnen keine Zahlungsdaten, nur die Bestätigung, dass ein
           Abo besteht.</td>
       </tr>
+      <tr>
+        <td>Apple (Musikkatalog, iTunes Search API)</td>
+        <td><strong>Kein Auftragsverarbeiter.</strong> Die Songsuche und die Hörprobe laufen direkt zwischen deinem
+          Gerät und Apple; Apple bekommt Suchbegriff und IP-Adresse und ist dafür selbst verantwortlich. Die Abfrage
+          passiert nur, wenn du im stummen Modus nach einem Titel suchst. Siehe Abschnitt 7.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -289,7 +323,8 @@
     Mit diesen Dienstleistern besteht jeweils ein <strong>Auftragsverarbeitungsvertrag nach Art. 28 DSGVO</strong>.
     Bei Amazon Web Services ist das das AWS-DSGVO-Zusatzabkommen (AWS GDPR Data Processing Addendum), das Bestandteil
     der AWS-Servicebedingungen ist. Apple und Google sind für die Daten, die sie beim App-Kauf selbst erheben,
-    eigenständig verantwortlich und handeln insoweit nicht in unserem Auftrag.
+    eigenständig verantwortlich und handeln insoweit nicht in unserem Auftrag. Dasselbe gilt für Apples Musikkatalog:
+    die Songsuche ist eine Abfrage deines Geräts bei Apple, kein Auftrag von uns.
   </p>
 
   <h3>Übermittlung in die USA</h3>
@@ -307,7 +342,9 @@
   <ul>
     <li>Alle Verbindungen zwischen App und Server sind mit TLS verschlüsselt.</li>
     <li>Beide Speicher sind privat. Zugriff gibt es nur über kurzlebige, signierte Links.</li>
-    <li>Ein Link auf dein Video ist <strong>fünf Minuten</strong> gültig, danach nicht mehr.</li>
+    <li>Ein Link, mit dem die App dein Video abspielt, ist <strong>30 Minuten</strong> gültig, danach nicht mehr. Er
+      bleibt in der App und landet nie im Browser-Verlauf. Die Links aus dem Datenexport sind etwas anderes, für sie
+      gilt Abschnitt 11.</li>
     <li>Der Server prüft bei jedem Zugriff, ob die Daten wirklich zu deiner Kennung gehören. Die Zuordnung stammt immer
       aus dem geprüften Anmelde-Token, nie aus einer vom Gerät geschickten Angabe.</li>
     <li>Die Datenbank setzt die Trennung selbst durch: Jede Abfrage sieht nur Zeilen der eigenen Kennung.</li>
@@ -339,25 +376,31 @@
   <p>
     Die Videos liegen nicht in der ZIP-Datei selbst, sondern hinter Links. Sie sind zu groß dafür, und wir wollen sie
     nicht noch einmal auf unseren Servern zwischenlagern. Die DSGVO sieht das ausdrücklich so vor: Erwägungsgrund 63
-    empfiehlt den <em>Fernzugang zu einem sicheren System</em>. Die Links gelten <strong>7 Tage</strong>. Einen neuen
+    empfiehlt den <em>Fernzugang zu einem sicheren System</em>. Die Links gelten <strong data-frist="url-ttl">7 Tage</strong>. Einen neuen
     Export kannst du jederzeit anfordern, auch mehrmals am Tag, du sitzt also nie mit toten Links fest.
   </p>
   <p>
     Zwei Dinge sind dabei wichtig: Ein Link ist ein Schlüssel, wer ihn hat, kommt an die Datei — gib die ZIP-Datei also
-    nicht weiter. Und Clips aus noch offenen Aufträgen löschen wir nach 7 Tagen, also unter Umständen vor Ablauf des
+    nicht weiter. Und Clips aus noch offenen Aufträgen löschen wir nach <strong data-frist="pending-ttl">7</strong> Tagen, also unter Umständen vor Ablauf des
     Links; lade sie zuerst herunter.
   </p>
   <p>
     Der Export ist <strong>kostenlos</strong> und unabhängig davon, ob du ein Abo hast. Du bekommst deine Videos so, wie
-    sie fertig geworden sind, also mit Musik. Damit niemand den Weg als Dauerschleife nutzt, sind es höchstens fünf
-    Exporte pro Tag (Art. 12 Abs. 5 DSGVO). Ein Mensch erreicht das nicht.
+    sie fertig geworden sind, also mit Musik. Damit niemand den Weg als Dauerschleife nutzt, sind es höchstens
+    <strong data-frist="exports-per-day">5</strong> Exporte pro Tag (Art. 12 Abs. 5 DSGVO). Ein Mensch erreicht das nicht.
   </p>
 
   <h3>Löschung: ebenfalls in der App</h3>
   <p>
     Unter <strong>Daten</strong> steht <strong>Alle Daten löschen</strong>. Das löscht deine Videos, alle Angaben dazu
-    und die anonyme Kennung selbst. Einzelheiten stehen auf der Seite
+    und die anonyme Kennung selbst. Es hört nicht bei uns auf: derselbe Knopf löscht auch deine Person samt Ereignissen
+    bei PostHog und deinen Kundendatensatz bei RevenueCat. Einzelheiten stehen auf der Seite
     <a href="./delete-account.html">Daten löschen</a>.
+  </p>
+  <p>
+    Zwei Dinge kann dieser Knopf nicht mitnehmen, und das sagen wir lieber deutlich: den Kauf selbst, der bei Apple
+    beziehungsweise Google liegt und dort nach deren Regeln aufbewahrt wird, und ein laufendes Abo — das kündigst du
+    im Store, siehe die <a href="./terms.html">Nutzungsbedingungen</a>.
   </p>
 
   <h3>Alles andere</h3>

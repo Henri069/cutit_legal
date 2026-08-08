@@ -24,7 +24,7 @@
   </p>
 
   <h1>Política de privacidad</h1>
-  <p class="meta">Kadenz · Actualizado: 7 de agosto de 2026</p>
+  <p class="meta">Kadenz · Actualizado: 8 de agosto de 2026</p>
 
   <div class="note">
     <strong>En pocas palabras</strong>
@@ -82,15 +82,17 @@
         <td>Identificador anónimo del dispositivo</td>
         <td>Asigna las subidas y los vídeos terminados a tu dispositivo e impide el acceso ajeno</td>
         <td>Art. 6.1.b RGPD (ejecución del contrato)</td>
-        <td>Hasta que borres todos los datos en la aplicación</td>
+        <td>Hasta que borres todos los datos en la aplicación. Además borramos por nuestra cuenta cualquier
+          identificador que lleve <strong data-frist="inactive-months">12 meses</strong> sin usarse y al que no
+          haya ni un solo vídeo asociado.</td>
       </tr>
       <tr>
         <td>Fotos y clips de vídeo que eliges</td>
         <td>Material en bruto para tu edición</td>
         <td>Art. 6.1.b RGPD</td>
-        <td>El archivo original de tu móvil se borra justo después de la conversión. La versión convertida desaparece
-          en cuanto tu vídeo está listo, como muy tarde
-          <strong data-frist="pending-ttl">7 días</strong> después del inicio del trabajo.</td>
+        <td>El archivo original subido se borra justo después de la conversión. La versión convertida desaparece
+          en cuanto cierras tu vídeo terminado, como muy tarde
+          <strong data-frist="pending-ttl">7 días</strong> después del inicio del trabajo. Véase la sección 4.</td>
       </tr>
       <tr>
         <td>Fecha de grabación de tus clips</td>
@@ -118,10 +120,19 @@
         <td>Hasta que lo borres</td>
       </tr>
       <tr>
+        <td>Término de búsqueda en la búsqueda de canciones (solo en el modo «canción en TikTok»)</td>
+        <td>Encuentra el tema que luego pones sobre tu vídeo mudo en TikTok o Instagram</td>
+        <td>Art. 6.1.b RGPD</td>
+        <td>No lo guardamos y nunca llegamos a verlo: la consulta va directamente de tu dispositivo a Apple. Véase
+          la sección 7.</td>
+      </tr>
+      <tr>
         <td>Estado de la suscripción y datos de compra (producto, tienda, duración, identificador en RevenueCat)</td>
         <td>Desbloquea las funciones de pago y cuenta tu cupo gratuito</td>
         <td>Art. 6.1.b RGPD</td>
-        <td>Hasta que borres todos los datos. Los avisos de la gestión de suscripciones los borramos a los 90 días.</td>
+        <td>Hasta que borres todos los datos — entonces borramos también tu ficha de cliente en RevenueCat. Los
+          avisos de la gestión de suscripciones los borramos a los 90 días. La compra en sí la conservan Apple y
+          Google según sus propias reglas, al margen de esto; una suscripción en curso no termina por ello.</td>
       </tr>
       <tr>
         <td>Eventos de analítica de producto (qué pasos del flujo de vídeo alcanzas, si un render terminó, si apareció
@@ -130,8 +141,8 @@
         <td>Nos muestra dónde abandonan la creación los usuarios y cuántos se suscriben tras el vídeo gratuito — para
           poder mejorar la aplicación</td>
         <td>Art. 6.1.f RGPD (interés legítimo en mejorar la aplicación)</td>
-        <td>En PostHog hasta que borres todos los datos o te opongas. «Borrar todos los datos» también restablece el
-          enlace de analítica en el dispositivo</td>
+        <td>En PostHog hasta que borres todos los datos o te opongas. «Borrar todos los datos» te borra también en
+          PostHog — la persona y todos los eventos asociados, no solo el enlace en el dispositivo</td>
       </tr>
       <tr>
         <td>Registros técnicos del servidor (dirección IP, momento, código de error)</td>
@@ -154,18 +165,21 @@
     <li>La aplicación sube cada archivo <strong>directamente a nuestro almacenamiento privado</strong> en Supabase, en
       Fráncfort del Meno. No pasa por nuestro servidor de creación.</li>
     <li>Nuestro servidor recoge el archivo de ese almacenamiento, lo convierte a un formato uniforme y deja allí la
-      versión convertida. <strong>El archivo original de tu móvil se borra de inmediato.</strong></li>
+      versión convertida. <strong>El archivo original subido se borra de inmediato.</strong> La grabación de tu
+      móvil se queda por supuesto donde está: nunca tocamos tu galería.</li>
     <li>Al crear el vídeo, el servidor reparte el dibujo de las imágenes entre funciones de cálculo de corta vida en
       <strong>Amazon Web Services</strong> (AWS Lambda, región de Fráncfort del Meno). Estas recogen tus clips
       convertidos mediante <strong>enlaces firmados que caducan al cabo de una hora</strong> y dejan brevemente el
       vídeo terminado en un almacenamiento privado de AWS.</li>
     <li>Nuestro servidor recoge el vídeo de allí, lo deposita en un segundo almacenamiento privado en Supabase y
-      <strong>borra de inmediato la copia en AWS</strong>.</li>
-    <li>En cuanto tu vídeo está listo, se borran todos los clips. A partir de ahí solo existe el vídeo.</li>
+      <strong>borra de inmediato la copia en AWS</strong>. Si eso se interrumpe antes, por ejemplo porque nuestro
+      servidor se reinicia, la copia en AWS caduca automáticamente como muy tarde en un día.</li>
+    <li>En cuanto cierras tu vídeo terminado, es decir, cuando tocas «Ver mis ediciones» o «Quedarme con esta
+      música», se borran todos los clips. A partir de ahí solo existe el vídeo.</li>
   </ol>
   <p>
-    Si lo dejas a medias, un trabajo automático limpia el encargo sin terminar y sus clips
-    <strong data-frist="pending-ttl">como muy tarde a los 7 días</strong> del inicio.
+    Si nunca cierras el encargo, porque cierras antes la aplicación o lo dejas a medias, un trabajo automático
+    limpia el encargo y sus clips a los <strong data-frist="pending-ttl">7 días</strong> del inicio.
   </p>
 
   <h2>5. Datos de localización del archivo GPX</h2>
@@ -201,9 +215,22 @@
   <h2>7. Música</h2>
   <p>
     Kadenz pone en tu vídeo música libre de derechos o generada por IA, o bien crea el vídeo mudo para que puedas
-    añadir una canción del catálogo de TikTok o Instagram. Nunca entregamos un máster original protegido. Cuando
-    buscas un título en la aplicación, ese término de búsqueda se envía como consulta a nuestro catálogo musical. No se
-    asigna a ningún perfil y no se guarda.
+    añadir una canción del catálogo de TikTok o Instagram. Nunca entregamos un máster original protegido. Nuestras
+    propias pistas están en nuestro almacenamiento en Fráncfort del Meno.
+  </p>
+  <p>
+    <strong>La búsqueda de canciones no pasa por nosotros, pasa por Apple.</strong> Cuando buscas un título en el
+    modo mudo, tu aplicación consulta directamente el catálogo musical público de Apple (iTunes Search API). Lo
+    mismo vale para las sugerencias de títulos y para la muestra de audio: esta llega en directo desde los
+    servidores de Apple, no de los nuestros. Apple recibe así tu término de búsqueda y tu dirección IP y trata
+    ambos según <a href="https://www.apple.com/es/legal/privacy/">la política de privacidad de Apple</a>: no por
+    encargo nuestro y no bajo nuestro control. Nosotros no vemos el término de búsqueda, no lo guardamos y no lo
+    asociamos a tu identificador. Lo único que nos llega es el título que eliges al final: se escribe en tu vídeo
+    como indicación.
+  </p>
+  <p>
+    Si quieres evitarlo, simplemente no uses la búsqueda de canciones. Kadenz sigue funcionando sin ella; tu vídeo
+    saldrá entonces con nuestra propia música o sin sonido alguno.
   </p>
 
   <h2>8. Sin rastreo publicitario</h2>
@@ -273,6 +300,13 @@
           propias políticas de privacidad. De ellas no recibimos datos de pago, solo la confirmación de que existe una
           suscripción.</td>
       </tr>
+      <tr>
+        <td>Apple (catálogo musical, iTunes Search API)</td>
+        <td><strong>No es encargado del tratamiento.</strong> La búsqueda de canciones y la muestra de audio van
+          directamente entre tu dispositivo y Apple; Apple recibe el término de búsqueda y la dirección IP y es
+          responsable de ello por su cuenta. La consulta solo ocurre si buscas un título en el modo mudo. Véase la
+          sección 7.</td>
+      </tr>
     </tbody>
   </table>
   <p>
@@ -285,6 +319,8 @@
     RGPD</strong>. En el caso de Amazon Web Services es el anexo de tratamiento de datos del RGPD de AWS (AWS GDPR Data
     Processing Addendum), que forma parte de las condiciones de servicio de AWS. Apple y Google son responsables por su
     cuenta de los datos que recogen ellos mismos al comprar la aplicación y en eso no actúan por encargo nuestro.
+    Lo mismo vale para el catálogo musical de Apple: la búsqueda de canciones es una consulta de tu dispositivo a
+    Apple, no un encargo nuestro.
   </p>
 
   <h3>Transferencia a Estados Unidos</h3>
@@ -301,7 +337,9 @@
   <ul>
     <li>Todas las conexiones entre la aplicación y el servidor están cifradas con TLS.</li>
     <li>Ambos almacenamientos son privados. El acceso solo se hace mediante enlaces firmados de vida corta.</li>
-    <li>Un enlace a tu vídeo vale <strong>cinco minutos</strong>, después ya no.</li>
+    <li>Un enlace con el que la aplicación reproduce tu vídeo vale <strong>30 minutos</strong>, después ya no. Se
+      queda dentro de la aplicación y nunca acaba en un historial de navegador. Los enlaces de la exportación de
+      datos son otra cosa; de esos se ocupa la sección 11.</li>
     <li>El servidor comprueba en cada acceso que los datos pertenecen realmente a tu identificador. La asignación
       procede siempre del token de sesión verificado, nunca de un dato enviado por el dispositivo.</li>
     <li>La base de datos aplica la separación por sí misma: cada consulta solo ve las filas de su propio
@@ -354,8 +392,14 @@
   <p>
     Bajo <strong>DATOS</strong> está
     <strong data-app="settingsScreen.rows.deleteAll.label">Borrar todos los datos</strong>. Eso borra tus vídeos, todos
-    los datos asociados y el propio identificador anónimo. Los detalles están en la página
-    <a href="./delete-account.html">Borrar datos</a>.
+    los datos asociados y el propio identificador anónimo. No se queda en nuestros propios sistemas: el mismo botón
+    borra también tu persona y sus eventos en PostHog y tu ficha de cliente en RevenueCat. Los detalles están en la
+    página <a href="./delete-account.html">Borrar datos</a>.
+  </p>
+  <p>
+    Dos cosas no puede llevarse este botón, y preferimos decirlo claro: la compra en sí, que está en Apple o Google
+    y se conserva allí según sus reglas, y una suscripción en curso — esa la cancelas en la tienda, véanse las
+    <a href="./terms.html">condiciones de uso</a>.
   </p>
 
   <h3>Todo lo demás</h3>

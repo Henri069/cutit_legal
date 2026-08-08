@@ -82,14 +82,55 @@ for (const lang of SPRACHEN) {
   }
 }
 
+/** Monatsnamen je Sprache, Reihenfolge = Monatsnummer. Nur so weit
+ *  kleingeschrieben und akzentfrei verglichen, wie es die Seiten schreiben. */
+const MONATE = {
+  de: 'januar februar märz april mai juni juli august september oktober november dezember',
+  en: 'january february march april may june july august september october november december',
+  fr: 'janvier février mars avril mai juin juillet août septembre octobre novembre décembre',
+  es: 'enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre',
+  it: 'gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ottobre novembre dicembre',
+};
+
+/**
+ * Das Stand-Datum als `JJJJ-MM-TT`, egal in welcher Sprache es dasteht.
+ *
+ * WARUM NICHT EINFACH DER TEXT: Jede Sprache schreibt das Datum anders („7.
+ * August 2026", „7 August 2026", „7 de agosto de 2026"). Ein Textvergleich
+ * hielte fünf verschiedene Schreibweisen desselben Tages für fünf verschiedene
+ * Daten — und wäre damit dauernd rot. Vorher stand hier `/Stand:/`, also das
+ * DEUTSCHE Wort: die Prüfung fand in en/fr/es/it gar kein Datum, verglich einen
+ * einzigen Wert mit sich selbst und war seit jeher wirkungslos. Genau dieser
+ * Fall (eine Sprache bleibt beim Nachziehen liegen) ist der Grund für Punkt 5.
+ */
+const standDatum = (html, lang) => {
+  const zeile = html.match(/<p class="meta">([^<]+)<\/p>/)?.[1];
+  if (!zeile) return null;
+  // Den Monat SUCHEN statt ihn an einer Position zu erwarten: Spanisch schreibt
+  // „8 de agosto de 2026", und jedes Muster mit fester Wortstellung greift dort
+  // das „de" ab.
+  const nummer = MONATE[lang].split(' ').findIndex((m) => zeile.toLowerCase().includes(m)) + 1;
+  const tag = zeile.match(/\b(\d{1,2})\b/)?.[1];
+  const jahr = zeile.match(/\b(\d{4})\b/)?.[1];
+  if (nummer === 0 || !tag || !jahr) return null;
+  return `${jahr}-${String(nummer).padStart(2, '0')}-${tag.padStart(2, '0')}`;
+};
+
 // 5. Dieselbe Seite trägt in allen Sprachen dasselbe Stand-Datum. Sonst
 //    behauptet eine Fassung, aktueller zu sein als die verbindliche.
 for (const seite of SEITEN) {
   const staende = new Map();
   for (const lang of SPRACHEN) {
     if (!existsSync(pfad(lang, seite))) continue;
-    const stand = readFileSync(pfad(lang, seite), 'utf8').match(/Stand:\s*([^<\n]+)/)?.[1]?.trim();
-    if (stand) staende.set(lang, stand);
+    const html = readFileSync(pfad(lang, seite), 'utf8');
+    const stand = standDatum(html, lang);
+    // Ein unlesbares Datum ist selbst ein Fehler — sonst wäre „Prüfung fällt
+    // still aus" wieder genau der Zustand, den dieser Abschnitt beheben soll.
+    if (!stand) {
+      meckern(`${lang}/${seite}.html: kein lesbares Stand-Datum in <p class="meta">.`);
+      continue;
+    }
+    staende.set(lang, stand);
   }
   const werte = new Set(staende.values());
   if (werte.size > 1) {

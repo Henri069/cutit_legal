@@ -24,7 +24,7 @@
   </p>
 
   <h1>Politique de confidentialité</h1>
-  <p class="meta">Kadenz · Mise à jour : 7 août 2026</p>
+  <p class="meta">Kadenz · Mise à jour : 8 août 2026</p>
 
   <div class="note">
     <strong>En bref</strong>
@@ -84,15 +84,17 @@
         <td>Identifiant anonyme de l'appareil</td>
         <td>Rattache les envois et les vidéos finies à ton appareil et empêche l'accès par des tiers</td>
         <td>Art. 6 §1 b) RGPD (exécution du contrat)</td>
-        <td>Jusqu'à ce que tu supprimes toutes les données dans l'application</td>
+        <td>Jusqu'à ce que tu supprimes toutes les données dans l'application. En plus, nous supprimons de
+          nous-mêmes tout identifiant resté inutilisé pendant
+          <strong data-frist="inactive-months">12 mois</strong> et auquel aucune vidéo n'est rattachée.</td>
       </tr>
       <tr>
         <td>Photos et clips vidéo que tu choisis</td>
         <td>Matière première de ton montage</td>
         <td>Art. 6 §1 b) RGPD</td>
-        <td>Le fichier original de ton téléphone est supprimé juste après la conversion. La version convertie disparaît
-          dès que ta vidéo est prête — au plus tard <strong data-frist="pending-ttl">7 jours</strong> après le début de
-          la tâche.</td>
+        <td>Le fichier original envoyé est supprimé juste après la conversion. La version convertie disparaît dès
+          que tu clôtures ta vidéo finie — au plus tard <strong data-frist="pending-ttl">7 jours</strong> après le
+          début de la tâche. Voir la section 4.</td>
       </tr>
       <tr>
         <td>Date de prise de vue de tes clips</td>
@@ -120,11 +122,20 @@
         <td>Jusqu'à ce que tu la supprimes</td>
       </tr>
       <tr>
+        <td>Terme de recherche dans la recherche de titres (uniquement en mode « morceau dans TikTok »)</td>
+        <td>Trouve le morceau que tu poses ensuite sur ta vidéo muette dans TikTok ou Instagram</td>
+        <td>Art. 6 §1 b) RGPD</td>
+        <td>Nous ne l'enregistrons pas et ne le voyons jamais : la requête part directement de ton appareil vers
+          Apple. Voir la section 7.</td>
+      </tr>
+      <tr>
         <td>État de l'abonnement et données d'achat (produit, store, durée, identifiant chez RevenueCat)</td>
         <td>Débloque les fonctions payantes et compte ton quota gratuit</td>
         <td>Art. 6 §1 b) RGPD</td>
-        <td>Jusqu'à ce que tu supprimes toutes les données. Les notifications de la gestion d'abonnement sont
-          supprimées après 90 jours.</td>
+        <td>Jusqu'à ce que tu supprimes toutes les données — nous supprimons alors aussi ta fiche client chez
+          RevenueCat. Les notifications de la gestion d'abonnement sont supprimées après 90 jours. L'achat
+          lui-même est conservé par Apple et Google selon leurs propres règles, indépendamment de cela ; un
+          abonnement en cours ne prend pas fin.</td>
       </tr>
       <tr>
         <td>Événements d'analyse produit (quelles étapes du flux vidéo tu atteins, si un rendu s'est terminé, si le
@@ -133,8 +144,9 @@
         <td>Nous montre où les utilisateurs abandonnent la création et combien s'abonnent après la vidéo gratuite — pour
           que nous puissions améliorer l'application</td>
         <td>Art. 6 §1 f) RGPD (intérêt légitime à l'amélioration de l'application)</td>
-        <td>Chez PostHog, jusqu'à ce que tu supprimes toutes les données ou t'y opposes. « Tout supprimer »
-          réinitialise aussi le lien d'analyse sur l'appareil</td>
+        <td>Chez PostHog, jusqu'à ce que tu supprimes toutes les données ou t'y opposes. « Tout supprimer » te
+          supprime aussi chez PostHog — la personne et tous les événements qui s'y rattachent, pas seulement le
+          lien sur l'appareil</td>
       </tr>
       <tr>
         <td>Journaux techniques du serveur (adresse IP, horodatage, code d'erreur)</td>
@@ -157,18 +169,22 @@
     <li>L'application envoie chaque fichier <strong>directement dans notre stockage privé</strong> chez Supabase à
       Francfort-sur-le-Main. Il ne passe pas par notre serveur de rendu.</li>
     <li>Notre serveur de rendu récupère le fichier depuis ce stockage, le convertit dans un format uniforme et y
-      repose la version convertie. <strong>Le fichier original de ton téléphone est supprimé immédiatement.</strong></li>
+      repose la version convertie. <strong>Le fichier original envoyé est supprimé immédiatement.</strong>
+      L'enregistrement sur ton téléphone reste évidemment où il est — nous ne touchons jamais à ta galerie.</li>
     <li>Au rendu, le serveur répartit le dessin des images entre des fonctions de calcul éphémères chez
       <strong>Amazon Web Services</strong> (AWS Lambda, région de Francfort-sur-le-Main). Celles-ci récupèrent tes
       clips convertis par des <strong>liens signés qui expirent au bout d'une heure</strong> et déposent brièvement la
       vidéo finie dans un stockage privé chez AWS.</li>
     <li>Notre serveur de rendu y récupère la vidéo, la dépose dans un deuxième stockage privé chez Supabase et
-      <strong>supprime aussitôt la copie chez AWS</strong>.</li>
-    <li>Dès que ta vidéo est prête, tous les clips sont supprimés. À partir de là, seule la vidéo existe encore.</li>
+      <strong>supprime aussitôt la copie chez AWS</strong>. Si l'opération est interrompue avant, par exemple
+      parce que notre serveur redémarre, la copie chez AWS expire automatiquement au bout d'un jour au plus.</li>
+    <li>Dès que tu clôtures ta vidéo finie — c'est-à-dire dès que tu touches « Voir mes montages » ou
+      « Garder cette musique » — tous les clips sont supprimés. À partir de là, seule la vidéo existe encore.</li>
   </ol>
   <p>
-    Si tu abandonnes en cours de route, une tâche automatique nettoie la commande inachevée et ses clips
-    <strong data-frist="pending-ttl">au plus tard 7 jours</strong> après le début.
+    Si tu ne clôtures jamais la tâche, parce que tu fermes l'application avant ou que tu abandonnes en cours de
+    route, une tâche automatique nettoie la commande et ses clips
+    <strong data-frist="pending-ttl">7 jours</strong> après le début.
   </p>
 
   <h2>5. Données de localisation du fichier GPX</h2>
@@ -205,8 +221,21 @@
   <p>
     Kadenz met dans ta vidéo soit une musique libre de droits ou générée par IA, soit rend la vidéo muette pour que tu
     puisses ajouter un morceau depuis le catalogue de TikTok ou d'Instagram. Nous ne livrons jamais un master original
-    protégé. Quand tu cherches un titre dans l'application, ce terme de recherche est envoyé comme requête à notre
-    catalogue musical. Il n'est rattaché à aucun profil et n'est pas enregistré.
+    protégé. Nos propres morceaux se trouvent dans notre stockage à Francfort-sur-le-Main.
+  </p>
+  <p>
+    <strong>La recherche de titres ne passe pas par nous, elle passe par Apple.</strong> Quand tu cherches un titre
+    en mode muet, ton application interroge directement le catalogue musical public d'Apple (iTunes Search API). Il
+    en va de même pour les suggestions de titres et pour le court extrait audio : celui-ci est diffusé depuis les
+    serveurs d'Apple, pas depuis les nôtres. Apple reçoit ainsi ton terme de recherche et ton adresse IP et traite
+    les deux selon <a href="https://www.apple.com/fr/legal/privacy/">la politique de confidentialité d'Apple</a> —
+    pas pour notre compte et pas sous notre contrôle. Nous ne voyons pas le terme de recherche, ne l'enregistrons
+    pas et ne le rattachons pas à ton identifiant. Ce qui nous parvient, c'est uniquement le titre que tu retiens :
+    il est inscrit dans ta vidéo comme mention.
+  </p>
+  <p>
+    Si tu veux éviter cela, n'utilise simplement pas la recherche de titres. Kadenz fonctionne toujours sans elle ;
+    ta vidéo arrive alors avec notre propre musique ou sans aucun son.
   </p>
 
   <h2>8. Pas de traçage publicitaire</h2>
@@ -278,6 +307,13 @@
           selon leurs propres politiques de confidentialité. Nous ne recevons d'elles aucune donnée de paiement,
           seulement la confirmation qu'un abonnement existe.</td>
       </tr>
+      <tr>
+        <td>Apple (catalogue musical, iTunes Search API)</td>
+        <td><strong>Pas un sous-traitant.</strong> La recherche de titres et l'extrait audio circulent directement
+          entre ton appareil et Apple ; Apple reçoit le terme de recherche et l'adresse IP et en est lui-même
+          responsable de traitement. La requête n'a lieu que si tu cherches un titre en mode muet. Voir la
+          section 7.</td>
+      </tr>
     </tbody>
   </table>
   <p>
@@ -290,6 +326,8 @@
     Pour Amazon Web Services, il s'agit de l'avenant RGPD d'AWS (AWS GDPR Data Processing Addendum), qui fait partie
     des conditions de service d'AWS. Apple et Google sont responsables de traitement à part entière pour les données
     qu'ils collectent eux-mêmes lors de l'achat de l'application et n'agissent pas pour notre compte à cet égard.
+    Il en va de même du catalogue musical d'Apple : la recherche de titres est une requête de ton appareil vers
+    Apple, pas une mission que nous confions.
   </p>
 
   <h3>Transfert vers les États-Unis</h3>
@@ -306,7 +344,9 @@
   <ul>
     <li>Toutes les connexions entre l'application et le serveur sont chiffrées en TLS.</li>
     <li>Les deux stockages sont privés. L'accès ne se fait que par des liens signés à courte durée de vie.</li>
-    <li>Un lien vers ta vidéo est valable <strong>cinq minutes</strong>, pas plus.</li>
+    <li>Un lien avec lequel l'application lit ta vidéo est valable <strong>30 minutes</strong>, pas plus. Il reste
+      dans l'application et n'atterrit jamais dans un historique de navigateur. Les liens de l'export de données
+      sont autre chose, la section 11 les couvre.</li>
     <li>Le serveur vérifie à chaque accès que les données appartiennent bien à ton identifiant. Le rattachement vient
       toujours du jeton de connexion vérifié, jamais d'une indication envoyée par l'appareil.</li>
     <li>La base de données applique elle-même la séparation : chaque requête ne voit que les lignes de son propre
@@ -361,8 +401,15 @@
   <p>
     Sous <strong>DONNÉES</strong> se trouve
     <strong data-app="settingsScreen.rows.deleteAll.label">Tout supprimer</strong>. Cela supprime tes vidéos, toutes
-    les informations qui s'y rapportent et l'identifiant anonyme lui-même. Les détails sont sur la page
+    les informations qui s'y rapportent et l'identifiant anonyme lui-même. Cela ne s'arrête pas à nos propres
+    systèmes : le même bouton supprime aussi ta personne et ses événements chez PostHog ainsi que ta fiche client
+    chez RevenueCat. Les détails sont sur la page
     <a href="./delete-account.html">Supprimer mes données</a>.
+  </p>
+  <p>
+    Deux choses que ce bouton ne peut pas emporter, et nous préférons le dire clairement : l'achat lui-même, qui se
+    trouve chez Apple ou Google et y est conservé selon leurs règles, et un abonnement en cours — celui-là, tu le
+    résilies dans le store, voir les <a href="./terms.html">conditions d'utilisation</a>.
   </p>
 
   <h3>Tout le reste</h3>

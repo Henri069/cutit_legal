@@ -24,7 +24,7 @@
   </p>
 
   <h1>Informativa sulla privacy</h1>
-  <p class="meta">Kadenz · Aggiornato: 7 agosto 2026</p>
+  <p class="meta">Kadenz · Aggiornato: 8 agosto 2026</p>
 
   <div class="note">
     <strong>In breve</strong>
@@ -83,15 +83,17 @@
         <td>Identificativo anonimo del dispositivo</td>
         <td>Collega caricamenti e video finiti al tuo dispositivo e impedisce accessi altrui</td>
         <td>Art. 6 par. 1 lett. b GDPR (esecuzione del contratto)</td>
-        <td>Finché non cancelli tutti i dati nell'app</td>
+        <td>Finché non cancelli tutti i dati nell'app. In più cancelliamo da soli ogni identificativo rimasto
+          inutilizzato per <strong data-frist="inactive-months">12 mesi</strong> e a cui non è collegato nemmeno
+          un video.</td>
       </tr>
       <tr>
         <td>Foto e clip video che scegli</td>
         <td>Materiale grezzo per il tuo montaggio</td>
         <td>Art. 6 par. 1 lett. b GDPR</td>
-        <td>Il file originale del tuo telefono viene cancellato subito dopo la conversione. La versione convertita
-          sparisce appena il tuo video è pronto, al più tardi
-          <strong data-frist="pending-ttl">7 giorni</strong> dopo l'inizio del lavoro.</td>
+        <td>Il file originale caricato viene cancellato subito dopo la conversione. La versione convertita sparisce
+          appena chiudi il tuo video finito, al più tardi
+          <strong data-frist="pending-ttl">7 giorni</strong> dopo l'inizio del lavoro. Vedi la sezione 4.</td>
       </tr>
       <tr>
         <td>Data di ripresa dei tuoi clip</td>
@@ -119,11 +121,20 @@
         <td>Finché non lo cancelli</td>
       </tr>
       <tr>
+        <td>Termine di ricerca nella ricerca dei brani (solo nella modalità «brano su TikTok»)</td>
+        <td>Trova il brano che poi metti sopra il tuo video muto su TikTok o Instagram</td>
+        <td>Art. 6 par. 1 lett. b GDPR</td>
+        <td>Non lo salviamo e non arriviamo mai a vederlo: la richiesta va direttamente dal tuo dispositivo ad
+          Apple. Vedi la sezione 7.</td>
+      </tr>
+      <tr>
         <td>Stato dell'abbonamento e dati di acquisto (prodotto, store, durata, identificativo presso RevenueCat)</td>
         <td>Sblocca le funzioni a pagamento e conta il tuo credito gratuito</td>
         <td>Art. 6 par. 1 lett. b GDPR</td>
-        <td>Finché non cancelli tutti i dati. Le notifiche della gestione abbonamenti le cancelliamo dopo 90
-          giorni.</td>
+        <td>Finché non cancelli tutti i dati — a quel punto cancelliamo anche la tua scheda cliente presso
+          RevenueCat. Le notifiche della gestione abbonamenti le cancelliamo dopo 90 giorni. L'acquisto in sé
+          viene conservato da Apple e Google secondo le loro regole, indipendentemente da questo; un abbonamento
+          in corso non termina.</td>
       </tr>
       <tr>
         <td>Eventi di analisi di prodotto (quali passaggi del flusso video raggiungi, se un render è terminato, se è
@@ -132,8 +143,8 @@
         <td>Ci mostra dove gli utenti abbandonano la creazione e quanti sottoscrivono dopo il video gratuito — così
           possiamo migliorare l'app</td>
         <td>Art. 6 par. 1 lett. f GDPR (legittimo interesse nel migliorare l'app)</td>
-        <td>Presso PostHog finché non cancelli tutti i dati o ti opponi. «Cancella tutti i dati» reimposta anche il
-          collegamento analitico sul dispositivo</td>
+        <td>Presso PostHog finché non cancelli tutti i dati o ti opponi. «Cancella tutti i dati» ti cancella anche
+          presso PostHog — la persona e tutti gli eventi collegati, non solo il collegamento sul dispositivo</td>
       </tr>
       <tr>
         <td>Log tecnici del server (indirizzo IP, momento, codice di errore)</td>
@@ -156,18 +167,21 @@
     <li>L'app carica ogni file <strong>direttamente nel nostro archivio privato</strong> su Supabase, a Francoforte sul
       Meno. Non passa dal nostro server di rendering.</li>
     <li>Il nostro server di rendering prende il file da quell'archivio, lo converte in un formato uniforme e vi
-      rideposita la versione convertita. <strong>Il file originale del tuo telefono viene cancellato subito.</strong></li>
+      rideposita la versione convertita. <strong>Il file originale caricato viene cancellato subito.</strong> La
+      registrazione sul tuo telefono resta ovviamente dov'è: non tocchiamo mai la tua galleria.</li>
     <li>Al rendering il server distribuisce il disegno dei singoli fotogrammi su funzioni di calcolo di breve durata
       presso <strong>Amazon Web Services</strong> (AWS Lambda, regione di Francoforte sul Meno). Queste prendono i tuoi
       clip convertiti tramite <strong>link firmati che scadono dopo un'ora</strong> e depositano per poco il video
       finito in un archivio privato presso AWS.</li>
     <li>Il nostro server di rendering prende di lì il video, lo deposita in un secondo archivio privato su Supabase e
-      <strong>cancella subito dopo la copia presso AWS</strong>.</li>
-    <li>Appena il tuo video è pronto, tutti i clip vengono cancellati. Da lì in poi esiste solo il video.</li>
+      <strong>cancella subito dopo la copia presso AWS</strong>. Se la cosa si interrompe prima, per esempio perché
+      il nostro server riparte, la copia presso AWS scade da sola al più tardi dopo un giorno.</li>
+    <li>Appena chiudi il tuo video finito, cioè quando tocchi «Vai ai montaggi» o «Tieni questa musica», tutti i
+      clip vengono cancellati. Da lì in poi esiste solo il video.</li>
   </ol>
   <p>
-    Se interrompi a metà, un lavoro automatico ripulisce l'incarico incompiuto e i suoi clip
-    <strong data-frist="pending-ttl">al più tardi 7 giorni</strong> dopo l'inizio.
+    Se non chiudi mai l'incarico, perché chiudi prima l'app o interrompi a metà, un lavoro automatico ripulisce
+    l'incarico e i suoi clip <strong data-frist="pending-ttl">7 giorni</strong> dopo l'inizio.
   </p>
 
   <h2>5. Dati di posizione dal file GPX</h2>
@@ -205,8 +219,21 @@
   <p>
     Kadenz mette nel tuo video musica libera da diritti o generata dall'IA, oppure renderizza il video muto perché tu
     possa aggiungere un brano dal catalogo di TikTok o Instagram. Non consegniamo mai un master originale protetto.
-    Quando cerchi un titolo nell'app, quel termine di ricerca viene inviato come richiesta al nostro catalogo
-    musicale. Non viene collegato a nessun profilo e non viene salvato.
+    I nostri brani stanno nel nostro archivio a Francoforte sul Meno.
+  </p>
+  <p>
+    <strong>La ricerca dei brani non passa da noi, passa da Apple.</strong> Quando cerchi un titolo nella modalità
+    muta, la tua app interroga direttamente il catalogo musicale pubblico di Apple (iTunes Search API). Lo stesso
+    vale per i titoli suggeriti e per la breve anteprima audio: quella arriva in streaming dai server di Apple, non
+    dai nostri. Apple riceve così il tuo termine di ricerca e il tuo indirizzo IP e tratta entrambi secondo
+    <a href="https://www.apple.com/it/legal/privacy/">l'informativa privacy di Apple</a>: non per nostro conto e
+    non sotto il nostro controllo. Noi il termine di ricerca non lo vediamo, non lo salviamo e non lo colleghiamo
+    al tuo identificativo. Quello che ci arriva è solo il titolo che scegli alla fine: viene scritto nel tuo video
+    come indicazione.
+  </p>
+  <p>
+    Se vuoi evitarlo, semplicemente non usare la ricerca dei brani. Kadenz funziona lo stesso senza; il tuo video
+    esce allora con la nostra musica o del tutto senza audio.
   </p>
 
   <h2>8. Nessun tracciamento pubblicitario</h2>
@@ -275,6 +302,13 @@
         <td>Distribuzione dell'app e gestione del pagamento. Queste piattaforme raccolgono dati propri secondo le loro
           informative. Da loro non riceviamo dati di pagamento, solo la conferma che esiste un abbonamento.</td>
       </tr>
+      <tr>
+        <td>Apple (catalogo musicale, iTunes Search API)</td>
+        <td><strong>Non è un responsabile del trattamento.</strong> La ricerca dei brani e l'anteprima audio
+          viaggiano direttamente tra il tuo dispositivo e Apple; Apple riceve il termine di ricerca e l'indirizzo
+          IP ed è titolare autonomo per questo. La richiesta avviene solo se cerchi un titolo nella modalità muta.
+          Vedi la sezione 7.</td>
+      </tr>
     </tbody>
   </table>
   <p>
@@ -286,7 +320,8 @@
     Con ognuno di questi fornitori esiste un <strong>contratto di responsabile del trattamento ai sensi dell'art. 28
     GDPR</strong>. Per Amazon Web Services è l'addendum GDPR di AWS (AWS GDPR Data Processing Addendum), che fa parte
     dei termini di servizio AWS. Apple e Google sono titolari autonomi per i dati che raccolgono loro stessi
-    all'acquisto dell'app e in questo non agiscono per nostro conto.
+    all'acquisto dell'app e in questo non agiscono per nostro conto. Lo stesso vale per il catalogo musicale di
+    Apple: la ricerca dei brani è una richiesta del tuo dispositivo ad Apple, non un incarico nostro.
   </p>
 
   <h3>Trasferimento negli Stati Uniti</h3>
@@ -303,7 +338,9 @@
   <ul>
     <li>Tutte le connessioni tra app e server sono cifrate con TLS.</li>
     <li>Entrambi gli archivi sono privati. L'accesso avviene solo tramite link firmati di breve durata.</li>
-    <li>Un link al tuo video vale <strong>cinque minuti</strong>, poi non più.</li>
+    <li>Un link con cui l'app riproduce il tuo video vale <strong>30 minuti</strong>, poi non più. Resta dentro
+      l'app e non finisce mai nella cronologia di un browser. I link dell'export dei dati sono un'altra cosa, se
+      ne occupa la sezione 11.</li>
     <li>Il server verifica a ogni accesso che i dati appartengano davvero al tuo identificativo. Il collegamento viene
       sempre dal token di accesso verificato, mai da un'indicazione inviata dal dispositivo.</li>
     <li>La banca dati applica da sé la separazione: ogni interrogazione vede solo le righe del proprio
@@ -356,8 +393,14 @@
   <p>
     Sotto <strong>DATI</strong> c'è
     <strong data-app="settingsScreen.rows.deleteAll.label">Cancella tutti i dati</strong>. Questo cancella i tuoi
-    video, tutti i dati relativi e l'identificativo anonimo stesso. I dettagli stanno sulla pagina
-    <a href="./delete-account.html">Cancellare i dati</a>.
+    video, tutti i dati relativi e l'identificativo anonimo stesso. Non si ferma ai nostri sistemi: lo stesso
+    pulsante cancella anche la tua persona e i suoi eventi presso PostHog e la tua scheda cliente presso
+    RevenueCat. I dettagli stanno sulla pagina <a href="./delete-account.html">Cancellare i dati</a>.
+  </p>
+  <p>
+    Due cose questo pulsante non può portarsi via, e preferiamo dirlo chiaramente: l'acquisto in sé, che sta presso
+    Apple o Google e lì viene conservato secondo le loro regole, e un abbonamento in corso — quello lo disdici
+    nello store, vedi le <a href="./terms.html">condizioni d'uso</a>.
   </p>
 
   <h3>Tutto il resto</h3>

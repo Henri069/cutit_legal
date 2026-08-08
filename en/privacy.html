@@ -24,7 +24,7 @@
   </p>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Kadenz · Last updated: 7 August 2026</p>
+  <p class="meta">Kadenz · Last updated: 8 August 2026</p>
 
   <div class="note">
     <strong>In short</strong>
@@ -82,14 +82,17 @@
         <td>Anonymous device ID</td>
         <td>Links uploads and finished videos to your device and blocks access by others</td>
         <td>Art. 6(1)(b) GDPR (performance of a contract)</td>
-        <td>Until you delete all data in the app</td>
+        <td>Until you delete all data in the app. On top of that we delete any ID by ourselves once it has gone
+          unused for <strong data-frist="inactive-months">12 months</strong> and has not a single video attached
+          to it.</td>
       </tr>
       <tr>
         <td>Photos and video clips you select</td>
         <td>Raw material for your edit</td>
         <td>Art. 6(1)(b) GDPR</td>
-        <td>The original file from your phone is deleted immediately after conversion. The converted version is
-          removed as soon as your video is finished — at the latest 7 days after the job started.</td>
+        <td>The uploaded original is deleted immediately after conversion. The converted version is removed as
+          soon as you close your finished video — at the latest <strong data-frist="pending-ttl">7 days</strong>
+          after the job started. See section 4.</td>
       </tr>
       <tr>
         <td>Capture time of your clips</td>
@@ -117,10 +120,19 @@
         <td>Until you delete it</td>
       </tr>
       <tr>
+        <td>Search term in the song search (only in the “song in TikTok” mode)</td>
+        <td>Finds the track you later place over your silent video in TikTok or Instagram</td>
+        <td>Art. 6(1)(b) GDPR</td>
+        <td>We do not store it and never get to see it: the query goes straight from your device to Apple. See
+          section 7.</td>
+      </tr>
+      <tr>
         <td>Subscription status and purchase data (product, store, term, RevenueCat ID)</td>
         <td>Unlocks the paid features and counts your free allowance</td>
         <td>Art. 6(1)(b) GDPR</td>
-        <td>Until you delete all data. Messages from the subscription service are deleted after 90 days.</td>
+        <td>Until you delete all data — at which point we also delete your customer record at RevenueCat.
+          Messages from the subscription service are deleted after 90 days. The purchase itself is kept by Apple
+          and Google under their own rules, independently of this; an active subscription does not end.</td>
       </tr>
       <tr>
         <td>Product-analytics events (which steps in the video flow you reach, whether a render finished, whether the
@@ -129,14 +141,14 @@
         <td>Shows us where users drop out of creation and how many subscribe after the free video — so we can improve
           the app</td>
         <td>Art. 6(1)(f) GDPR (legitimate interest in improving the app)</td>
-        <td>At PostHog until you delete all data or object. “Delete all my data” also resets the analytics link on the
-          device</td>
+        <td>At PostHog until you delete all data or object. “Delete all my data” deletes you at PostHog as well —
+          the person and every event belonging to it, not just the link on the device</td>
       </tr>
       <tr>
         <td>Technical server logs (IP address, timestamp, error code)</td>
         <td>Operation, troubleshooting, abuse prevention</td>
         <td>Art. 6(1)(f) GDPR (legitimate interest)</td>
-        <td>30 days, then deleted automatically</td>
+        <td><strong data-frist="logs-days">30 days</strong>, then deleted automatically</td>
       </tr>
     </tbody>
   </table>
@@ -154,18 +166,21 @@
     <li>The app uploads each file <strong>directly into our private storage</strong> at Supabase in Frankfurt am Main.
       It does not pass through our render server.</li>
     <li>Our render server fetches the file from that storage, converts it into a uniform format and puts the converted
-      version back. <strong>The original file from your phone is deleted immediately.</strong></li>
+      version back. <strong>The uploaded original is deleted immediately.</strong> The recording on your phone of
+      course stays where it is — we never touch your gallery.</li>
     <li>During rendering the server spreads the drawing of the individual frames across short-lived compute functions
       at <strong>Amazon Web Services</strong> (AWS Lambda, Frankfurt am Main region). Those fetch your converted clips
       through <strong>signed links that expire after one hour</strong> and put the finished video into private storage
       at AWS for a short while.</li>
     <li>Our render server picks the video up from there, places it in a second private storage at Supabase and
-      <strong>deletes the copy at AWS immediately afterwards</strong>.</li>
-    <li>As soon as your video is finished, all clips are deleted. From then on only the video exists.</li>
+      <strong>deletes the copy at AWS immediately afterwards</strong>. If that is interrupted, for instance
+      because our server restarts, the copy at AWS expires automatically within one day at the latest.</li>
+    <li>As soon as you close your finished video — that is, tap “Back to overview” or “Use this music” — all
+      clips are deleted. From then on only the video exists.</li>
   </ol>
   <p>
-    If you abandon the process, an automatic job clears the unfinished work and its clips
-    <strong>within 7 days</strong> of the start at the latest.
+    If you never close the job, because you quit the app first or abandon the process halfway, an automatic job
+    clears the job and its clips <strong data-frist="pending-ttl">7 days</strong> after the start.
   </p>
 
   <h2>5. Location data in the GPX file</h2>
@@ -199,9 +214,21 @@
   <h2>7. Music</h2>
   <p>
     Kadenz either places royalty-free or AI-generated music into your video, or renders the video silent so you can add
-    a song from TikTok's or Instagram's own catalogue. We never ship a protected original master. If you search for a
-    song title in the app, that search term is sent as a query to our music catalogue. It is not linked to a profile
-    and not stored.
+    a song from TikTok's or Instagram's own catalogue. We never ship a protected original master. Our own tracks sit
+    in our storage in Frankfurt am Main.
+  </p>
+  <p>
+    <strong>The song search does not run through us, it runs through Apple.</strong> When you search for a title in
+    the silent mode, your app queries Apple’s public music catalogue directly (the iTunes Search API). The same goes
+    for the suggested titles and for the short audio preview: that streams from Apple’s servers, not from ours. Apple
+    thereby receives your search term and your IP address and processes both under
+    <a href="https://www.apple.com/legal/privacy/">Apple’s own privacy policy</a> — not on our behalf and not under
+    our control. We do not see the search term, do not store it and do not link it to your ID. All that reaches us is
+    the title you finally pick: it is written into your video as a note.
+  </p>
+  <p>
+    If you want to avoid that, simply do not use the song search. Kadenz still works without it; your video then
+    comes with our own music or with no sound at all.
   </p>
 
   <h2>8. No ad tracking</h2>
@@ -269,6 +296,12 @@
         <td>Distribution of the app and payment processing. These platforms collect their own data under their own
           privacy policies. We receive no payment details from them, only confirmation that a subscription exists.</td>
       </tr>
+      <tr>
+        <td>Apple (music catalogue, iTunes Search API)</td>
+        <td><strong>Not a processor.</strong> The song search and the audio preview run directly between your device
+          and Apple; Apple receives the search term and the IP address and is the controller for that itself. The
+          query only happens if you search for a title in the silent mode. See section 7.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -281,7 +314,8 @@
     We have a <strong>data processing agreement under Art. 28 GDPR</strong> in place with each of these providers. For
     Amazon Web Services that is the AWS GDPR Data Processing Addendum, which forms part of the AWS Service Terms.
     Apple and Google are independent controllers for the data they collect themselves when you buy the app, and do not
-    act on our behalf in that respect.
+    act on our behalf in that respect. The same applies to Apple’s music catalogue: the song search is a query made by
+    your device to Apple, not a job commissioned by us.
   </p>
 
   <h3>Transfers to the United States</h3>
@@ -298,7 +332,9 @@
   <ul>
     <li>All connections between app and server are encrypted with TLS.</li>
     <li>Both storage buckets are private. Access happens only through short-lived, signed links.</li>
-    <li>A link to your video is valid for <strong>five minutes</strong>, then no longer.</li>
+    <li>A link the app uses to play your video is valid for <strong>30 minutes</strong>, then no longer. It stays
+      inside the app and never lands in a browser history. The links from the data export are a different thing;
+      section 11 covers those.</li>
     <li>The server checks on every access whether the data really belongs to your ID. That check always comes from the
       verified sign-in token, never from a value sent by the device.</li>
     <li>The database enforces the separation itself: every query only sees rows belonging to your own ID.</li>
@@ -330,25 +366,31 @@
   <p>
     The videos are not inside the ZIP file itself but behind links. They are too large for it, and we do not want to
     keep a second copy on our servers. The GDPR explicitly foresees this: Recital 63 recommends <em>remote access to a
-    secure system</em>. The links are valid for <strong>7 days</strong>. You may request a new export at any time, even
+    secure system</em>. The links are valid for <strong data-frist="url-ttl">7 days</strong>. You may request a new export at any time, even
     several times a day, so you are never stuck with dead links.
   </p>
   <p>
     Two things matter here. A link is a key: whoever holds it can reach the file, so do not pass the ZIP file on. And
-    clips from jobs you have not finished are deleted after 7 days, possibly before the link expires — download those
+    clips from jobs you have not finished are deleted after <strong data-frist="pending-ttl">7</strong> days, possibly before the link expires — download those
     first.
   </p>
   <p>
     The export is <strong>free of charge</strong> and works whether or not you have a subscription. You get your videos
-    the way they turned out, that is, with music. So that nobody uses this route as a loop, there is a cap of five
-    exports per day (Art. 12(5) GDPR). No human will reach it.
+    the way they turned out, that is, with music. So that nobody uses this route as a loop, there is a cap of
+    <strong data-frist="exports-per-day">5</strong> exports per day (Art. 12(5) GDPR). No human will reach it.
   </p>
 
   <h3>Erasure: also in the app</h3>
   <p>
     Under <strong>Data</strong> you will find <strong>Delete all data</strong>. This deletes your videos, everything
-    recorded about them and the anonymous ID itself. Details are on the
+    recorded about them and the anonymous ID itself. It does not stop at our own systems: the same button also
+    deletes your person and its events at PostHog and your customer record at RevenueCat. Details are on the
     <a href="./delete-account.html">Delete data</a> page.
+  </p>
+  <p>
+    Two things this button cannot take with it, and we would rather say so plainly: the purchase itself, which sits
+    with Apple or Google and is kept there under their rules, and an active subscription — you cancel that in the
+    store, see the <a href="./terms.html">Terms of Use</a>.
   </p>
 
   <h3>Everything else</h3>
