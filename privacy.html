@@ -197,9 +197,12 @@
       Hintergrund. Wir bekommen nur die Datei, die du selbst auswählst.</li>
     <li>Die Datei wird <strong>nicht gespeichert</strong>. Sie wird im Moment des Renderns gelesen, um die Grafik zu
       zeichnen, und danach verworfen. Was bleibt, ist die gezeichnete Linie in deinem Video.</li>
-    <li>Zum Zeichnen reisen die ausgelesenen Koordinaten mit dem Render-Auftrag zu den Rechen-Funktionen bei Amazon
-      Web Services (Frankfurt am Main, siehe Abschnitt 9). Sie werden dort nicht dauerhaft gespeichert und
-      verschwinden mit dem Auftrag.</li>
+    <li><strong>Deine Koordinaten verlassen unseren Render-Server nicht.</strong> Er rechnet die Strecke sofort in
+      eine maßstabsfreie Zeichnung um: einen Linienzug in einem 300&times;300-Raster, dazu Distanz, Dauer,
+      Durchschnittstempo und Höhenmeter. Nur diese Zeichnung reist weiter zu den Rechen-Funktionen bei Amazon Web
+      Services. Aus ihr lässt sich nicht zurückrechnen, wo du gefahren bist — der Bezug zu Längen- und Breitengrad
+      wird beim Umrechnen verworfen, ebenso die Zeitstempel und die Höhenwerte der einzelnen Punkte. Die Linie passt
+      auf jeden Ort der Welt.</li>
     <li>Die Route wird nicht an Dritte weitergegeben, nicht ausgewertet und nicht mit anderen Nutzern verglichen.</li>
     <li>Wenn du deinen Startpunkt (zum Beispiel deine Wohnadresse) nicht im Video sehen willst, kürze die GPX-Datei vor
       dem Hochladen oder wähle eine Vorlage ohne Karte.</li>
@@ -279,7 +282,8 @@
       <tr>
         <td>Amazon Web Services (AWS Lambda, S3)</td>
         <td>Malt die Einzelbilder deines Videos. Holt dazu deine umgewandelten Clips über signierte Links, die nach
-          einer Stunde ablaufen, und bekommt die Koordinaten deiner GPX-Route für die Grafik. Das fertige Video liegt
+          einer Stunde ablaufen, und bekommt für die Grafik den Verlauf deiner Route als maßstabsfreie Zeichnung
+          <strong>ohne Koordinaten</strong> (siehe Abschnitt 5). Das fertige Video liegt
           dort nur so lange, bis unser Render-Server es abgeholt hat, und wird danach sofort gelöscht.
           Region eu-central-1 (Frankfurt am Main).</td>
       </tr>

@@ -194,9 +194,11 @@
       Solo recibimos el archivo que tú mismo eliges.</li>
     <li>El archivo <strong>no se guarda</strong>. Se lee en el momento de crear el vídeo para dibujar el gráfico y
       después se descarta. Lo que queda es la línea dibujada en tu vídeo.</li>
-    <li>Para dibujar el gráfico, las coordenadas leídas viajan con el encargo de creación hasta las funciones de
-      cálculo en Amazon Web Services (Fráncfort del Meno, ver el apartado 9). Allí no se guardan de forma duradera y
-      desaparecen con el encargo.</li>
+    <li><strong>Tus coordenadas no salen de nuestro servidor de creación.</strong> Convierte la ruta enseguida en un
+      dibujo sin escala: una línea dentro de una cuadrícula de 300&times;300, más distancia, duración, velocidad media
+      y desnivel. Solo ese dibujo sigue viaje hasta las funciones de cálculo en Amazon Web Services. De él no se puede
+      deducir por dónde fuiste: el vínculo con la latitud y la longitud se descarta al convertir, igual que las marcas
+      de tiempo y la altitud de cada punto. La línea encajaría en cualquier lugar del mundo.</li>
     <li>La ruta no se cede a terceros, no se analiza y no se compara con la de otros usuarios.</li>
     <li>Si no quieres ver tu punto de partida (por ejemplo, tu domicilio) en el vídeo, recorta el archivo GPX antes de
       subirlo o elige una plantilla sin mapa.</li>
@@ -274,7 +276,8 @@
       <tr>
         <td>Amazon Web Services (AWS Lambda, S3)</td>
         <td>Dibuja las imágenes de tu vídeo. Para ello recoge tus clips convertidos mediante enlaces firmados que
-          caducan al cabo de una hora y recibe las coordenadas de tu ruta GPX para el gráfico. El vídeo terminado solo
+          caducan al cabo de una hora y recibe, para el gráfico, el trazado de tu ruta como dibujo sin escala,
+          <strong>sin coordenadas</strong> (ver el apartado 5). El vídeo terminado solo
           está allí hasta que nuestro servidor lo ha recogido, y después se borra de inmediato.
           Región eu-central-1 (Fráncfort del Meno).</td>
       </tr>

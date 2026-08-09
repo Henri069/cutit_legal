@@ -193,9 +193,11 @@
       background. We only receive the file you pick yourself.</li>
     <li>The file is <strong>not stored</strong>. It is read at the moment of rendering to draw the graphic and then
       discarded. What remains is the drawn line in your video.</li>
-    <li>To draw the graphic, the coordinates we read out travel with the render job to the compute functions at Amazon
-      Web Services (Frankfurt am Main, see section 9). They are not stored there permanently and disappear with the
-      job.</li>
+    <li><strong>Your coordinates never leave our render server.</strong> It immediately turns the route into a
+      scale-free drawing: a line inside a 300&times;300 grid, plus distance, duration, average speed and elevation
+      gain. Only that drawing travels on to the compute functions at Amazon Web Services. It cannot be turned back
+      into where you rode — the link to latitude and longitude is discarded during the conversion, as are the
+      timestamps and the elevation of each point. The line would fit anywhere in the world.</li>
     <li>The route is not shared with third parties, not analysed and not compared with other users.</li>
     <li>If you would rather not show your starting point (your home address, for example), trim the GPX file before
       uploading or pick a template without a map.</li>
@@ -272,7 +274,8 @@
       <tr>
         <td>Amazon Web Services (AWS Lambda, S3)</td>
         <td>Draws the individual frames of your video. To do that it fetches your converted clips through signed links
-          that expire after one hour, and receives the coordinates of your GPX route for the graphic. The finished
+          that expire after one hour, and for the graphic receives the course of your route as a scale-free drawing
+          <strong>without coordinates</strong> (see section 5). The finished
           video sits there only until our render server has picked it up, and is deleted straight afterwards.
           Region eu-central-1 (Frankfurt am Main).</td>
       </tr>

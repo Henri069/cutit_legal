@@ -199,9 +199,12 @@
       arrière-plan. Nous recevons uniquement le fichier que tu choisis toi-même.</li>
     <li>Le fichier n'est <strong>pas enregistré</strong>. Il est lu au moment du rendu pour dessiner le graphique,
       puis abandonné. Ce qui reste, c'est le tracé dessiné dans ta vidéo.</li>
-    <li>Pour dessiner le graphique, les coordonnées lues voyagent avec la commande de rendu vers les fonctions de
-      calcul chez Amazon Web Services (Francfort-sur-le-Main, voir la section 9). Elles n'y sont pas conservées
-      durablement et disparaissent avec la commande.</li>
+    <li><strong>Tes coordonnées ne quittent pas notre serveur de rendu.</strong> Il convertit aussitôt le parcours en
+      un dessin sans échelle : une ligne dans une grille de 300&times;300, plus la distance, la durée, la vitesse
+      moyenne et le dénivelé. Seul ce dessin poursuit sa route vers les fonctions de calcul chez Amazon Web Services.
+      On ne peut pas en déduire où tu as roulé — le lien avec la latitude et la longitude est abandonné lors de la
+      conversion, tout comme les horodatages et l'altitude de chaque point. La ligne conviendrait à n'importe quel
+      endroit du monde.</li>
     <li>Le parcours n'est pas transmis à des tiers, pas analysé et pas comparé à celui d'autres utilisateurs.</li>
     <li>Si tu ne veux pas voir ton point de départ (par exemple ton domicile) dans la vidéo, raccourcis le fichier GPX
       avant l'envoi ou choisis un modèle sans carte.</li>
@@ -281,7 +284,8 @@
       <tr>
         <td>Amazon Web Services (AWS Lambda, S3)</td>
         <td>Dessine les images de ta vidéo. Pour cela, récupère tes clips convertis par des liens signés qui expirent
-          au bout d'une heure et reçoit les coordonnées de ton parcours GPX pour le graphique. La vidéo finie n'y reste
+          au bout d'une heure et reçoit, pour le graphique, le tracé de ton parcours sous forme de dessin sans
+          échelle, <strong>sans coordonnées</strong> (voir la section 5). La vidéo finie n'y reste
           que jusqu'à ce que notre serveur de rendu l'ait récupérée, puis elle est aussitôt supprimée.
           Région eu-central-1 (Francfort-sur-le-Main).</td>
       </tr>

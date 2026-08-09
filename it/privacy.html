@@ -196,9 +196,11 @@
       piano. Riceviamo solo il file che scegli tu.</li>
     <li>Il file <strong>non viene salvato</strong>. Viene letto nel momento del rendering per disegnare la grafica e
       poi scartato. Quello che resta è la linea disegnata nel tuo video.</li>
-    <li>Per disegnare la grafica, le coordinate lette viaggiano con l'incarico di rendering verso le funzioni di
-      calcolo presso Amazon Web Services (Francoforte sul Meno, vedi il paragrafo 9). Lì non vengono conservate a
-      lungo e spariscono con l'incarico.</li>
+    <li><strong>Le tue coordinate non lasciano il nostro server di rendering.</strong> Trasforma subito il percorso in
+      un disegno senza scala: una linea dentro una griglia 300&times;300, più distanza, durata, velocità media e
+      dislivello. Solo quel disegno prosegue verso le funzioni di calcolo presso Amazon Web Services. Da lì non si può
+      risalire a dove hai pedalato: il legame con latitudine e longitudine viene scartato durante la conversione,
+      così come le marche temporali e la quota di ogni punto. La linea starebbe bene in qualsiasi posto del mondo.</li>
     <li>Il percorso non viene ceduto a terzi, non viene analizzato e non viene confrontato con quello di altri
       utenti.</li>
     <li>Se non vuoi vedere il tuo punto di partenza (per esempio casa tua) nel video, accorcia il file GPX prima di
@@ -277,7 +279,8 @@
       <tr>
         <td>Amazon Web Services (AWS Lambda, S3)</td>
         <td>Disegna i fotogrammi del tuo video. Per farlo prende i tuoi clip convertiti tramite link firmati che
-          scadono dopo un'ora e riceve le coordinate del tuo percorso GPX per la grafica. Il video finito resta lì solo
+          scadono dopo un'ora e riceve, per la grafica, il tracciato del tuo percorso come disegno senza scala,
+          <strong>senza coordinate</strong> (vedi il paragrafo 5). Il video finito resta lì solo
           finché il nostro server di rendering non l'ha preso, poi viene cancellato subito.
           Regione eu-central-1 (Francoforte sul Meno).</td>
       </tr>
