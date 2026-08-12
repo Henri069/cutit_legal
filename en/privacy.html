@@ -108,7 +108,7 @@
           rendered image.</td>
       </tr>
       <tr>
-        <td>Details of your edit (title, template, length, timestamps, song)</td>
+        <td>Details of your edit (title, template, length, timestamps, song, target platform)</td>
         <td>Shows your videos in the library and tracks running jobs</td>
         <td>Art. 6(1)(b) GDPR</td>
         <td>Until you delete the video or all data</td>
@@ -245,7 +245,7 @@
   <p>
     To improve the app we use <strong>PostHog</strong> (product analytics and crash reports, EU cloud). The SDK starts
     only after you accept the terms — the same gate as anonymous sign-in. It records event names (for example which
-    video-flow step was visible, whether a render finished, whether the paywall appeared) plus your anonymous ID and
+    video-flow step was visible, whether a render finished, whether the paywall appeared) along with individual details about them — such as which target platform you chose for your video — plus your anonymous ID and
     usual technical device details. If the app crashes it also records the error message and stack trace (where in the
     code it happened) — no screenshot and none of your media. It never sees your clips, GPX file or finished video.
     Session replay is off.
