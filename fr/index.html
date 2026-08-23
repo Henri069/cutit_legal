@@ -66,8 +66,18 @@
         <p class="fineprint">Pour iPhone et Android. Pas de compte, pas d'inscription.</p>
       </div>
 
+      <!-- Der Held laedt sofort, und das ist Absicht: er IST der Grund fuer die
+           Seite. Frueher stand hier ein preload-Attribut daneben, das nichts
+           tat - wer autoplay setzt, laedt zwangslaeufig. Bis die ersten Bytes
+           da sind, steht das Standbild (poster).
+
+           Ton hat die Datei gar keinen; muted bleibt trotzdem stehen, sonst
+           verweigert iOS die automatische Wiedergabe.
+
+           Die drei Vibe-Videos weiter unten laufen NICHT mit - sie haengen am
+           Rotations-Skript am Ende ihres Abschnitts. -->
       <div class="phone">
-        <video src="../assets/hero-fr.mp4" poster="../assets/hero-fr.jpg" autoplay muted loop playsinline preload="none"
+        <video src="../assets/hero-fr.mp4" poster="../assets/hero-fr.jpg" autoplay muted loop playsinline
           aria-label="Une vidéo de vélo montée avec Kadenz"></video>
       </div>
     </section>
@@ -110,7 +120,7 @@
         <article class="vibe" style="--v1: var(--hype-1); --v2: var(--hype-2)">
           <div class="frame">
             <video src="../assets/vibe-hype.mp4" poster="../assets/vibe-hype.jpg" muted loop playsinline
-              preload="none" autoplay aria-hidden="true"></video>
+              preload="none" aria-hidden="true"></video>
           </div>
           <div class="label">
             <p class="name">HYPE</p>
@@ -120,7 +130,7 @@
         <article class="vibe" style="--v1: var(--smooth-1); --v2: var(--smooth-2)">
           <div class="frame">
             <video src="../assets/vibe-smooth.mp4" poster="../assets/vibe-smooth.jpg" muted loop playsinline
-              preload="none" autoplay aria-hidden="true"></video>
+              preload="none" aria-hidden="true"></video>
           </div>
           <div class="label">
             <p class="name">SMOOTH</p>
@@ -130,7 +140,7 @@
         <article class="vibe" style="--v1: var(--retro-1); --v2: var(--retro-2)">
           <div class="frame">
             <video src="../assets/vibe-retro.mp4" poster="../assets/vibe-retro.jpg" muted loop playsinline
-              preload="none" autoplay aria-hidden="true"></video>
+              preload="none" aria-hidden="true"></video>
           </div>
           <div class="label">
             <p class="name">RETRO</p>
@@ -138,6 +148,130 @@
           </div>
         </article>
       </div>
+
+      <script>
+        /* Immer nur EIN Vibe-Video laeuft, und es wandert weiter - dieselbe
+           Regel wie im Clip-Raster der App (`hooks/useSpotlight.ts`). Drei
+           gleichzeitig laufende Videos waeren drei Dekoder und rund 11 MB
+           beim Seitenaufruf.
+
+           Vier Dinge, die hier leicht schiefgehen:
+
+           1. EIN Zeitgeber, immer erst geloescht. Wer die Planung aus dem
+              Hover UND aus dem eigenen Timeout aufruft, ohne vorher zu
+              loeschen, hat nach dreimal Drueberfahren drei Ketten, die alle
+              weiterzaehlen - die Rotation wird immer schneller.
+           2. Erst laufen, wenn man es SIEHT. Der Abschnitt steht unter dem
+              ersten Bildschirm; ohne diese Sperre laedt das erste Video sofort
+              mit, obwohl es niemand sieht.
+           3. Gemessen wird die GEOMETRIE, nicht ueber einen Sichtbarkeits-
+              Beobachter. Der meldet in versteckten oder nicht gezeichneten
+              Fenstern gar nichts - dann blieben alle drei Karten fuer immer
+              beim Standbild. Ein Rect zu lesen kostet nichts, laeuft ueberall,
+              und mit requestAnimationFrame haengt es sich nicht ans Scrollen.
+           4. `play()` gibt ein Promise zurueck, das der Browser ablehnt, wenn
+              er die Wiedergabe verweigert (Energiesparmodus). Ohne `catch`
+              steht das als Fehler in der Konsole.
+
+           Ohne JavaScript bleibt das Standbild stehen. Ehrlicher Rueckfall:
+           dieselbe Karte, nur unbewegt. */
+        (function () {
+          'use strict';
+          var karten = Array.prototype.slice.call(document.querySelectorAll('.vibe'));
+          var videos = karten.map(function (k) { return k.querySelector('video'); });
+          var feld = document.querySelector('.vibes');
+          if (!feld || !videos.length || videos.indexOf(null) !== -1) return;
+
+          var VORLAUF = 250;
+          var index = 0;
+          var timer = null;
+          var sichtbar = false;
+          var gehalten = false;
+          var geplant = false;
+
+          function spiele(v) {
+            if (v.preload !== 'auto') v.preload = 'auto';
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+
+          function alleAus() {
+            for (var i = 0; i < videos.length; i++) {
+              videos[i].pause();
+              videos[i].currentTime = 0;
+            }
+          }
+
+          function zeige(i) {
+            index = i;
+            alleAus();
+            spiele(videos[index]);
+          }
+
+          function planen() {
+            clearTimeout(timer);
+            if (!sichtbar || gehalten) return;
+            var v = videos[index];
+            if (v.duration && isFinite(v.duration)) {
+              timer = setTimeout(function () {
+                zeige((index + 1) % videos.length);
+                planen();
+              }, (v.duration + 0.4) * 1000);
+            } else {
+              v.addEventListener('loadedmetadata', planen, {once: true});
+            }
+          }
+
+          function pruefen() {
+            geplant = false;
+            var r = feld.getBoundingClientRect();
+            var drin = r.top < window.innerHeight + VORLAUF && r.bottom > -VORLAUF;
+            if (drin === sichtbar) return;
+            sichtbar = drin;
+            if (drin) {
+              zeige(index);
+              planen();
+            } else {
+              clearTimeout(timer);
+              alleAus();
+            }
+          }
+
+          function anstossen() {
+            if (geplant) return;
+            geplant = true;
+            requestAnimationFrame(pruefen);
+          }
+
+          for (var k = 0; k < karten.length; k++) {
+            (function (i) {
+              karten[i].addEventListener('mouseenter', function () {
+                if (!sichtbar) return;
+                gehalten = true;
+                clearTimeout(timer);
+                zeige(i);
+              });
+              karten[i].addEventListener('mouseleave', function () {
+                gehalten = false;
+                planen();
+              });
+            })(k);
+          }
+
+          window.addEventListener('scroll', anstossen, {passive: true});
+          window.addEventListener('resize', anstossen);
+          /* Ein Tab im Hintergrund zeichnet nicht: requestAnimationFrame ruht
+             dort, und ein Aufbau in einem versteckten Tab wuerde die Karten bis
+             zum ersten Scrollen beim Standbild lassen - auch wenn sie beim
+             Aufdecken laengst im Bild stehen. Deshalb einmal nachsehen, sobald
+             der Tab sichtbar wird. Nachgemessen am 23.08.2026: im versteckten
+             Dokument feuert weder rAF noch ein Sichtbarkeits-Beobachter. */
+          document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) pruefen();
+          });
+          pruefen();
+        })();
+      </script>
     </section>
 
     <section class="wrap rise">

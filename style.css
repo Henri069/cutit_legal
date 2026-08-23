@@ -53,14 +53,14 @@ h1 {
 
 h2 {
   font-size: 1.15rem;
-  margin-top: 2.2em;
+  margin-top: 1.4em;
   padding-bottom: 0.25em;
   border-bottom: 1px solid var(--border);
 }
 
 h3 {
   font-size: 1rem;
-  margin-top: 1.6em;
+  margin-top: 1em;
 }
 
 .meta {
@@ -138,7 +138,7 @@ li {
 .todo {
   border-radius: 10px;
   padding: 14px 16px;
-  margin: 1.3em 0;
+  margin: 0.7em 0;
 }
 
 .note {
@@ -348,8 +348,8 @@ body.site {
    kollidieren, und `.wrap` gewinnt: die meisten Abschnitte tragen beide
    Klassen. */
 .site section {
-  padding-top: clamp(68px, 10vw, 124px);
-  padding-bottom: clamp(68px, 10vw, 124px);
+  padding-top: clamp(34px, 5vw, 62px);
+  padding-bottom: clamp(34px, 5vw, 62px);
   border-top: 1px solid var(--border);
 }
 
@@ -363,9 +363,9 @@ body.site {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(32px, 5vw, 56px);
+  gap: clamp(20px, 2.5vw, 32px);
   align-items: center;
-  padding-top: clamp(30px, 5.5vw, 62px);
+  padding-top: clamp(15px, 2.75vw, 31px);
 }
 
 @media (min-width: 860px) {
@@ -534,9 +534,13 @@ body.site {
   background: var(--surface);
 }
 
+/* 9:16, weil die Vibe-Videos genau dieses Format haben. Mit dem frueheren
+   10:16 und `object-fit: cover` schnitt der Rahmen oben und unten je rund 5 %
+   weg - und oben sitzt die Statistik-Karte, also genau das, was die Karte
+   vorfuehren soll. */
 .site .vibe .frame {
   position: relative;
-  aspect-ratio: 10 / 16;
+  aspect-ratio: 9 / 16;
   background: #000;
 }
 
@@ -738,7 +742,7 @@ body.site {
 .site footer.site-foot {
   border-top: 1px solid var(--border);
   margin: 0;
-  padding: 44px 0 60px;
+  padding: 22px 0 30px;
   color: var(--muted);
   font-size: 0.9rem;
 }

@@ -39,6 +39,89 @@ fristen.json          die Fristen als Zahlen — eine Quelle für alle Seiten
 check.mjs             prüft alles: `node check.mjs`
 ```
 
+## Die Videos: was neu kodiert wird und was nicht
+
+In `assets/` liegen zwei Sorten, und sie werden **unterschiedlich behandelt**.
+
+| Datei | Quelle | Ergebnis |
+|---|---|---|
+| `hero-<lang>.mp4` | `prototype/out/store/preview-<lang>.mp4` (886x1920, 9,2 Mbit/s) | **886x1920**, 18,9 s, ~6,5 MB |
+| `vibe-<name>.mp4` | die Full-HD-Renders (1080x1920, ~10 Mbit/s), **nicht im Repo** | **900x1600**, 11 s, ~5,0 MB |
+
+**Die Quelle fuer die Vibes ist NICHT `app/assets/vibes/`.** Die Dateien dort
+sind nur 640x1010 - das reicht der App knapp und der Website gar nicht. Sie
+werden auf dem Handy ueber 331 CSS-Punkte gezeigt, auf einem 3x-Display also
+993 Geraetepunkte; aus 640 hochgerechnet ist das sichtbar weich. (Die App zeigt
+sie sogar ueber die volle Bildschirmbreite, dort sind es 1,76x - auch dort sind
+sie zu klein, das ist aber eine eigene Abwaegung ueber die Bundle-Groesse.)
+
+Genommen werden stattdessen die **Full-HD-Renders in 1080x1920**. Sie liegen
+bewusst nicht im Repo: 23 MB pro Stueck, und gebraucht wird nur das Ergebnis.
+
+**Warum nichts hochskaliert und nichts unnoetig neu kodiert wird:**
+
+- Der **Held** wird auf 262 CSS-Punkten gezeigt, auf 3x also 786. Bei 886 Punkten
+  Quellbreite ist jede Verkleinerung sichtbar weich, deshalb bleibt er nativ.
+  Die 9,2 Mbit/s der Quelle sind fuers App-Store-Review ueberprovisioniert.
+- Die **Vibes** gehen von 1080 auf 900 herunter (deckt 3x auf dem Handy fast
+  ganz ab) und sind auf **11 Sekunden** gekuerzt. Sie sollen den Schnittstil
+  zeigen, und der ist sofort da; die Abschlusskarte am Ende fuehrt schon das
+  Held-Video vor. Die vollen 18 Sekunden waeren 10 MB je Karte gewesen, und
+  eine Rotation von 57 Sekunden sieht ohnehin niemand zu Ende.
+- **Kein zweiter Durchlauf ueber eine bereits komprimierte Datei.** Die alten
+  640er-Vibes noch einmal hochwertig zu kodieren machte sie *groesser* (5,0 statt
+  3,8 MB) und das Bild trotzdem nicht besser - verlorene Details kommen nicht
+  zurueck. Deshalb immer von der Full-HD-Quelle aus.
+
+Neu bauen:
+
+```bash
+# Held, je Sprache. KEIN -vf scale.
+ffmpeg -i ../prototype/out/store/preview-de.mp4 -c:v libx264 -preset slow -crf 25 \\
+  -pix_fmt yuv420p -profile:v high -movflags +faststart -an assets/hero-de.mp4
+ffmpeg -ss 1.2 -i ../prototype/out/store/preview-de.mp4 -frames:v 1 -q:v 3 assets/hero-de.jpg
+
+# Vibes, aus der Full-HD-Quelle. 11 s, auf 900 Punkte.
+ffmpeg -t 11 -i <hype-full-hd>.mp4 -vf "scale=900:-2" -c:v libx264 -preset slow -crf 28 \\
+  -pix_fmt yuv420p -profile:v high -movflags +faststart -an assets/vibe-hype.mp4
+ffmpeg -ss 0.8 -i <hype-full-hd>.mp4 -frames:v 1 -vf "scale=900:-2" -q:v 3 assets/vibe-hype.jpg
+```
+
+**Das Kartenformat muss zum Video passen.** `.vibe .frame` steht auf
+`aspect-ratio: 9 / 16`, genau wie die Videos. Vorher stand dort 10:16, und mit
+`object-fit: cover` schnitt der Rahmen oben und unten je rund 5 % weg - oben
+sitzt aber die Statistik-Karte, also genau das, was die Karte vorfuehren soll.
+
+## Immer nur ein Vibe-Video
+
+Alle drei Vibe-Karten gleichzeitig laufen zu lassen wären drei Dekoder und rund
+11 MB beim Seitenaufruf. Stattdessen läuft **eines und wandert weiter** — dieselbe
+Regel wie im Clip-Raster der App (`hooks/useSpotlight.ts`). Wer mit der Maus auf
+eine Karte fährt, hält sie an; beim Verlassen läuft die Rotation weiter.
+
+Das Skript steht am Ende des Vibe-Abschnitts, in **allen fünf** Landingpages
+gleich. Vier Punkte, die dabei leicht schiefgehen und deshalb im Kommentar
+stehen:
+
+1. **Ein Zeitgeber, immer erst gelöscht.** Die erste Fassung rief die Planung
+   aus dem Hover *und* aus dem eigenen Timeout, ohne vorher zu löschen — nach
+   dreimal Drüberfahren liefen drei Ketten parallel und die Rotation wurde immer
+   schneller.
+2. **Erst laufen, wenn man es sieht.** Der Abschnitt steht unter dem ersten
+   Bildschirm.
+3. **Gemessen wird die Geometrie**, nicht über einen Sichtbarkeits-Beobachter.
+   Der meldet in einem versteckten Dokument gar nichts (nachgemessen: in einem
+   Tab mit `document.hidden` feuert weder er noch `requestAnimationFrame`) —
+   dann blieben alle drei Karten für immer beim Standbild. Dazu ein
+   `visibilitychange`-Horcher, damit ein im Hintergrund geladener Tab beim
+   Aufdecken nachsieht.
+4. **`play()` bekommt ein `catch`.** Der Browser lehnt das Promise ab, wenn er
+   die Wiedergabe verweigert (Energiesparmodus); ohne `catch` steht das als
+   Fehler in der Konsole.
+
+Ohne JavaScript bleibt das Standbild stehen. Ehrlicher Rückfall: dieselbe Karte,
+nur unbewegt.
+
 ## `/download` — der Link, den man verschickt
 
 `kadenz.info/download` erkennt das Betriebssystem und leitet direkt weiter:
