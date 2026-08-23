@@ -5,5 +5,6 @@
   "logs-days": 30,
   "exports-per-day": 5,
   "videos-pro-woche": 10,
-  "gratis-testtage": 7
+  "gratis-testtage": 7,
+  "gratis-testtage-woche": 3
 }

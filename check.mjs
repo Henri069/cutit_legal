@@ -24,10 +24,11 @@ const SEITEN = ['privacy', 'terms', 'delete-account', 'impressum'];
  *  kein Vorrang-Hinweis. Geprüft wird nur, was auch dort schiefgehen kann: ein
  *  Sprachlink ins Leere und eine Frist, die von `fristen.json` abweicht.
  *
- *  Eigene Sprachliste, weil die Seiten bewusst mit DE und EN starten (DACH
- *  zuerst). Wer FR/ES/IT nachzieht, trägt sie HIER nach — dann verlangt die
- *  Prüfung sofort die Dateien und die Sprachleiste dazu. */
-const MARKETING_SPRACHEN = ['de', 'en'];
+ *  Eigene Sprachliste, weil Landingpage und FAQ nicht zwingend so viele
+ *  Sprachen haben müssen wie die Rechtstexte. Heute sind es dieselben fünf.
+ *  Wer eine Sprache ergänzt, trägt sie HIER nach — dann verlangt die Prüfung
+ *  sofort die Dateien und die Sprachleiste dazu. */
+const MARKETING_SPRACHEN = ['de', 'en', 'fr', 'es', 'it'];
 const MARKETING_SEITEN = ['index', 'faq'];
 
 const ordner = (lang) => (lang === 'de' ? HIER : join(HIER, lang));

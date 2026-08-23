@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kadenz</title>
+  <meta name="description" content="Get Kadenz for iPhone or Android." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <!-- Eine Weiterleitungsseite gehört nicht in den Index: sie hat keinen
+       eigenen Inhalt, und fünf Sprachen davon wären fünf Dubletten. -->
+  <meta name="robots" content="noindex,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400..700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* Diese Seite ist eine Weiche, kein Dokument: alles mittig, nichts sonst. */
+    .gate {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      text-align: center;
+      padding: 48px 22px;
+    }
+
+    .gate img.mark {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+    }
+
+    .gate h1 {
+      font-size: clamp(1.5rem, 5.5vw, 2.4rem);
+      margin: 0;
+    }
+
+    .gate .stores {
+      justify-content: center;
+    }
+
+    /* Der Ladepunkt läuft nur, solange die Weiterleitung noch aussteht. Ohne
+       ihn sieht die Seite in der halben Sekunde vor dem Sprung kaputt aus. */
+    .gate .spin {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      animation: turn 0.7s linear infinite;
+    }
+
+    @keyframes turn {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gate .spin {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="site">
+  <main class="gate">
+    <img class="mark" src="../assets/logo.svg" alt="Kadenz" width="68" height="68" />
+
+    <h1 data-t="head">Kadenz</h1>
+    <p class="lead" style="margin: 0" data-t="sub">Turn your rides into reels.</p>
+
+    <!-- Sichtbar, SOLANGE weitergeleitet wird. Wer kein JavaScript hat, sieht
+         ihn nie, weil das Skript ihn erst einblendet. -->
+    <div id="warten" hidden style="display: flex; align-items: center; gap: 12px">
+      <span class="spin" aria-hidden="true"></span>
+      <span class="fineprint" style="margin: 0" data-t="wait">Opening the store…</span>
+    </div>
+
+    <!-- Der Rückfall. Steht IMMER im HTML, damit die Seite ohne JavaScript und
+         bei blockierter Weiterleitung trotzdem funktioniert. -->
+    <ul class="stores" id="knoepfe">
+      <li>
+        <a class="store-btn primary" id="apple" href="https://apps.apple.com/app/id6795933034">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+          </svg>
+          App Store
+        </a>
+      </li>
+      <li>
+        <a class="store-btn ghost" id="play" href="https://play.google.com/store/apps/details?id=de.iandsons.bikeedit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M4.5 2.3 13.4 12 4.5 21.7a1.7 1.7 0 0 1-.9-1.5V3.8c0-.6.3-1.2.9-1.5Zm10.6 8.4L6.6 1.4l11.9 6.8-3.4 2.5Zm3.4 5.1L6.6 22.6l8.5-9.3 3.4 2.5Zm2-5.3c.9.5.9 1.8 0 2.3l-2.3 1.3-2.6-2.4 2.6-2.4 2.3 1.2Z" />
+          </svg>
+          Google Play
+        </a>
+      </li>
+    </ul>
+
+    <p class="fineprint" style="margin: 0">
+      <a href="../index.html" data-t="more">More about Kadenz</a>
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var APPLE = 'https://apps.apple.com/app/id6795933034';
+      var PLAY = 'https://play.google.com/store/apps/details?id=de.iandsons.bikeedit';
+
+      // Fünf Sprachen wie die App. Unbekannt -> Englisch, nie Deutsch:
+      // dieselbe Regel wie in `legalUrl()` und in den Store-Metadaten.
+      var TEXTE = {
+        en: {head: 'Get Kadenz', sub: 'Turn your rides into reels.', wait: 'Opening the store…', more: 'More about Kadenz'},
+        de: {head: 'Kadenz laden', sub: 'Aus Touren werden Reels.', wait: 'Store wird geöffnet…', more: 'Mehr über Kadenz'},
+        fr: {head: 'Télécharger Kadenz', sub: 'Tes sorties deviennent reels.', wait: 'Ouverture du store…', more: 'En savoir plus sur Kadenz'},
+        es: {head: 'Descargar Kadenz', sub: 'Convierte rutas en reels.', wait: 'Abriendo la tienda…', more: 'Más sobre Kadenz'},
+        it: {head: 'Scarica Kadenz', sub: 'Le tue uscite diventano reel.', wait: 'Apertura dello store…', more: 'Altro su Kadenz'}
+      };
+
+      var lang = String(navigator.language || 'en').slice(0, 2).toLowerCase();
+      var t = TEXTE[lang] || TEXTE.en;
+      document.documentElement.lang = TEXTE[lang] ? lang : 'en';
+      var knoten = document.querySelectorAll('[data-t]');
+      for (var i = 0; i < knoten.length; i++) {
+        var k = t[knoten[i].getAttribute('data-t')];
+        if (k) knoten[i].textContent = k;
+      }
+
+      /**
+       * Welche Plattform sitzt davor?
+       *
+       * iPadOS 13+ meldet sich als „Macintosh" — der einzige Weg, es von einem
+       * echten Mac zu unterscheiden, ist der Touch-Zähler. Ohne diese Zeile
+       * bekommt jedes iPad die Desktop-Ansicht statt des App Store.
+       */
+      function plattform() {
+        var ua = navigator.userAgent || '';
+        if (/android/i.test(ua)) return 'android';
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+        if (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) return 'ios';
+        return 'desktop';
+      }
+
+      /**
+       * `?c=tiktok` hängt sich an beide Store-Links.
+       *
+       * Damit trägt EIN geteilter Link seinen Kanal mit: `/download?c=tiktok`
+       * landet in App Store Connect unter der Kampagne „tiktok" und in der Play
+       * Console als `utm_source=tiktok`. Ohne den Parameter bleiben die Links
+       * unverändert, also organisch.
+       */
+      function mitKampagne(url, kanal) {
+        if (!kanal) return url;
+        var rein = kanal.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40);
+        if (!rein) return url;
+        if (url.indexOf('apps.apple.com') > -1) {
+          return url + '?pt=kadenz&ct=' + encodeURIComponent(rein) + '&mt=8';
+        }
+        return url + '&referrer=' + encodeURIComponent('utm_source=' + rein + '&utm_medium=link');
+      }
+
+      var kanal = '';
+      try {
+        kanal = new URLSearchParams(location.search).get('c') || '';
+      } catch (e) {
+        kanal = '';
+      }
+
+      var apple = mitKampagne(APPLE, kanal);
+      var play = mitKampagne(PLAY, kanal);
+      document.getElementById('apple').href = apple;
+      document.getElementById('play').href = play;
+
+      var wohin = plattform() === 'android' ? play : plattform() === 'ios' ? apple : null;
+
+      if (wohin) {
+        document.getElementById('warten').hidden = false;
+        // `replace` statt `href`: sonst landet diese Seite im Verlauf, und der
+        // Zurück-Knopf im Store schickt den Nutzer sofort wieder hierher.
+        location.replace(wohin);
+      }
+    })();
+  </script>
+</body>
+
+</html>

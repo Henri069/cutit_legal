@@ -218,7 +218,10 @@ body.site {
 .site .wrap {
   max-width: 62rem;
   margin: 0 auto;
-  padding: 0 22px;
+  /* NUR die Seitenränder. Wer hier auf die Kurzform `padding` zurückgeht,
+     nullt die vertikale Polsterung jedes Abschnitts — siehe unten. */
+  padding-left: 22px;
+  padding-right: 22px;
 }
 
 /* --- Typografie ---------------------------------------------------------- */
@@ -263,7 +266,7 @@ body.site {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.9rem;
 }
 
 .site .lead {
@@ -341,8 +344,12 @@ body.site {
 
 /* --- Abschnitte ---------------------------------------------------------- */
 
+/* NUR oben und unten, in Langform. Die Kurzform würde mit `.site .wrap`
+   kollidieren, und `.wrap` gewinnt: die meisten Abschnitte tragen beide
+   Klassen. */
 .site section {
-  padding: clamp(56px, 9vw, 104px) 0;
+  padding-top: clamp(68px, 10vw, 124px);
+  padding-bottom: clamp(68px, 10vw, 124px);
   border-top: 1px solid var(--border);
 }
 
@@ -358,7 +365,7 @@ body.site {
   grid-template-columns: 1fr;
   gap: clamp(32px, 5vw, 56px);
   align-items: center;
-  padding-top: clamp(40px, 7vw, 76px);
+  padding-top: clamp(30px, 5.5vw, 62px);
 }
 
 @media (min-width: 860px) {
@@ -393,7 +400,7 @@ body.site {
   height: 4px;
   border-radius: 2px;
   background: linear-gradient(90deg, var(--hype-1), var(--hype-2));
-  margin: 0 0 1.3rem;
+  margin: 0 0 1.6rem;
 }
 
 /* --- Store-Knöpfe -------------------------------------------------------- */
@@ -402,7 +409,7 @@ body.site {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 0;
+  margin: 1.9rem 0 0;
   padding: 0;
   list-style: none;
 }

@@ -1,8 +1,8 @@
 # Kadenz — Website und Rechtsseiten
 
-Statische Seiten: die Landingpage, die FAQ und die vier Rechtstexte. **Fünf Sprachen** bei den
-Rechtstexten — Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und Italienisch
-als Übersetzungen. Landingpage und FAQ starten mit Deutsch und Englisch.
+Statische Seiten: die Landingpage, die FAQ und die vier Rechtstexte, alle in **fünf Sprachen** —
+Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und Italienisch als
+Übersetzungen. Dazu eine Weiche unter `/download`.
 
 Dieser Ordner ist ein **eigenes, öffentliches Repo**. Der App-Code liegt im privaten Repo
 `Henri069/bike_edit` (Ordner `../app`) und ist hier nicht enthalten.
@@ -31,13 +31,35 @@ privacy.html          Datenschutzerklärung
 terms.html            Nutzungsbedingungen
 delete-account.html   Konto und Daten löschen
 impressum.html        Impressum nach §5 DDG
+download/index.html   Weiche: erkennt iOS/Android und leitet in den Store
 style.css             gemeinsames Styling; der Kadenz-Look ganz unten unter `body.site`
 assets/               Logo, Hero-Video, Vibe-Videos, Poster
-en/                   Landingpage, FAQ und die vier Rechtstexte
-fr/ es/ it/           nur die vier Rechtstexte (Landingpage und FAQ folgen später)
+en/ fr/ es/ it/       je Landingpage, FAQ und die vier Rechtstexte
 fristen.json          die Fristen als Zahlen — eine Quelle für alle Seiten
 check.mjs             prüft alles: `node check.mjs`
 ```
+
+## `/download` — der Link, den man verschickt
+
+`kadenz.info/download` erkennt das Betriebssystem und leitet direkt weiter:
+Android in den Play Store, iPhone und iPad in den App Store, alles andere zeigt
+beide Knöpfe. **Ein eigener Ordner, damit `/download` ohne Server-Regel
+funktioniert** — sowohl GitHub Pages als auch Hostinger liefern für einen Ordner
+automatisch die `index.html` aus.
+
+- **Sie trägt den Kanal mit.** `\?c=tiktok` hängt sich an beide Store-Links
+  (`ct=tiktok` bei Apple, `utm_source=tiktok` bei Play). Ein Link je Creator ist
+  damit ein Wort, keine zwei handgebauten Store-URLs.
+- **Ohne JavaScript kein Problem:** Die beiden Knöpfe stehen fest im HTML, die
+  Weiterleitung kommt erst danach. Die Seite ist nie eine Sackgasse.
+- **iPadOS meldet sich als „Macintosh".** Nur die zusätzliche Prüfung auf
+  `navigator.maxTouchPoints > 1` unterscheidet ein iPad von einem echten Mac.
+  Ohne sie bekäme jedes iPad die Desktop-Ansicht statt des App Store.
+- **`location.replace`, nicht `href`.** Sonst steht die Seite im Verlauf, und der
+  Zurück-Knopf im Store wirft den Nutzer sofort wieder hierher.
+- Die Seite trägt `noindex` und ist **nicht** in `check.mjs`: sie hat keinen
+  eigenen Inhalt und keine Sprachleiste, ihre Texte kommen aus
+  `navigator.language`.
 
 **`index.html` war die Rechts-Übersicht und ist jetzt die Landingpage.** Das ist gefahrlos: keine
 App-Fassung ruft diese Seite auf — verlinkt werden ausschließlich `terms`, `privacy` und
@@ -69,12 +91,12 @@ die es gibt · jede nicht-deutsche Fassung trägt den Vorrang-Hinweis (`class="�
 mit `data-frist` markierte Zahl stimmt mit `fristen.json` überein · dieselbe Seite trägt in allen
 Sprachen dasselbe Stand-Datum.
 
-**Landingpage und FAQ** (`MARKETING_SEITEN`), heute in `de` und `en`: Sprachleiste vorhanden ·
+**Landingpage und FAQ** (`MARKETING_SEITEN`), in allen fünf Sprachen: Sprachleiste vorhanden ·
 jede verlinkte Sprachfassung existiert wirklich · jede `data-frist` stimmt. Kein Stand-Datum, kein
 Vorrang-Hinweis — beide tragen keinen Rechtsinhalt.
 
-**Wer FR, ES oder IT für die Website nachzieht, trägt die Sprache in `MARKETING_SPRACHEN` ein.**
-Danach verlangt die Prüfung sofort die Dateien und die Sprachleiste dazu — nicht andersherum.
+**Wer eine Sprache ergänzt, trägt sie in `MARKETING_SPRACHEN` ein.** Danach verlangt die Prüfung
+sofort die Dateien und die Sprachleiste dazu — nicht andersherum.
 
 **Die Zahlen stehen auch im Code.** `supabase/functions/_shared/fristen.test.ts` im App-Repo
 vergleicht `fristen.json` gegen `EXPORT_URL_TTL_SEC`, `PENDING_TTL_DAYS` und `EXPORT_REFILL_SEC`.
@@ -115,13 +137,14 @@ Animationen sind CSS und laufen auf jedem statischen Hoster gleich.
 2. In den Ordner der Domain wechseln: `public_html/` bei der Hauptdomain.
 3. **Den gesamten Inhalt dieses Ordners** hineinlegen — Dateien und Unterordner:
    `index.html`, `faq.html`, `privacy.html`, `terms.html`, `delete-account.html`,
-   `impressum.html`, `style.css`, `assets/`, `en/`, `fr/`, `es/`, `it/`.
+   `impressum.html`, `style.css`, `assets/`, `download/`, `en/`, `fr/`, `es/`, `it/`.
 4. `README.md`, `check.mjs` und `fristen.json` braucht der Server nicht. Sie schaden auch nicht,
    nur `check.mjs` und `fristen.json` sind dann öffentlich lesbar — beides enthält nichts
    Geheimes.
 
 Danach prüfen: `kadenz.info` zeigt die Landingpage, `kadenz.info/faq.html` die FAQ,
-`kadenz.info/en/` die englische Fassung, und alle Fußzeilen-Links antworten.
+`kadenz.info/fr/` die französische Fassung, `kadenz.info/download` leitet auf dem Handy in den
+Store weiter, und alle Fußzeilen-Links antworten.
 
 **Die alten GitHub-Pages-URLs bleiben trotzdem online.** Sie sind der Vertrag mit jeder
 installierten App. Wer sie abschaltet, bricht die Datenschutzseite in jeder Fassung, die gerade
