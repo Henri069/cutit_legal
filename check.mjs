@@ -17,7 +17,18 @@ const HIER = dirname(fileURLToPath(import.meta.url));
 /** Deutsch liegt in der WURZEL — das ist die verbindliche Fassung und genau die
  *  URL, die in den Stores eingetragen ist. Ein Umzug nach /de/ wäre eine 404. */
 const SPRACHEN = ['de', 'en', 'fr', 'es', 'it'];
-const SEITEN = ['index', 'privacy', 'terms', 'delete-account', 'impressum'];
+const SEITEN = ['privacy', 'terms', 'delete-account', 'impressum'];
+
+/** Landingpage und FAQ. Sie liegen im selben Ordner und laden dieselbe
+ *  style.css, tragen aber KEINEN Rechtsinhalt — deshalb keine Stand-Daten und
+ *  kein Vorrang-Hinweis. Geprüft wird nur, was auch dort schiefgehen kann: ein
+ *  Sprachlink ins Leere und eine Frist, die von `fristen.json` abweicht.
+ *
+ *  Eigene Sprachliste, weil die Seiten bewusst mit DE und EN starten (DACH
+ *  zuerst). Wer FR/ES/IT nachzieht, trägt sie HIER nach — dann verlangt die
+ *  Prüfung sofort die Dateien und die Sprachleiste dazu. */
+const MARKETING_SPRACHEN = ['de', 'en'];
+const MARKETING_SEITEN = ['index', 'faq'];
 
 const ordner = (lang) => (lang === 'de' ? HIER : join(HIER, lang));
 const pfad = (lang, seite) => join(ordner(lang), `${seite}.html`);
@@ -62,9 +73,10 @@ for (const lang of SPRACHEN) {
       }
     }
 
-    // 3. Jede nicht-deutsche RECHTSseite sagt, dass Deutsch verbindlich ist.
-    //    `index` ist ein reiner Linkverteiler ohne Rechtsinhalt.
-    if (lang !== 'de' && seite !== 'index' && !/class="[^"]*\bbinding\b/.test(html)) {
+    // 3. Jede nicht-deutsche Rechtsseite sagt, dass Deutsch verbindlich ist.
+    //    Seit `index` die Landingpage ist, steht in SEITEN nur noch
+    //    Rechtsinhalt — die frühere Ausnahme für `index` wäre tote Logik.
+    if (lang !== 'de' && !/class="[^"]*\bbinding\b/.test(html)) {
       meckern(`${lang}/${seite}.html: der Vorrang-Hinweis (class="… binding") fehlt.`);
     }
 
@@ -138,10 +150,57 @@ for (const seite of SEITEN) {
   }
 }
 
+// 6. Landingpage und FAQ. Bewusst die LEICHTE Prüfung: kein Stand-Datum, kein
+//    Vorrang-Hinweis, kein Rechtsinhalt. Aber die zwei Fehler, die hier
+//    trotzdem passieren, kosten genauso viel:
+//    · ein Sprachlink auf eine Datei, die es nicht gibt (404 für den Besucher),
+//    · eine Frist, die von `fristen.json` abweicht — dann steht in der FAQ
+//      etwas anderes als in den Nutzungsbedingungen, und die FAQ ist der Ort,
+//      den die Leute wirklich lesen.
+for (const lang of MARKETING_SPRACHEN) {
+  for (const seite of MARKETING_SEITEN) {
+    const datei = pfad(lang, seite);
+    if (!existsSync(datei)) {
+      meckern(`${lang}/${seite}.html fehlt (Landingpage/FAQ).`);
+      continue;
+    }
+    const html = readFileSync(datei, 'utf8');
+
+    const lang_attr = html.match(/<html lang="([^"]+)"/)?.[1];
+    if (lang_attr !== lang) {
+      meckern(`${lang}/${seite}.html: <html lang="${lang_attr}"> passt nicht zum Ordner.`);
+    }
+
+    for (const ziel of MARKETING_SPRACHEN) {
+      const erwartet = ziel === 'de'
+        ? (lang === 'de' ? `./${seite}.html` : `../${seite}.html`)
+        : (lang === 'de' ? `./${ziel}/${seite}.html` : `../${ziel}/${seite}.html`);
+      if (!html.includes(`href="${erwartet}"`)) {
+        meckern(`${lang}/${seite}.html: kein Sprachlink auf ${erwartet}`);
+      }
+      if (!existsSync(pfad(ziel, seite))) {
+        meckern(`${lang}/${seite}.html verlinkt ${ziel}/${seite}.html — die es nicht gibt.`);
+      }
+    }
+
+    for (const treffer of html.matchAll(/data-frist="([\w-]+)"[^>]*>\s*(\d+)/g)) {
+      const [, name, wert] = treffer;
+      if (!(name in fristen)) {
+        meckern(`${lang}/${seite}.html: data-frist="${name}" steht nicht in fristen.json.`);
+      } else if (Number(wert) !== fristen[name]) {
+        meckern(`${lang}/${seite}.html: ${name} sagt ${wert}, fristen.json sagt ${fristen[name]}.`);
+      }
+    }
+  }
+}
+
 if (fehler.length) {
   console.error(`\n${fehler.length} Problem(e):\n`);
   for (const f of fehler) console.error('  · ' + f);
   console.error('');
   process.exit(1);
 }
-console.log(`Alles in Ordnung: ${SPRACHEN.length} Sprachen × ${SEITEN.length} Seiten.`);
+console.log(
+  `Alles in Ordnung: ${SPRACHEN.length} Sprachen × ${SEITEN.length} Rechtsseiten, ` +
+    `dazu ${MARKETING_SPRACHEN.length} × ${MARKETING_SEITEN.length} Seiten der Website.`,
+);

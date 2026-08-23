@@ -1,25 +1,51 @@
-# BikeEdit — Rechtsseiten
+# Kadenz — Website und Rechtsseiten
 
-Statische Seiten für GitHub Pages: Datenschutz, Nutzungsbedingungen, Löschanfragen und Impressum.
-**Fünf Sprachen** — Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und
-Italienisch als Übersetzungen.
+Statische Seiten: die Landingpage, die FAQ und die vier Rechtstexte. **Fünf Sprachen** bei den
+Rechtstexten — Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und Italienisch
+als Übersetzungen. Landingpage und FAQ starten mit Deutsch und Englisch.
 
 Dieser Ordner ist ein **eigenes, öffentliches Repo**. Der App-Code liegt im privaten Repo
 `Henri069/bike_edit` (Ordner `../app`) und ist hier nicht enthalten.
 
+## Ein Ordner, zwei Hoster
+
+Derselbe Ordner wird an zwei Stellen ausgeliefert, mit **identischen Dateien**:
+
+| Ziel | Wer liest es | Warum es bleiben muss |
+|---|---|---|
+| `henri069.github.io/cutit_legal` (GitHub Pages) | **jede installierte App-Fassung** | Die URLs stehen in `app/src/models/config.ts` und in beiden Stores. Verschwinden sie, zeigt jede App eine tote Datenschutzseite. |
+| `kadenz.info` (Hostinger) | Menschen, Creator, Suchmaschinen | Die eigentliche Website. |
+
+**Deshalb gibt es die Rechtstexte genau EINMAL.** Zwei Kopien in zwei Repos driften auseinander,
+und eine veraltete Datenschutzerklärung ist ein Rechtsproblem, kein Schönheitsfehler.
+
+`privacy.html`, `terms.html` und `delete-account.html` **bewegen sich nie** — weder Dateiname noch
+Ordner. Alles andere darf sich ändern.
+
 ## Aufbau
 
 ```
-index.html            Übersicht (DE)
+index.html            Landingpage        ← war früher die Rechts-Übersicht
+faq.html              Häufige Fragen
 privacy.html          Datenschutzerklärung
 terms.html            Nutzungsbedingungen
 delete-account.html   Konto und Daten löschen
 impressum.html        Impressum nach §5 DDG
-style.css             gemeinsames Styling, Light und Dark
-en/ fr/ es/ it/       die vier Übersetzungen, gleiche Dateinamen
+style.css             gemeinsames Styling; der Kadenz-Look ganz unten unter `body.site`
+assets/               Logo, Hero-Video, Vibe-Videos, Poster
+en/                   Landingpage, FAQ und die vier Rechtstexte
+fr/ es/ it/           nur die vier Rechtstexte (Landingpage und FAQ folgen später)
 fristen.json          die Fristen als Zahlen — eine Quelle für alle Seiten
-check.mjs             prüft die 25 Seiten: `node check.mjs`
+check.mjs             prüft alles: `node check.mjs`
 ```
+
+**`index.html` war die Rechts-Übersicht und ist jetzt die Landingpage.** Das ist gefahrlos: keine
+App-Fassung ruft diese Seite auf — verlinkt werden ausschließlich `terms`, `privacy` und
+`delete-account`. Ihre alte Aufgabe, auf die vier Rechtstexte zu zeigen, übernimmt die Fußzeile.
+
+**Der Kadenz-Look greift nur unter `body.site`.** Die vier Rechtsseiten laden dieselbe `style.css`
+und sehen unverändert aus: schmal, nüchtern, Systemschrift. Wer im Marketing-Teil etwas ändert,
+kann die Rechtsseiten nicht versehentlich mitverändern.
 
 **Deutsch liegt in der WURZEL, nicht unter `/de/`.** Das ist die verbindliche Fassung und genau
 die URL, die in App Store Connect und bei Google Play eingetragen ist. GitHub Pages kennt keine
@@ -35,10 +61,20 @@ noch eine Weiterleitung für alte Links. Titel und Überschrift sind natürlich 
 node check.mjs
 ```
 
-Prüft: jeder Sprachordner hat dieselben fünf Seiten · `<html lang>` passt zum Ordner · die
-Sprachleiste führt in jede Sprache auf eine Seite, die es gibt · jede nicht-deutsche Rechtsseite
-trägt den Vorrang-Hinweis (`class="… binding"`) · jede mit `data-frist` markierte Zahl stimmt mit
-`fristen.json` überein · dieselbe Seite hat in allen Sprachen dasselbe Stand-Datum.
+Zwei Prüfungen mit verschiedener Strenge, weil die Seiten verschiedene Aufgaben haben.
+
+**Die vier Rechtsseiten** (`SEITEN`), in allen fünf Sprachen: jeder Sprachordner hat dieselben
+Seiten · `<html lang>` passt zum Ordner · die Sprachleiste führt in jede Sprache auf eine Seite,
+die es gibt · jede nicht-deutsche Fassung trägt den Vorrang-Hinweis (`class="… binding"`) · jede
+mit `data-frist` markierte Zahl stimmt mit `fristen.json` überein · dieselbe Seite trägt in allen
+Sprachen dasselbe Stand-Datum.
+
+**Landingpage und FAQ** (`MARKETING_SEITEN`), heute in `de` und `en`: Sprachleiste vorhanden ·
+jede verlinkte Sprachfassung existiert wirklich · jede `data-frist` stimmt. Kein Stand-Datum, kein
+Vorrang-Hinweis — beide tragen keinen Rechtsinhalt.
+
+**Wer FR, ES oder IT für die Website nachzieht, trägt die Sprache in `MARKETING_SPRACHEN` ein.**
+Danach verlangt die Prüfung sofort die Dateien und die Sprachleiste dazu — nicht andersherum.
 
 **Die Zahlen stehen auch im Code.** `supabase/functions/_shared/fristen.test.ts` im App-Repo
 vergleicht `fristen.json` gegen `EXPORT_URL_TTL_SEC`, `PENDING_TTL_DAYS` und `EXPORT_REFILL_SEC`.
@@ -70,9 +106,43 @@ cd /Users/henri_irmscher/Code/bike_edit/legal && git add -A && git commit -m "Bi
 
 Danach auf GitHub: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `root`**.
 
+## Zu Hostinger kopieren (kadenz.info)
+
+Reines HTML, CSS, Bilder und Videos. **Kein Build, kein Server, kein Framework** — auch die
+Animationen sind CSS und laufen auf jedem statischen Hoster gleich.
+
+1. Im hPanel den **Dateimanager** öffnen (oder FTP/SFTP benutzen).
+2. In den Ordner der Domain wechseln: `public_html/` bei der Hauptdomain.
+3. **Den gesamten Inhalt dieses Ordners** hineinlegen — Dateien und Unterordner:
+   `index.html`, `faq.html`, `privacy.html`, `terms.html`, `delete-account.html`,
+   `impressum.html`, `style.css`, `assets/`, `en/`, `fr/`, `es/`, `it/`.
+4. `README.md`, `check.mjs` und `fristen.json` braucht der Server nicht. Sie schaden auch nicht,
+   nur `check.mjs` und `fristen.json` sind dann öffentlich lesbar — beides enthält nichts
+   Geheimes.
+
+Danach prüfen: `kadenz.info` zeigt die Landingpage, `kadenz.info/faq.html` die FAQ,
+`kadenz.info/en/` die englische Fassung, und alle Fußzeilen-Links antworten.
+
+**Die alten GitHub-Pages-URLs bleiben trotzdem online.** Sie sind der Vertrag mit jeder
+installierten App. Wer sie abschaltet, bricht die Datenschutzseite in jeder Fassung, die gerade
+auf einem fremden Gerät liegt.
+
+### Wenn ein Video nicht abspielt
+
+Manche Hoster liefern `.mp4` ohne den passenden Typ aus. Dann hilft eine `.htaccess` neben den
+Dateien:
+
+```apache
+AddType video/mp4 .mp4
+```
+
 ## Die URLs für die Stores
 
-Nach dem Aktivieren von GitHub Pages erreichbar unter `https://henri069.github.io/DEIN-REPO/`:
+**Diese fünf zeigen weiter auf GitHub Pages, nicht auf kadenz.info.** Sie stehen so in App
+Store Connect, bei Google Play und in `app/src/models/config.ts`; sie umzustellen wäre eine
+eigene Runde mit einem neuen App-Build (siehe CLAUDE.md, „abwärtskompatibel ausrollen").
+
+Erreichbar unter `https://henri069.github.io/cutit_legal/`:
 
 | Zweck | URL |
 |---|---|

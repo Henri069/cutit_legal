@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#0e0e12"/>
+  <g><defs>
+    <mask id="freii">
+      <rect width="1024" height="1024" fill="#fff"/>
+      <line x1="512" y1="512" x2="759" y2="719" stroke="#000" stroke-width="110" stroke-linecap="round"/>
+      <circle cx="512" cy="512" r="65" fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#freii)">
+    <circle cx="512" cy="512" r="248" fill="none" stroke="#f5f3ed" stroke-width="42"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(0 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(18 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(36 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(54 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(72 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(90 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(108 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(126 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(144 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(162 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(180 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(198 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(216 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(234 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(252 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(270 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(288 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(306 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(324 512 512)"/>
+    <rect x="497" y="192" width="30" height="58" rx="8" fill="#f5f3ed" transform="rotate(342 512 512)"/>
+  </g>
+  <line x1="512" y1="512" x2="759" y2="719" stroke="#22E7E4" stroke-width="72" stroke-linecap="round"/>
+  <circle cx="512" cy="512" r="46" fill="#22E7E4"/>
+  </g>
+</svg>
