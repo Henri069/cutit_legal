@@ -83,7 +83,8 @@ ffmpeg -ss 1.2 -i ../prototype/out/store/preview-de.mp4 -frames:v 1 -q:v 3 asset
 
 # Vibes, aus der Full-HD-Quelle. 11 s, auf 900 Punkte.
 ffmpeg -t 11 -i <hype-full-hd>.mp4 -vf "scale=900:-2" -c:v libx264 -preset slow -crf 28 \\
-  -pix_fmt yuv420p -profile:v high -movflags +faststart -an assets/vibe-hype.mp4
+  -pix_fmt yuv420p -profile:v high -c:a aac -b:a 128k -ac 2 \\
+  -movflags +faststart assets/vibe-hype.mp4
 ffmpeg -ss 0.8 -i <hype-full-hd>.mp4 -frames:v 1 -vf "scale=900:-2" -q:v 3 assets/vibe-hype.jpg
 ```
 
@@ -121,6 +122,55 @@ stehen:
 
 Ohne JavaScript bleibt das Standbild stehen. Ehrlicher Rückfall: dieselbe Karte,
 nur unbewegt.
+
+## Der Ton-Schalter
+
+Auf jeder Vibe-Karte sitzt unten rechts ein Lautsprecher. Er schaltet den Ton
+**fuer alle drei Karten gemeinsam** - wer ihn auf einer Karte einschaltet, hoert
+ihn auch, wenn die Rotation elf Sekunden spaeter zur naechsten weitergeht. Drei
+einzelne Schalter waeren ein Knopf, den man staendig neu druecken muesste.
+
+- **Immer sichtbar, nicht erst beim Darueberfahren.** Auf dem Handy gibt es kein
+  Hovern, und genau dort ist der Schalter am wichtigsten. Dort ist er auch
+  groesser (44 statt 38 Punkte, Apples Mindestmass fuer Tippziele).
+- **Unten rechts.** Oben im Bild sitzt die Statistik-Karte des Videos, und die
+  soll die Vibe-Karte ja gerade vorfuehren.
+- **Der Schalter zeigt den ZUSTAND, nicht die Handlung.** `aria-pressed="true"`
+  heisst: Ton laeuft. Symbol und Beschriftung haengen beide daran, die
+  Beschriftung wechselt im Skript (`data-an` / `data-aus` am Knopf, je Sprache
+  uebersetzt).
+- **Automatische Wiedergabe erlauben Browser nur stumm.** Wird sie mit Ton
+  abgelehnt, faellt der Schalter von selbst auf stumm zurueck und spielt weiter.
+  Eine stehende Karte waere schlimmer als eine leise.
+- **Der Klick wird gestoppt** (`stopPropagation`), sonst zaehlt er zusaetzlich
+  als Auswahl der Karte und die Rotation springt. Steht die eigene Karte gerade
+  still, holt der Druck sie aber bewusst nach vorn - man will hoeren, worauf man
+  gedrueckt hat.
+
+## Tippen waehlt einen Vibe
+
+Ein Klick oder Tipp auf eine Karte spielt ihren Vibe. Auf dem Handy ist das der
+**einzige** Weg, gezielt einen anzusehen - dort gibt es kein Hovern.
+
+- **Der Tipp haelt die Rotation nicht fest**, anders als der Mauszeiger. Nach
+  den elf Sekunden geht es normal weiter. Wuerde er festhalten, staende die
+  Rotation nach dem ersten Tipp fuer immer.
+- **Hover-Handler haengen an `(hover: hover)`.** Touch-Browser feuern
+  `mouseenter` beim Tippen mit, `mouseleave` danach aber oft nie - dann bliebe
+  die Rotation nach dem ersten Tipp haengen. Der Grund, warum es die Abfrage
+  gibt.
+- **Weder Klick noch Hover pruefen `sichtbar`.** Wer auf eine Karte tippt,
+  sieht sie - das auf die Geometrie-Pruefung warten zu lassen hiesse, einen
+  Tipp zu verschlucken, solange `requestAnimationFrame` ruht. Stattdessen
+  setzen beide `sichtbar` selbst.
+
+**Die Vibe-Videos brauchen dafuer eine Tonspur.** Beim Kodieren also **kein**
+`-an`, sondern `-c:a aac -b:a 128k`. Bei elf Sekunden sind das rund 170 KB, die
+Dateigroesse bleibt bei 5,0 MB.
+
+**Das Held-Video ist bewusst stumm** (`-an`). Seine Quelle haette Ton, aber es
+laeuft automatisch beim Seitenaufbau - ein Video, das oben auf einer Landingpage
+von selbst Krach macht, ist ein Muster, das Leute wegklicken.
 
 ## `/download` — der Link, den man verschickt
 

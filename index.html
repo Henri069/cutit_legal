@@ -145,6 +145,19 @@
           <div class="frame">
             <video src="./assets/vibe-hype.mp4" poster="./assets/vibe-hype.jpg" muted loop playsinline
               preload="none" aria-hidden="true"></video>
+            <button class="ton" type="button" aria-pressed="false" aria-label="Ton einschalten"
+              data-an="Ton einschalten" data-aus="Ton ausschalten">
+              <svg class="stumm" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.6 9.4l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" />
+              </svg>
+              <svg class="laut" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.4 8.8a4.6 4.6 0 0 1 0 6.4M19.2 6a8.6 8.6 0 0 1 0 12" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
           </div>
           <div class="label">
             <p class="name">HYPE</p>
@@ -155,6 +168,19 @@
           <div class="frame">
             <video src="./assets/vibe-smooth.mp4" poster="./assets/vibe-smooth.jpg" muted loop playsinline
               preload="none" aria-hidden="true"></video>
+            <button class="ton" type="button" aria-pressed="false" aria-label="Ton einschalten"
+              data-an="Ton einschalten" data-aus="Ton ausschalten">
+              <svg class="stumm" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.6 9.4l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" />
+              </svg>
+              <svg class="laut" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.4 8.8a4.6 4.6 0 0 1 0 6.4M19.2 6a8.6 8.6 0 0 1 0 12" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
           </div>
           <div class="label">
             <p class="name">SMOOTH</p>
@@ -165,6 +191,19 @@
           <div class="frame">
             <video src="./assets/vibe-retro.mp4" poster="./assets/vibe-retro.jpg" muted loop playsinline
               preload="none" aria-hidden="true"></video>
+            <button class="ton" type="button" aria-pressed="false" aria-label="Ton einschalten"
+              data-an="Ton einschalten" data-aus="Ton ausschalten">
+              <svg class="stumm" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.6 9.4l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" />
+              </svg>
+              <svg class="laut" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+                <path d="M16.4 8.8a4.6 4.6 0 0 1 0 6.4M19.2 6a8.6 8.6 0 0 1 0 12" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
           </div>
           <div class="label">
             <p class="name">RETRO</p>
@@ -176,10 +215,15 @@
       <script>
         /* Immer nur EIN Vibe-Video laeuft, und es wandert weiter - dieselbe
            Regel wie im Clip-Raster der App (`hooks/useSpotlight.ts`). Drei
-           gleichzeitig laufende Videos waeren drei Dekoder und rund 11 MB
-           beim Seitenaufruf.
+           gleichzeitig laufende Videos waeren drei Dekoder und 15 MB beim
+           Seitenaufruf.
 
-           Vier Dinge, die hier leicht schiefgehen:
+           Der Ton ist EIN Zustand fuer alle drei Karten, nicht drei einzelne.
+           Wer ihn auf einer Karte einschaltet, hoert ihn auch, wenn die
+           Rotation zur naechsten weitergeht - alles andere waere ein Schalter,
+           den man alle elf Sekunden neu druecken muesste.
+
+           Fuenf Dinge, die hier leicht schiefgehen:
 
            1. EIN Zeitgeber, immer erst geloescht. Wer die Planung aus dem
               Hover UND aus dem eigenen Timeout aufruft, ohne vorher zu
@@ -193,16 +237,20 @@
               Fenstern gar nichts - dann blieben alle drei Karten fuer immer
               beim Standbild. Ein Rect zu lesen kostet nichts, laeuft ueberall,
               und mit requestAnimationFrame haengt es sich nicht ans Scrollen.
-           4. `play()` gibt ein Promise zurueck, das der Browser ablehnt, wenn
+           4. Automatische Wiedergabe erlauben Browser NUR stumm. Wird sie mit
+              Ton abgelehnt, faellt der Schalter zurueck auf stumm und spielt
+              weiter - eine tote Karte waere schlimmer als eine leise.
+           5. `play()` gibt ein Promise zurueck, das der Browser ablehnt, wenn
               er die Wiedergabe verweigert (Energiesparmodus). Ohne `catch`
               steht das als Fehler in der Konsole.
 
-           Ohne JavaScript bleibt das Standbild stehen. Ehrlicher Rueckfall:
-           dieselbe Karte, nur unbewegt. */
+           Ohne JavaScript bleibt das Standbild stehen und der Schalter ist
+           wirkungslos. Ehrlicher Rueckfall: dieselbe Karte, nur unbewegt. */
         (function () {
           'use strict';
           var karten = Array.prototype.slice.call(document.querySelectorAll('.vibe'));
           var videos = karten.map(function (k) { return k.querySelector('video'); });
+          var knoepfe = karten.map(function (k) { return k.querySelector('.ton'); });
           var feld = document.querySelector('.vibes');
           if (!feld || !videos.length || videos.indexOf(null) !== -1) return;
 
@@ -212,11 +260,37 @@
           var sichtbar = false;
           var gehalten = false;
           var geplant = false;
+          var tonAn = false;
+
+          function knoepfeMalen() {
+            for (var i = 0; i < knoepfe.length; i++) {
+              var b = knoepfe[i];
+              if (!b) continue;
+              b.setAttribute('aria-pressed', tonAn ? 'true' : 'false');
+              var text = tonAn ? b.getAttribute('data-aus') : b.getAttribute('data-an');
+              if (text) b.setAttribute('aria-label', text);
+            }
+          }
+
+          function tonSetzen(an) {
+            tonAn = an;
+            for (var i = 0; i < videos.length; i++) videos[i].muted = !an;
+            knoepfeMalen();
+          }
 
           function spiele(v) {
             if (v.preload !== 'auto') v.preload = 'auto';
+            v.muted = !tonAn;
             var p = v.play();
-            if (p && p.catch) p.catch(function () {});
+            if (!p || !p.catch) return;
+            p.catch(function () {
+              if (v.muted) return;
+              // Der Browser laesst nur stumme automatische Wiedergabe zu.
+              // Lieber leise weiterlaufen als eine stehende Karte zeigen.
+              tonSetzen(false);
+              var q = v.play();
+              if (q && q.catch) q.catch(function () {});
+            });
           }
 
           function alleAus() {
@@ -267,17 +341,65 @@
             requestAnimationFrame(pruefen);
           }
 
+          /* Hovern gibt es NUR mit einem echten Zeigegeraet. Touch-Browser
+             feuern `mouseenter` beim Tippen mit, `mouseleave` danach aber oft
+             nie - dann bliebe `gehalten` fuer immer true und die Rotation
+             stuende nach dem ersten Tipp still. */
+          var hatZeiger = !!(window.matchMedia && window.matchMedia('(hover: hover)').matches);
+
           for (var k = 0; k < karten.length; k++) {
             (function (i) {
-              karten[i].addEventListener('mouseenter', function () {
-                if (!sichtbar) return;
-                gehalten = true;
+              /* Ein Tipp oder Klick waehlt die Karte und spielt sie. Auf dem
+                 Handy ist das der EINZIGE Weg, einen Vibe gezielt anzusehen.
+                 Anders als das Hovern haelt er die Rotation nicht fest - sonst
+                 stuende sie nach einem Tipp fuer immer. */
+              karten[i].addEventListener('click', function () {
+                /* KEINE Pruefung auf `sichtbar`: ein Klick IST der Beweis,
+                   dass die Karte zu sehen ist. Hier auf die Geometrie zu
+                   warten hiesse, einen Tipp zu verschlucken, solange
+                   requestAnimationFrame ruht - im Hintergrund-Tab, im
+                   Energiesparmodus, oder in einem Fenster, das gerade nicht
+                   gezeichnet wird. */
+                sichtbar = true;
+                gehalten = false;
                 clearTimeout(timer);
                 zeige(i);
-              });
-              karten[i].addEventListener('mouseleave', function () {
-                gehalten = false;
                 planen();
+              });
+
+              if (hatZeiger) {
+                karten[i].addEventListener('mouseenter', function () {
+                  // Wie beim Klick: der Mauszeiger auf der Karte beweist, dass
+                  // sie zu sehen ist.
+                  sichtbar = true;
+                  gehalten = true;
+                  clearTimeout(timer);
+                  zeige(i);
+                });
+                karten[i].addEventListener('mouseleave', function () {
+                  gehalten = false;
+                  planen();
+                });
+              }
+              if (!knoepfe[i]) return;
+              knoepfe[i].addEventListener('click', function (e) {
+                // Nicht bis zur Karte durchreichen: sonst zaehlt der Klick
+                // zusaetzlich als Auswahl und die Rotation springt.
+                e.preventDefault();
+                e.stopPropagation();
+                var an = !tonAn;
+                tonSetzen(an);
+                /* Ton EINschalten heisst: man will jetzt etwas hoeren. Laeuft
+                   gerade eine andere Karte, holt der Druck die eigene nach
+                   vorn. Beim AUSschalten waere das Umspringen nur laestig.
+                   Auch hier keine Pruefung auf `sichtbar` - wer drueckt,
+                   sieht die Karte. */
+                if (an && videos[i].paused) {
+                  sichtbar = true;
+                  clearTimeout(timer);
+                  zeige(i);
+                  planen();
+                }
               });
             })(k);
           }
@@ -293,6 +415,7 @@
           document.addEventListener('visibilitychange', function () {
             if (!document.hidden) pruefen();
           });
+          tonSetzen(false);
           pruefen();
         })();
       </script>

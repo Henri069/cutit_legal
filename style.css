@@ -527,11 +527,23 @@ body.site {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
+/* Die Karte ist anklickbar: ein Tipp waehlt ihren Vibe aus und spielt ihn.
+   Auf dem Handy ist das der einzige Weg, gezielt einen anzusehen. */
 .site .vibe {
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border);
   background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.site .vibe:hover {
+  border-color: var(--v1);
+}
+
+.site .vibe:active {
+  transform: scale(0.99);
 }
 
 /* 9:16, weil die Vibe-Videos genau dieses Format haben. Mit dem frueheren
@@ -560,6 +572,80 @@ body.site {
   inset: auto 0 0;
   height: 3px;
   background: linear-gradient(90deg, var(--v1), var(--v2));
+}
+
+/* Ton-Schalter auf JEDER Vibe-Karte, immer sichtbar - nicht erst beim
+   Darueberfahren. Auf dem Handy gibt es kein Hovern, und genau dort ist der
+   Schalter am wichtigsten.
+
+   Unten rechts, nicht oben: oben im Bild sitzt die Statistik-Karte des
+   Videos, und die soll die Karte ja gerade vorfuehren. */
+.site .vibe .ton {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #f5f3ed;
+  background: rgba(14, 14, 18, 0.62);
+  backdrop-filter: blur(6px);
+  transition: background 0.15s ease, transform 0.12s ease, color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site .vibe .ton:hover {
+  background: rgba(14, 14, 18, 0.85);
+}
+
+.site .vibe .ton:active {
+  transform: scale(0.9);
+}
+
+.site .vibe .ton svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+/* Der Schalter zeigt den ZUSTAND, nicht die Handlung: gedrueckt = Ton laeuft.
+   Deshalb haengen beide Symbole an `aria-pressed`, und die Beschriftung
+   wechselt im Skript mit. */
+.site .vibe .ton .laut {
+  display: none;
+}
+
+.site .vibe .ton[aria-pressed='true'] {
+  color: var(--hype-1);
+}
+
+.site .vibe .ton[aria-pressed='true'] .stumm {
+  display: none;
+}
+
+.site .vibe .ton[aria-pressed='true'] .laut {
+  display: block;
+}
+
+/* Auf dem Handy etwas groesser: 38 Punkte sind mit dem Daumen knapp. */
+@media (max-width: 620px) {
+  .site .vibe .ton {
+    width: 44px;
+    height: 44px;
+    right: 12px;
+    bottom: 14px;
+  }
+
+  .site .vibe .ton svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .site .vibe .label {
