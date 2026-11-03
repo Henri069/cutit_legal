@@ -7,14 +7,23 @@ Deutsch als verbindliche Fassung, Englisch, Französisch, Spanisch und Italienis
 Dieser Ordner ist ein **eigenes, öffentliches Repo**. Der App-Code liegt im privaten Repo
 `Henri069/bike_edit` (Ordner `../app`) und ist hier nicht enthalten.
 
-## Ein Ordner, zwei Hoster
+## Ein Ordner, ein Hoster, zwei Adressen
 
-Derselbe Ordner wird an zwei Stellen ausgeliefert, mit **identischen Dateien**:
+Alles kommt aus **GitHub Pages**, Branch `main`, Wurzel des Repos. Ein `git push` ist die
+Veröffentlichung — es gibt keinen zweiten Ort, an den etwas kopiert wird:
 
-| Ziel | Wer liest es | Warum es bleiben muss |
+| Adresse | Wer liest es | Warum sie bleiben muss |
 |---|---|---|
-| `henri069.github.io/cutit_legal` (GitHub Pages) | **jede installierte App-Fassung** | Die URLs stehen in `app/src/models/config.ts` und in beiden Stores. Verschwinden sie, zeigt jede App eine tote Datenschutzseite. |
-| `kadenz.info` (Hostinger) | Menschen, Creator, Suchmaschinen | Die eigentliche Website. |
+| `kadenz.info` | Menschen, Creator, Suchmaschinen | Die eigentliche Website. Eigene Domain am Repo, siehe „Die Domain kadenz.info". |
+| `henri069.github.io/cutit_legal` | **jede installierte App-Fassung** | Die URLs stehen in `app/src/models/config.ts` und in beiden Stores. Seit die eigene Domain am Repo hängt, antwortet GitHub hier mit `301` auf `kadenz.info` und **behält den Pfad** (`…/cutit_legal/privacy.html` → `kadenz.info/privacy.html`). Verschwinden sie, zeigt jede App eine tote Datenschutzseite. |
+
+**Die Umleitung ist jetzt load-bearing.** Vorher lagen die Rechtstexte auf GitHub Pages und
+die Website bei Hostinger — zwei Hoster, die unabhängig voneinander ausfielen. Seit dem Umzug
+hängt beides an einem GitHub-Konto, und die App-Adressen funktionieren nur noch über die
+Weiterleitung. Wer die eigene Domain vom Repo nimmt (`CNAME` löschen, Custom Domain leeren),
+nimmt damit **nicht** nur die Website vom Netz: die Weiterleitung fällt weg, und
+`henri069.github.io/cutit_legal` liefert wieder direkt. Umgekehrt gilt: ist `kadenz.info`
+kaputt, ist auch die Datenschutzseite jeder installierten App kaputt.
 
 **Deshalb gibt es die Rechtstexte genau EINMAL.** Zwei Kopien in zwei Repos driften auseinander,
 und eine veraltete Datenschutzerklärung ist ein Rechtsproblem, kein Schönheitsfehler.
@@ -177,8 +186,8 @@ von selbst Krach macht, ist ein Muster, das Leute wegklicken.
 `kadenz.info/download` erkennt das Betriebssystem und leitet direkt weiter:
 Android in den Play Store, iPhone und iPad in den App Store, alles andere zeigt
 beide Knöpfe. **Ein eigener Ordner, damit `/download` ohne Server-Regel
-funktioniert** — sowohl GitHub Pages als auch Hostinger liefern für einen Ordner
-automatisch die `index.html` aus.
+funktioniert** — GitHub Pages liefert für einen Ordner automatisch die
+`index.html` aus.
 
 - **Sie trägt den Kanal mit.** `\?c=tiktok` hängt sich an beide Store-Links
   (`ct=tiktok` bei Apple, `utm_source=tiktok` bei Play). Ein Link je Creator ist
@@ -261,36 +270,77 @@ cd /Users/henri_irmscher/Code/bike_edit/legal && git add -A && git commit -m "Bi
 
 Danach auf GitHub: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `root`**.
 
-## Zu Hostinger kopieren (kadenz.info)
+## Die Domain kadenz.info
 
-Reines HTML, CSS, Bilder und Videos. **Kein Build, kein Server, kein Framework** — auch die
-Animationen sind CSS und laufen auf jedem statischen Hoster gleich.
+Registriert bei **Hostinger**, ausgeliefert von **GitHub Pages**. Hostinger ist nur noch
+Registrar und DNS — dort liegt keine Datei mehr. Reines HTML, CSS, Bilder und Videos, kein
+Build, kein Server, kein Framework.
 
-1. Im hPanel den **Dateimanager** öffnen (oder FTP/SFTP benutzen).
-2. In den Ordner der Domain wechseln: `public_html/` bei der Hauptdomain.
-3. **Den gesamten Inhalt dieses Ordners** hineinlegen — Dateien und Unterordner:
-   `index.html`, `faq.html`, `privacy.html`, `terms.html`, `delete-account.html`,
-   `impressum.html`, `style.css`, `assets/`, `download/`, `en/`, `fr/`, `es/`, `it/`.
-4. `README.md`, `check.mjs` und `fristen.json` braucht der Server nicht. Sie schaden auch nicht,
-   nur `check.mjs` und `fristen.json` sind dann öffentlich lesbar — beides enthält nichts
-   Geheimes.
+**Die Einträge bei Hostinger (hPanel → DNS-Zone) — zwei Einträge, nicht neun:**
 
-Danach prüfen: `kadenz.info` zeigt die Landingpage, `kadenz.info/faq.html` die FAQ,
+| Typ | Name | Wert |
+|---|---|---|
+| ALIAS | `@` | `henri069.github.io` |
+| CNAME | `www` | `henri069.github.io` |
+
+Hostinger hat auf `@` von Haus aus einen **ALIAS** auf seine eigene CDN-Adresse, keine
+A-Records. Es wird also nur dessen Wert geändert. Wer stattdessen einen A-Record daneben
+anlegt, bekommt `RRset kadenz.info IN ALIAS must not be used with A on the same name` — ALIAS
+und A können auf demselben Namen nicht zusammen existieren. Der ALIAS ist ohnehin der bessere
+Weg: ändert GitHub seine Adressen, zieht er von selbst nach.
+
+**Ohne ALIAS-Unterstützung** (anderer Anbieter) wird der Apex zu acht Einzeleinträgen:
+`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` als A, dazu
+`2606:50c0:8000::153` bis `2606:50c0:8003::153` als AAAA. Die vier A-Records gehören
+zusammen; einer allein ist eine Seite, die mal geht und mal nicht.
+
+**Beide Werte sind die KONTO-Adresse, ohne Repo-Namen.** Das sieht falsch aus und ist richtig:
+DNS kennt keine Pfade, es beantwortet nur „welche Maschine". Welches Repo ausgeliefert wird,
+entscheidet GitHub danach am `Host`-Header gegen die `CNAME`-Datei im Repo. Deshalb sagt GitHubs
+Anleitung ausdrücklich, den Repo-Namen **nicht** mitzuschreiben — und deshalb fällt
+`/cutit_legal` aus der URL heraus, sobald die Domain am Repo hängt.
+
+**Die Reihenfolge ist nicht beliebig: erst `CNAME`, dann DNS.** In der Sekunde, in der die
+eigene Domain am Repo hängt, leitet GitHub `henri069.github.io/cutit_legal/privacy.html` auf
+`kadenz.info/privacy.html` um. Das ist hier gefahrlos, **solange Hostinger noch liefert**: dort
+liegen dieselben Dateien unter denselben Pfaden, die Umleitung landet also auf einer gültigen
+Seite. Andersherum entsteht eine echte Lücke — DNS zuerst heißt, dass `kadenz.info` eine 404 von
+GitHub zeigt, bis der `CNAME`-Push durch ist, und ab 1.0.5 liest die App ihre Rechtslinks
+direkt von dort. Also:
+
+1. **Domain im GitHub-Konto verifizieren** (Settings → Pages → Verified domains). Der
+   TXT-Eintrag verhindert, dass ein anderes GitHub-Konto `kadenz.info` für sich beansprucht.
+   Ohne Verifizierung kann GitHub eine Pages-Seite mit falsch zeigender Custom Domain
+   abschalten.
+2. **`CNAME` ins Repo pushen.** Eine Datei, eine Zeile, Inhalt `kadenz.info`. Ab hier ist die
+   Umleitung von `henri069.github.io/cutit_legal` aktiv, und sie landet bei Hostinger auf
+   derselben Datei wie vorher. Niemand merkt etwas.
+3. **DNS bei Hostinger umstellen** (Tabelle oben). GitHub kennt die Domain jetzt schon, liefert
+   also sofort — und fängt im selben Moment an, das Zertifikat auszustellen.
+4. **Nachsehen, dass GitHub antwortet:**
+   `dig +short kadenz.info && curl -sI https://kadenz.info/ | grep -i server`. Dort muss
+   `GitHub.com` stehen, nicht `hcdn`.
+5. **„Enforce HTTPS" anhaken**, sobald GitHub das Zertifikat ausgestellt hat (Settings →
+   Pages, dauert einige Minuten bis zu einer Stunde). **Das ist die einzige echte Lücke am
+   Umzug:** zwischen Schritt 3 und dem fertigen Zertifikat scheitert `https://kadenz.info`.
+   Deshalb Schritt 3 abends machen, nicht mittags.
+
+**Hostinger erst danach aufräumen.** Solange die Dateien dort liegen, ist der Rückweg ein
+einzelner DNS-Eintrag.
+
+**Die `CNAME`-Datei nie beiläufig löschen.** Sie IST die Custom-Domain-Einstellung; verschwindet
+sie aus `main`, fällt die Domain vom Repo und `kadenz.info` ist weg.
+
+**Danach prüfen:** `kadenz.info` zeigt die Landingpage, `kadenz.info/faq.html` die FAQ,
 `kadenz.info/fr/` die französische Fassung, `kadenz.info/download` leitet auf dem Handy in den
-Store weiter, und alle Fußzeilen-Links antworten.
+Store weiter, und `henri069.github.io/cutit_legal/privacy.html` antwortet mit `301` auf
+`kadenz.info/privacy.html`.
 
-**Die alten GitHub-Pages-URLs bleiben trotzdem online.** Sie sind der Vertrag mit jeder
-installierten App. Wer sie abschaltet, bricht die Datenschutzseite in jeder Fassung, die gerade
-auf einem fremden Gerät liegt.
-
-### Wenn ein Video nicht abspielt
-
-Manche Hoster liefern `.mp4` ohne den passenden Typ aus. Dann hilft eine `.htaccess` neben den
-Dateien:
-
-```apache
-AddType video/mp4 .mp4
-```
+**Grenzen von GitHub Pages:** 1 GB Richtwert fürs Repo (wir liegen bei ~58 MB), 100 GB
+Datenverkehr im Monat als weiche Grenze. Die Videos sind rund 4 MB pro Besucher, das reicht für
+etwa 25.000 Besuche im Monat. Nicht erlaubt ist, dort ein Geschäft zu betreiben — also Kasse,
+Konto, Zahlung oder bezahlte Software als Dienst. Unsere Seite beschreibt das Projekt und
+verlinkt in die Stores; die Zahlung läuft vollständig bei Apple und Google.
 
 ## Die URLs für die Stores
 
